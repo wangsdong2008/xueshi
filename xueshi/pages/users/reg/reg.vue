@@ -63,7 +63,7 @@
 						"smsid":ret.smsid,
 						"status":1
 					};
-					_self.sendsms2(data);					
+					_self.sendsms2(data);
 				}
 			},
 			gonext(){

@@ -22,12 +22,12 @@
 			_self = this;
 		},
 		onReady(){
-			_self.getsession();
+			//_self.getsession();
 		},
 		methods: {
-			getsession(){
+			/* getsession(){
 				_self.getcurrentsession();	
-			}
+			} */
 		}
 	}
 </script>
