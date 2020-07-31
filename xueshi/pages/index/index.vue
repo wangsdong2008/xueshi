@@ -4,10 +4,14 @@
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view>
+		<view class="register">
+			<navigator url="../users/reg/reg">注册新用户</navigator>
+		</view>
 	</view>
 </template>
 
 <script>
+	var _self;
 	export default {
 		data() {
 			return {
@@ -15,15 +19,24 @@
 			}
 		},
 		onLoad() {
-
+			_self = this;
+		},
+		onReady(){
+			_self.getsession();
 		},
 		methods: {
-
+			getsession(){
+				_self.getcurrentsession();	
+			}
 		}
 	}
 </script>
 
-<style>
+<style>	
+	navigator{
+		color: #f00;
+	}
+	
 	.content {
 		display: flex;
 		flex-direction: column;
