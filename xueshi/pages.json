@@ -1,26 +1,172 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/users/reg/reg",
+			"path": "pages/users/login/login",
 			"style": {				
-				"navigationBarTitleText": "新用户注册"
+				"navigationBarTitleText": "登录"
 			}
 		},{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		},
+		
+		//家长区开始
+		{
+			"path": "pages/parents/parents/index",
+			"style": {
+				"navigationBarTitleText": "今日提醒",
+				"app-plus": {
+					"titleNView": {
+						"autoBackButton":"false"
+					}
+				}//隐藏顶部导航栏			
+			}
 		},{
+			"path": "pages/parents/find/find/index",
+			"style": {
+				"navigationBarTitleText": "发现"
+			}
+		},{
+			"path": "pages/parents/site/index/index",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}		
+		},{
+			"path": "pages/parents/site/course/course",
+			"style": {
+				"navigationBarTitleText": "课程设置"
+			}		
+		},{
+			"path": "pages/parents/site/course/courseedit",
+			"style": {
+				"navigationBarTitleText": "课程编辑"
+			}		
+		},{
+			"path": "pages/parents/site/child/child",
+			"style": {
+				"navigationBarTitleText": "孩子设置"
+			}		
+		},{
+			"path": "pages/parents/site/child/childshow",
+			"style": {
+				"navigationBarTitleText": "孩子编辑"
+			}		
+		},{
+			"path": "pages/parents/site/plan/plan",
+			"style": {
+				"navigationBarTitleText": "上课安排"
+			}
+		},{
+			"path": "pages/parents/site/plan/planshow",
+			"style": {
+				"navigationBarTitleText": "上课设置"
+			}
+		},{
+			"path": "pages/parents/site/tiaoke/tiaoke",
+			"style": {
+				"navigationBarTitleText": "调课"
+			}
+		},{
+			"path": "pages/parents/site/qingjia/qingjia",
+			"style": {
+				"navigationBarTitleText": "请假"
+			}
+		},{
+			"path": "pages/parents/site/help/help",
+			"style": {
+				"navigationBarTitleText": "帮助文档"
+			}
+		},{
+			"path": "pages/parents/site/help/helpshow",
+			"style": {
+				"navigationBarTitleText": "帮助文档"
+			}
+		},{
+			"path": "pages/parents/site/enlist/enlist",
+			"style": {
+				"navigationBarTitleText": "我的报名"
+			}
+		},{
+			"path": "pages/parents/site/tongji/tongji",
+			"style": {
+				"navigationBarTitleText": "统计"
+			}
+		},{
+			"path": "pages/parents/site/tongji/tongjiresult",
+			"style": {
+				"navigationBarTitleText": "统计结果"
+			}
+		},
+		
+		//家长区结束
+		
+		//会员区开始
+		{
+			"path": "pages/users/main/message/messagelist",
+			"style": {				
+				"navigationBarTitleText": "我的消息"
+			}
+		},{
+			"path": "pages/users/main/message/messageshow",
+			"style": {				
+				"navigationBarTitleText": "消息详情"
+			}
+		},{
+			"path": "pages/users/pwd/pwd",
+			"style": {				
+				"navigationBarTitleText": "取回密码"
+			}
+		},{
+			"path": "pages/users/login/loginout",
+			"style": {				
+				"navigationBarTitleText": "退出"
+			}
+		},
+		{
 			"path": "pages/users/reg/regpassword",
 			"style": {				
 				"navigationBarTitleText": "新用户注册"
 			}
 		},{
-			"path": "pages/users/login/login",
+			"path": "pages/users/reg/reg",
 			"style": {				
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "新用户注册"
+			}
+		},{
+			"path": "pages/users/main/index/main",
+			"style": {				
+				"navigationBarTitleText": "会员中心"	,
+				"app-plus": {
+				    "titleNView": {
+						"autoBackButton":"false"
+					}
+				}
+			}
+		},{
+			"path": "pages/users/main/account/modifymobile",
+			"style": {				
+				"navigationBarTitleText": "更换手机"
+			}
+		},{
+			"path": "pages/users/main/account/modifypassword",
+			"style": {				
+				"navigationBarTitleText": "修改密码"
+			}
+		},{
+			"path": "pages/users/main/account/account",
+			"style": {				
+				"navigationBarTitleText": "个人信息"
+			}
+		},{
+			"path": "pages/users/main/pay/pay",
+			"style": {				
+				"navigationBarTitleText": "续费" 
 			}
 		}
+		
+		//会员区结束
 		
 	],
 	"globalStyle": {

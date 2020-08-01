@@ -19,7 +19,7 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 
 //服务器
 Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-Vue.prototype.WebUrl = "http://www.a.com/";
+Vue.prototype.WebUrl = "http://192.168.1.104/";
 Vue.prototype.Method = "get"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
@@ -40,7 +40,7 @@ Vue.prototype.payAccount = {
 
 
 Vue.prototype.biglogo = "../../../static/img/indeximg.png";
-Vue.prototype.logo = "../../../static/img/logo.png";
+Vue.prototype.logo = "/static/img/logo.png";
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
@@ -783,7 +783,7 @@ Vue.prototype.sendsms2 = function(datainfo){
 					});
 					
 					break;
-				}
+				} 
 				case 2:{
 					uni.showToast({
 						title: '短信已获取，请在5分钟后再次点击获取',
@@ -799,7 +799,7 @@ Vue.prototype.sendsms2 = function(datainfo){
 						icon:"none",
 						duration: 1500
 					});
-					_self.gonext(); //跳回到下一页
+					_self.gonext(); //跳回到下一页 
 					break;
 				}				
 				default:{
