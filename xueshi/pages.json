@@ -12,6 +12,15 @@
 			}
 		},
 		
+		//系统页面开始
+		{
+			"path": "pages/parents/gonggao/showgonggao",
+			"style": {				
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		//系统页面结束
+		
 		//家长区开始
 		{
 			"path": "pages/parents/parents/index",
@@ -27,6 +36,26 @@
 			"path": "pages/parents/find/find/index",
 			"style": {
 				"navigationBarTitleText": "发现"
+			}
+		},{
+			"path": "pages/parents/find/find/searchresult",
+			"style": {
+				"navigationBarTitleText": "发现附近的机构"
+			}
+		},{
+			"path": "pages/parents/find/find/showcourse",
+			"style": {
+				"navigationBarTitleText": "课程详情"
+			}
+		},{
+			"path": "pages/parents/find/find/showshop",
+			"style": {				
+				"navigationBarTitleText": "机构"
+			}
+		},{
+			"path": "pages/parents/find/find/baoming",
+			"style": {				
+				"navigationBarTitleText": "报名"
 			}
 		},{
 			"path": "pages/parents/site/index/index",

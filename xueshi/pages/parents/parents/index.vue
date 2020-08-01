@@ -100,7 +100,7 @@
 				  _self.getData();
 			},
 			showgg:function(guid){
-				_self.navigateTo('../../users/main/showgonggao?id='+guid);
+				_self.navigateTo('/pages/parents/gonggao/showgonggao?id='+guid);
 			},
 			getData() {
 				let ret = uni.getStorageSync(_self.USERS_KEY);
@@ -112,7 +112,7 @@
 						confirmText:'去续费',
 					    success: function (res) {
 					        if (res.confirm) {
-								_self.navigateTo('../../users/main/pay');
+								_self.navigateTo('/pages/users/main/pay/pay');
 					        }
 					    }
 					});
