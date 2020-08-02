@@ -24,14 +24,15 @@
 	.content{
 		width: $content_width;
 		margin: 0 auto;
-		margin-top: 40upx;
+		padding-bottom: 20upx;
+		margin-top: 20upx;
 	}
 	.content .title{
 		border-bottom: 1px solid $bgcolor;
-		height: 45upx;
-		line-height: 45upx;
-		margin: 30upx 0upx;
-		padding-bottom: 30upx;
+		line-height: 80upx;
+		height: 80upx;
+		margin-buttom: 30upx;
+		padding-bottom: 10upx;
 		background-color: #fff;
 	}
 	
@@ -153,5 +154,15 @@
 	}
 	.yzm::after{
 		border: 0upx;
+	}
+	.line{
+		background-color: #eee;
+		height: 30upx;
+	}
+	.top20{
+		margin-top: 20upx;
+	}
+	.pd20{
+		padding-top: 20upx;
 	}
 </style>

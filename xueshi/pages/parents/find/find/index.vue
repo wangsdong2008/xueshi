@@ -5,6 +5,8 @@
 			<view class="title">
 				发现
 			</view>	
+		</view>
+		<view class="content">
 			<view class="icenter">					
 				<view class="findaddress fz30">当前位置：{{location}}</view>	
 				
@@ -22,8 +24,10 @@
 					<button type="primary" class="primary btn" @tap="bindfind">{{findtxt}}</button>
 				</view>
 			</view>
-			</view>
 		</view>
+	    <view class="footer">
+	    	<footerNav :msg="footer"></footerNav>
+	    </view>
 	</view>
 </template>
 
@@ -153,9 +157,7 @@
 	.content .title{
 		background:url(@/static/img/findHL.png) 10upx 22upx no-repeat;
 		-webkit-background-size:50upx 50upx ;
-		background-size:50upx 50upx;
-		line-height: 60upx;
-		height: 60upx;
+		background-size:50upx 50upx;		
 		padding: 15upx 0upx 15upx 70upx;
 	}
 	.titles{

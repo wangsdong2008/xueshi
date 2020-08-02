@@ -11,13 +11,30 @@
 		<view class="content">
 			<view class="title">
 				会员中心
-			</view>		
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+			
 			<view class="main-body write lists">
 				<ul>
-					<li class="lists fz35" v-for="(item,index) in dataList" :key="index" @tap="bindclick(index)"><image :src="'/static/img/'+item.image"></image>{{item.text}}</li>
+					<li class="lists fz35" v-for="(item,index) in dataList" :key="index" @tap="bindclick(index,1)"><image :src="'/static/img/'+item.image"></image>{{item.text}}</li>
 				</ul>
 			</view>	
 		</view>
+		<view class="line"></view>
+		<view class="content">
+			<ul>
+				<li class="lists fz35" v-for="(item2,index2) in dataList2" :key="index2" @tap="bindclick(index2,2)"><image :src="'/static/img/'+item2.image"></image>{{item2.text}}</li>		
+			</ul>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+			<ul>
+				<li class="lists fz35 quit"><navigator url="../../login/loginout">退出</navigator></li>
+			</ul>
+		</view>
+		
 	    <view class="footer">
 	    	<footerNav :msg="footer"></footerNav>
 	    </view>
@@ -48,13 +65,15 @@
 				en_name:'',				
 				childface:'',
 				userinfo:[],
-				dataList:[					
+				dataList2:[					
+					{image:'about.png',text:'关于学时',url:"/pages/system/setup/index"},
+				],
+				dataList:[
 					{"image":"power.png","text":"个人资料","url":"../account/account"},
 					{"image":"password.png","text":"修改密码","url":"../account/modifypassword"},
 					{"image":"mobile5.png","text":"更换手机","url":"../account/modifymobile"},					
 					{image:'message.png',text:'我的消息(0)',url:"../message/messagelist"},
 					{image:'xf.png',text:'续费',url:"../pay/pay"},
-					{image:'quit.png',text:'退出',url:"../../login/loginout"},
 				],
 				headermsg:'会员中心,Member Center',
 				footer: 'mine',
@@ -64,7 +83,6 @@
 		},
 		methods:{
 			download:function() { //下载最新安装包
-			debugger;
 				alert('uni-app Runtime version：' + plus.runtime.uniVersion);
 				if( _self.version_url == '') return false;
 				const downloadTask = uni.downloadFile({
@@ -101,8 +119,17 @@
 			bindquit:function(){
 				_self.quit();
 			},
-			bindclick:function(num){
-				_self.navigateTo(_self.dataList[num].url);				
+			bindclick:function(num,pos){
+				switch(pos){
+					case 1:{
+						_self.navigateTo(_self.dataList[num].url);	
+						break;
+					}
+					case 2:{
+						_self.navigateTo(_self.dataList2[num].url);
+						break;
+					}
+				}			
 			},
 			show(){
 				let ret = _self.getUserInfo();
@@ -193,10 +220,14 @@
 </script>
 
 <style lang="scss">
-	
+	.bottom{
+	}
+	.quit{
+		text-align: center;
+	}
 	li.lists{
-		height: 65upx;
-		line-height: 65upx;
+		height: 60upx;
+		line-height: 60upx;
 		border-bottom: 1upx solid #ccc;
 		padding:20upx 0upx;
 	}
@@ -206,13 +237,11 @@
 		margin-right: 20upx;
 	}
 
-.content .title{		
+	.content .title{		
 		background:url(/static/img/userHL.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
 		background-size: 40upx 40upx;
 		padding-left: 60upx;
-		line-height: 80upx;
-		height: 80upx;
 		
 	}	
 	.titles{
@@ -257,6 +286,10 @@
 		width:150upx;
 		height: 150upx;
 		margin: 0 auto;
+	}
+	
+	ul li:last-child{
+		border-bottom: 0upx;
 	}
 
 	

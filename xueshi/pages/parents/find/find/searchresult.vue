@@ -68,7 +68,8 @@
 				    token: ret.token,
 					keyword:_self.course_name,
 					longitude:_self.longitude,
-					latitude:_self.latitude
+					latitude:_self.latitude,
+					distance:_self.distance
 				};				
 				_self.getData(data);
 			},
@@ -76,8 +77,8 @@
 				_self.navigateTo('showcourse?pid='+userid+"&comid="+com_id+"&cid="+cat_id);
 			},
 			getData(data){
-				this.sendRequest({
-				        url : this.SearchCourseUrl,
+				_self.sendRequest({
+				        url : _self.SearchCourseUrl,
 				        method : _self.Method,
 				        data : {
 							"token": data.token,
@@ -85,6 +86,7 @@
 							"keyword":data.keyword,
 							"longitude":data.longitude,
 							"latitude":data.latitude,
+							"distance":data.distance,
 							"t":Math.random()
 						},
 				        hideLoading : true,

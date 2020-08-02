@@ -20,20 +20,22 @@
 						<view class="uni-input fz30">{{child_dataList[child_index]}}</view>
 					</picker>
 				</view>
-				<view class="register_account_input">
-					<view class="uni-list-cell-left fz30">
-						联系人
-					</view>
-					<view class="cell-right">
-						<m-input class="m-input fz30" type="text" clearable  v-model="true_name" placeholder="联系人"></m-input>	
-					</view>
-				</view>
+				
 				<view class="register_account_input">
 					<view class="uni-list-cell-left fz30">
 						联系方式
 					</view>
 					<view class="cell-right">
-						<m-input class="m-input fz30" type="text" clearable  v-model="tel" placeholder="联系方式"></m-input>	
+						<m-input class="m-input fz30 vs" type="text" clearable  v-model="tel" placeholder="联系方式"></m-input>	
+					</view>
+				</view>
+				
+				<view class="register_account_input">
+					<view class="uni-list-cell-left fz30">
+						联系人
+					</view>
+					<view class="cell-right">
+						<m-input class="m-input fz30 vs" type="text" clearable  v-model="true_name" placeholder="联系人"></m-input>	
 					</view>
 				</view>
 			
@@ -64,7 +66,7 @@
 		onLoad(options){
 			_self = this;
 			_self.checkLogin(1);			
-			_self.headermsg = "在线报名";
+			_self.headermsg = "在线报名,Online Registration";
 			_self.course_id = options['cid'];
 			_self.pid = options['pid'];
 			_self.comid = options['comid'];
@@ -115,6 +117,44 @@
 			},
 			getData(data){
 				_self.sendRequest({
+				        url : _self.showCourseUrl,
+				        method : _self.Method,
+				        data : {
+							"token": data.token,
+							"guid": data.guid,
+							"uid":_self.pid,
+							"cid":_self.course_id,
+							"comid":_self.comid,
+							"t":Math.random()
+						},
+				        hideLoading : true,
+				       success: (res) => {
+				       		var data = res.courselist;
+				       		switch(parseInt(res.status)){
+				       			case 1:{
+				       				uni.showToast({
+				       					title: '无数据',
+				       					icon: 'none',
+				       				});		
+				       				break;
+				       			}
+				       			case 3:{
+				       				_self.course_name  = data.cat_name;
+				       				break;
+				       			}
+								case 0:{
+									uni.showToast({
+										title: '此课程不存在',
+										icon: 'none',
+									});		
+									break;
+								}
+				       		}
+				       		
+				       	}
+				    },"1","");
+				   
+				_self.sendRequest({
 				       url : _self.ShowChildPlanUrl,
 				       method : _self.Method,
 				       data : {
@@ -140,14 +180,14 @@
 							   _self.child_dataList = list;
 							   _self.child_dataIDList = idlist;	
 							   
-							   var data = res.courselist;
+							   /* var data = res.courselist;
 							   for (var i = 0; i < data.length; i++) {
 							    	item = data[i];
 									if(parseInt(item.c_id) == _self.course_id){
 										_self.course_name = item.c_name;
 										break;
 									}							  
-							   }
+							   } */
 							}
 				       }
 				   },"1","");
@@ -250,8 +290,8 @@
 		padding-top: 20upx;
 		padding-bottom: 10px;
 		border-bottom: 1px solid #eeeeee;
-		line-height: 60upx;
-		height: 60upx;
+		line-height: 80upx;
+		height: 80upx;
 	}
 	.register_account{
 		font-size: 42upx;
@@ -262,24 +302,32 @@
 		padding-bottom: 20upx;
 	}
 	
-	
 	.uni-list-cell-left{
 		margin-right: 40upx;
 		width:25%;
 	}
 	picker view{
 		border: 1px solid #ccc;
-		width:60%;
+		width:65%;
 		text-align: center;
+		border-radius: 50upx;
+	}
+	.vs{
+		height: 70upx;
+		line-height: 70upx;
 	}
 	.cell-right{
 		float: left;
 		border: 1px solid #ccc;
-		width:60%;
-		text-align: center;		
+		width:65%;
+		text-align: center;	
+		line-height: 70upx;
+		height: 70upx;
+		border-radius: 50upx;
 	}
 	.clearborder{
-		border:0upx
+		border:0upx;
+		text-align: left;
 	}
 	
 </style> 

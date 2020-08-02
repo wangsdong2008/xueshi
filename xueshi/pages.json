@@ -19,6 +19,12 @@
 				"navigationBarTitleText": "公告详情"
 			}
 		},
+		{
+			"path": "pages/system/setup/index",
+			"style": {				
+				"navigationBarTitleText": "关于学时"
+			}
+		},
 		//系统页面结束
 		
 		//家长区开始

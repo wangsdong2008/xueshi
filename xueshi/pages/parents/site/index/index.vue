@@ -5,16 +5,27 @@
 			<view class="title">
 				系统设置
 			</view>	
+		</view>
+		<view class="line"></view>
+		<view class="content">
 			<view class="main-body write lists">
 				<ul>
 					<li class="lists fz35" v-for="(item,index) in dataList" :key="index" @tap="bindclick(index)"><image :src="'/static/img/'+item.image"></image>{{item.text}}</li>
 				</ul>
-				
-			</view>
-			<view class="footer">
-				<footerNav :msg="footer"></footerNav>
 			</view>
 		</view>
+		<view class="line"></view>
+		<view class="content">
+			<view class="main-body write lists">
+				<ul>
+					<li class="lists fz35" v-for="(item2,index2) in dataList2" :key="index2" @tap="bindclick(index2)"><image :src="'/static/img/'+item2.image"></image>{{item2.text}}</li>
+				</ul>
+			</view>
+		</view>
+		
+		<view class="footer">
+				<footerNav :msg="footer"></footerNav>
+			</view>
 	</view>
 </template>
 
@@ -40,11 +51,13 @@
 					{"image":"userHL.png","text":"孩子管理","url":"../child/child"},
 					{"image":"plan.png","text":"上课安排","url":"../plan/plan"},
 					{"image":"tiaoke.png","text":"调课管理","url":"../tiaoke/tiaoke"},
-					{"image":"qingjia.png","text":"请假管理","url":"../qingjia/qingjia"},
+					{"image":"qingjia.png","text":"请假管理","url":"../qingjia/qingjia"}
+				],
+				dataList2:[
 					{"image":"baoming.png","text":"我的报名","url":"../enlist/enlist"},
 					{"image":"etj.png","text":"上课统计","url":"../tongji/tongji"},
 					{"image":"help.png","text":"帮助文档","url":"../help/help"},
-				],				
+				],	
 				headermsg:'系统设置,System Siteup',
 				footer: 'familysite',
 				course_name:'',
@@ -119,6 +132,9 @@
 </script>
 
 <style>	
+	ul li:last-child{
+		border-bottom: 0upx;
+	}
 	li.lists{
 		height: 65upx;
 		line-height: 65upx;
