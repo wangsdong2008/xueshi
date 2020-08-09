@@ -5,6 +5,9 @@
 			<view class="title">
 				个人资料
 			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
 			<view class="main-body write lists">
 				<view class="register_account_input">
 					<m-input class="m-input" type="text" clearable v-model="nick_name" placeholder="请输入昵称"></m-input>

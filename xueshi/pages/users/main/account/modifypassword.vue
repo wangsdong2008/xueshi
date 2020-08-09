@@ -5,6 +5,9 @@
 			<view class="title">
 				修改密码
 			</view>	
+</view>
+		<view class="line"></view>
+		<view class="content">			
 			<view class="main-body write lists">
 				<ul>				
 					<li class="li30">					

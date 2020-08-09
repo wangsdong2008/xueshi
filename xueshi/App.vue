@@ -126,6 +126,10 @@
 	.login_title_txt span{
 	    font-size: 48upx;
 	}	
+	
+	.fb{
+		font-weight: bold;
+	}
 	/*头部css*/
 	.fz20{
 		font-size: 20upx;

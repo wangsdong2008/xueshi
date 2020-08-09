@@ -5,12 +5,17 @@
 			<view class="title">
 				会员续费
 			</view>	
+		</view>
+		<view class="line"></view>
+		<view class="content">
 			<view class="main-body write lists">
 				<ul>
 					<li class="fz35">会员有效期至：{{userinfo.endtime}}</li>
 				</ul>
 			</view>
-			
+		</view>
+		<view class="line"></view>
+		<view class="content">	
 			<view class="main-body write lists">
 				<ul>
 					<li class="utitle fz35">续费</li>
@@ -27,7 +32,9 @@
 				</ul>
 				<view class="clear"></view>
 			</view>			
-			
+		</view>
+		<view class="line"></view>
+		<view class="content">
 			<view class="main-body write lists">
 				<radio-group @change="payChange">
 					<ul>

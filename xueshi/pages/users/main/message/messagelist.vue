@@ -5,6 +5,9 @@
 			<view class="title">
 				我的消息
 			</view>	
+		</view>
+		<view class="line"></view>
+		<view class="content">			
 			<view class="main-body write lists">
 				<ul>
 					<li :class="{

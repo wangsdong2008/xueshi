@@ -47,6 +47,11 @@
 			"style": {				
 				"navigationBarTitleText": "服务协议"
 			}
+		},{
+			"path": "pages/system/setup/gn",
+			"style": {				
+				"navigationBarTitleText": "功能"
+			}
 		},
 		//系统页面结束
 		

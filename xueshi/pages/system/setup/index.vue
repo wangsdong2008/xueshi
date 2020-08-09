@@ -9,6 +9,7 @@
 					<li class="lists fz35" v-for="(item,index) in dataList" :key="index" @tap="bindclick(index,1)">{{item.text}}</li>
 				</ul>
 			</view>
+			{{version}}
 		</view>
 		<view class="line"></view>
 		<view class="content">
@@ -41,10 +42,10 @@
 			return{
 				dataList:[
 					{"text":"版本更新","url":""},
-					{"text":"功能介绍","url":""},
+					{"text":"功能介绍","url":"./gn"},
 					{"text":"隐私保护指引","url":"./ysbh"},
 					{"text":"反馈","url":""}
-				],			
+				],
 				headermsg:'学时,Xueshi',
 				footer: ''
 			}
