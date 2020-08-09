@@ -10,7 +10,7 @@
 		</view>	
 		<view class="content">
 			<view class="title">
-				会员中心
+				设置
 			</view>
 		</view>
 		<view class="line"></view>
@@ -29,11 +29,7 @@
 			</ul>
 		</view>
 		<view class="line"></view>
-		<view class="content">
-			<ul>
-				<li class="lists fz35 quit"><navigator url="../../login/loginout">退出</navigator></li>
-			</ul>
-		</view>
+		
 		
 	    <view class="footer">
 	    	<footerNav :msg="footer"></footerNav>
@@ -67,6 +63,7 @@
 				userinfo:[],
 				dataList2:[					
 					{image:'about.png',text:'关于学时',url:"/pages/system/setup/index"},
+					{image:'quit.png',text:'退出',url:"../../login/loginout"},
 				],
 				dataList:[
 					{"image":"power.png","text":"个人资料","url":"../account/account"},
@@ -76,7 +73,7 @@
 					{image:'xf.png',text:'续费',url:"../pay/pay"},
 				],
 				headermsg:'会员中心,Member Center',
-				footer: 'mine',
+				footer: 'familysite',
 				version_num:0,
 				version_url:''
 			}
@@ -238,7 +235,7 @@
 	}
 
 	.content .title{		
-		background:url(/static/img/userHL.png) 10upx 25upx no-repeat;
+		background:url(/static/img/system.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
 		background-size: 40upx 40upx;
 		padding-left: 60upx;

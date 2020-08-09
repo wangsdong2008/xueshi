@@ -3,8 +3,11 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
 			<view class="title">
-				课程设置
+				课程管理
 			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
 			<view>
 				<!-- 一般用法 -->
 				<uni-collapse>					
@@ -56,7 +59,7 @@
 		data(){
 			return{
 				dataList:[],				
-				headermsg:'课程设置,Course Manage',
+				headermsg:'课程管理,Course Manage',
 				footer: ''
 			}
 		},

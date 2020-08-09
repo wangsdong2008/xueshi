@@ -25,11 +25,11 @@
 					imgNormal:'/static/img/home.png',
 					imgClick:'/static/img/homeHL.png'
 				},{
-					nav: 'familysite',
+					nav: 'mine',
 					url: 'parents/site/index/index',
-					text: '设置',
-					imgNormal:'/static/img/familysite.png',
-					imgClick:'/static/img/familysiteHL.png'
+					text: '我的',
+					imgNormal:'/static/img/user.png',
+					imgClick:'/static/img/userHL.png'
 				},{
 					nav: 'findsite',
 					url: 'parents/find/find/index',
@@ -38,12 +38,13 @@
 					imgClick:'/static/img/findHL.png'
 				},
 				{
-					nav: 'mine',
+					nav: 'familysite',
 					url: 'users/main/index/main',
-					text: '我的',
-					imgNormal:'/static/img/user.png',
-					imgClick:'/static/img/userHL.png'
-				}]
+					text: '设置',
+					imgNormal:'/static/img/familysite.png',
+					imgClick:'/static/img/familysiteHL.png'
+				}
+				]
 			}
 		},	
 		

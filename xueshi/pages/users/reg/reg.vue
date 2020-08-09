@@ -3,7 +3,7 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<div class="content">
 			<div class="title">用手机号码注册</div>
-			<div class="fw">注册即代表阅读并同意<navigator url="../../index/index">服务协议</navigator>和<navigator url="../../index/index">隐私政策</navigator></div>
+			<div class="fw">注册即代表阅读并同意<navigator url="../../system/setup/xy">服务协议</navigator>和<navigator url="../../system/setup/ys">隐私政策</navigator></div>
 			<div class="forms">
 				<input class="register-input register-input-mobile" type="number" clearable focus v-model="mobile" placeholder="填写手机号码" maxlength="11" />
 			</div>

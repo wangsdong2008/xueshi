@@ -165,4 +165,16 @@
 	.pd20{
 		padding-top: 20upx;
 	}
+	ul li:last-child{
+		border-bottom: 0upx;
+	}
+	li.lists{
+		line-height: 55upx;
+		border-bottom: 1upx solid #ccc; 
+		padding:30upx 0upx;
+		background:url(/static/img/right.png) no-repeat right center;
+		background-origin: content-box; /* 背景右定位 */
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;		 
+	}
 </style>

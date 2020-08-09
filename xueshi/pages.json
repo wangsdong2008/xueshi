@@ -25,6 +25,29 @@
 				"navigationBarTitleText": "关于学时"
 			}
 		},
+		{
+			"path": "pages/system/setup/setup",
+			"style": {				
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/system/setup/ys",
+			"style": {				
+				"navigationBarTitleText": "隐私政策"
+			}
+		},
+		{
+			"path": "pages/system/setup/ysbh",
+			"style": {				
+				"navigationBarTitleText": "隐私政策"
+			}
+		},{
+			"path": "pages/system/setup/xy",
+			"style": {				
+				"navigationBarTitleText": "服务协议"
+			}
+		},
 		//系统页面结束
 		
 		//家长区开始
@@ -66,7 +89,7 @@
 		},{
 			"path": "pages/parents/site/index/index",
 			"style": {
-				"navigationBarTitleText": "设置"
+				"navigationBarTitleText": "会员中心"
 			}		
 		},{
 			"path": "pages/parents/site/course/course",
@@ -172,7 +195,7 @@
 		},{
 			"path": "pages/users/main/index/main",
 			"style": {				
-				"navigationBarTitleText": "会员中心"	,
+				"navigationBarTitleText": "设置"	,
 				"app-plus": {
 				    "titleNView": {
 						"autoBackButton":"false"

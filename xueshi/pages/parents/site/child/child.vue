@@ -1,34 +1,39 @@
 <template>
-	<div class="main_content">
+	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<div class="content">
-			<div class="title">
-				孩子设置
-			</div>
-			<div>
+		<view class="content">
+			<view class="title">
+				孩子管理
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+			<view>
 				<ul class="detail">
 					<li v-for="(item,index) in dataList" :index="index" :key="item.child_id" :class="{
 						'boys':(item.sex == 1),
 						'grils':(item.sex == 0)
 					}">
-						<div :class="{
+						<view :class="{
 							'cname':true,
 							'grey':(item.is_show == 0)
-						}">{{item.child_name}}</div>
-						<div class="statuslist fz35"><span @tap="showchild(item.child_id)">修改</span><span @tap="delchild(item.child_id)">删除</span></div>
-						<div class="clear"></div>
+						}">{{item.child_name}}</view>
+						<view class="statuslist fz35"><span @tap="showchild(item.child_id)">修改</span><span @tap="delchild(item.child_id)">删除</span></view>
+						<view class="clear"></view>
 					</li>
 				</ul>
-					
-			</div>
-			<div class="btn-row">
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+			<view class="btn-row">
 				<button type="primary" class="btn"  @tap="childadd">添加孩子</button>
-			</div>
-		</div>
-	    <div class="footer">
+			</view>
+		</view>
+	    <view class="footer">
 	    	<footerNav :msg="footer"></footerNav>
-	    </div>
-	</div>
+	    </view>
+	</view>
 </template>
 <script>
 	import service from '@/service.js';
@@ -54,7 +59,7 @@
 		data(){
 			return{
 				dataList:[],				
-				headermsg:'孩子设置,Children Manage',
+				headermsg:'孩子管理,Children Manage',
 				footer: ''
 			}
 		},

@@ -8,6 +8,7 @@ Vue.config.productionTip = false
 Vue.prototype.$store = store
 
 //当前版本号
+Vue.prototype.soft_name = '学时';
 Vue.prototype.version = '1.0';
 
 //缓存标识
@@ -22,6 +23,7 @@ Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
 Vue.prototype.WebUrl = "http://192.168.1.104/";
 Vue.prototype.Method = "get"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
+
 
 Vue.prototype.payAccount = {
 	"alipaylist":{

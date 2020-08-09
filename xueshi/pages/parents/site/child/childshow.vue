@@ -1,46 +1,49 @@
 <template>
-	<div class="main_content">
+	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<div class="content">
-			<div class="title">
+		<view class="content">
+			<view class="title">
 				孩子编辑
-			</div>
-		    <div>
-				<div class="register_account_input">				
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+		    <view>
+				<view class="register_account_input">				
 					<m-input class="m-input" type="text" clearable focus v-model="child_name" placeholder="填写孩子名"></m-input>
-				</div>
-				<div class="register_account_input">				
+				</view>
+				<view class="register_account_input">				
 					<radio-group @change="sexChange">
 						<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in sex_items" :key="item.value">
-						<div>
+						<view>
 							<radio class="radios" :value="item.value" :checked="parseInt(item.value) == sex" />
-						</div>
-						<div class="radio_text fz30">{{item.name}}</div>
+						</view>
+						<view class="radio_text fz30">{{item.name}}</view>
 						</label>
 						
 					</radio-group>
-				</div>
-				<div class="register_account_input">
+				</view>
+				<view class="register_account_input">
 					<m-input class="m-input" type="text" clearable v-model="child_order" placeholder="填写顺序"></m-input>
-				</div>
-				<div class="register_account_input form">
+				</view>
+				<view class="register_account_input form">
 					<radio-group @change="radioChange">
 						<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items" :key="item.value">
-						<div>
+						<view>
 							<radio class="radios" :value="item.value" :checked="parseInt(item.value) == is_show" />
-						</div>
-						<div class="radio_text fz30">{{item.name}}</div>
+						</view>
+						<view class="radio_text fz30">{{item.name}}</view>
 						</label>
 						
 					</radio-group>	
-				</div>
+				</view>
 				<button type="primary" class="btn" @tap="bindmodify">{{btntxt}}</button>
-			</div>
-		</div>
-		<div class="footer">
+			</view>
+		</view>
+		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 <script>
 	import service from '@/service.js';
@@ -250,7 +253,7 @@
 		line-height: 80upx;
 	}
 	
-	.register_account_input div{
+	.register_account_input view{
 		float: left;
 		margin-bottom: 10upx;
 	}

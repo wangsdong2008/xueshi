@@ -73,6 +73,7 @@
 						name: '十公里内'
 					}
 				],
+				footer: 'findsite',
 				longitude:0,
 				latitude:0
 			}
