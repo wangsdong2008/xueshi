@@ -1,13 +1,6 @@
 <template>
 	<view class="main_content">
-		<view class="header-title">
-		    <view class="login_center login_title_txt">
-				<view class="header-img"><image :src="childface" mode=""  @click="upload"></image></view>
-				<view class="titles"> <span>{{userinfo.nick_name}}</span></view>	
-			</view>
-			<view class="logo" :style="'background:url('+logo+') 0upx 0upx / 320upx 320upx no-repeat;'"> </view>
-			<view class="logo" :style="'background:url('+logo+') 0upx 0upx no-repeat;-webkit-background-size: 320upx 320upx;background-size: 320upx 320upx;'"> </view>
-		</view>	
+		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
 			<view class="title">
 				设置
@@ -72,7 +65,7 @@
 					{image:'message.png',text:'我的消息(0)',url:"../message/messagelist"},
 					{image:'xf.png',text:'续费',url:"../pay/pay"},
 				],
-				headermsg:'会员中心,Member Center',
+				headermsg:'系统设置,System settings',
 				footer: 'familysite',
 				version_num:0,
 				version_url:''
@@ -251,7 +244,6 @@
 		background:url(/static/img/login_title.png) #ffffff center 0 no-repeat;
 	    background-size:100% 100%;
 	    padding-bottom:20%;
-		padding-left: 50upx;
 		position: relative;
 	}
 	
