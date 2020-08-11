@@ -43,7 +43,7 @@
 				message_title:'',
 				message_content:'',
 				message_time:'',
-				headermsg:'会员中心,Member Center',
+				headermsg:'公告,Notice',
 				footer:'',
 				guid:''
 			}
@@ -92,7 +92,6 @@
 	.titles{
 		border-bottom: 1upx solid #ccc;
 		padding-bottom: 20upx;
-		margin-top: 40upx;
 	}
 	.contents{
 		padding-top: 20upx;
@@ -106,6 +105,7 @@
 	.icenter{
 		width: 95%;
 		margin: 0 auto;
+		margin-top: 30upx;
 	}
 	
 	.statuslist{

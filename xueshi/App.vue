@@ -105,6 +105,16 @@
 		-webkit-background-size:50upx 50upx ;
 		background-size:50upx 50upx ;
 	}
+	.boys0{
+		background:url(@/static/img/boy.png) 10upx 0upx no-repeat;
+		-webkit-background-size:50upx 50upx ;
+		background-size:50upx 50upx ;
+	}
+	.grils0{
+		background:url(@/static/img/gril.png) 10upx 0upx no-repeat;
+		-webkit-background-size:50upx 50upx ;
+		background-size:50upx 50upx ;
+	}
 	
 	
 	/* 头部信息 */
@@ -133,6 +143,9 @@
 	/*头部css*/
 	.fz20{
 		font-size: 20upx;
+	}
+	.fz25{
+		font-size: 25upx;
 	}
 	.fz30{
 		font-size: 30upx;

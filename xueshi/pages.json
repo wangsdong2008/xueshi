@@ -12,6 +12,32 @@
 			}
 		},
 		
+		//公司开始
+		{
+			"path": "pages/company/company/index/index",
+			"style": {				
+				"navigationBarTitleText": "机构"
+			}
+		},
+		{
+			"path": "pages/company/gonggao/showgonggao",
+			"style": {				
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
+			"path": "pages/company/company/sign/sksign",
+			"style": {				
+				"navigationBarTitleText": "上课签到"
+			}
+		},{
+			"path": "pages/company/company/sign/cfsign",
+			"style": {				
+				"navigationBarTitleText": "吃饭签到"
+			}
+		},
+		//公司结束
+		
 		//系统页面开始
 		{
 			"path": "pages/parents/gonggao/showgonggao",
