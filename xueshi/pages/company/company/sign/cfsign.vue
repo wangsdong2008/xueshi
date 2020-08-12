@@ -1,28 +1,36 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="contents">
-			<view class="content sites">
-				<view class="title ctitles fz35">今日吃饭情况</view>					
+		<view class="content">
+			<view class="title">
+				今日吃饭
+			</view>
 				<view class="studentlist">
-					<checkbox-group  @change="checkboxChange"> 
-					<uni-list v-for="(item,index) in dataList" :index="index" :key="item.com_id">
-						<uni-list-item v-if="parseInt(item.category_num) > 0" class="list-title" :title="item.com_name" :show-arrow="false" :show-badge="true" thumb="/static/img/school.png" ></uni-list-item>
-						<uni-list-item :show-arrow="false" :show-badge="true">
-							<uni-list v-if="parseInt(item2.students_num) > 0" v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.cat_id"> 
-								<uni-list-item class="list-title2" :show-arrow="false" :show-badge="true" :title="'【'+item2.cat_name+'】'"></uni-list-item>
-								<uni-list-item class="studentsclass" v-for="(item3,index3) in item2.studentslist" :index="index3" :key="item3.uid" :show-arrow="false" :show-badge="true" :scroll-y="true">
-									<view>
-										<label class="checkbox">
-											<checkbox :value="item.com_id.toString()+'-'+item2.cat_id.toString()+'-'+item3.uid.toString()" :checked="ulist.indexOf(item.com_id+'-'+item2.cat_id+'-'+item3.uid)>=0" />
-										</label>
-										<image class="headimgsize" :src="item3.sex_img"></image>
-										{{item3.uname}}
-									</view>
-								</uni-list-item>
-							</uni-list>
-						</uni-list-item>
-					</uni-list>
+					
+					
+					<checkbox-group  @change="checkboxChange">
+					<ul v-for="(item,index) in dataList" :index="index" :key="item.com_id">
+						<li v-if="parseInt(item.category_num) > 0"  class="list-title list"> {{item.com_name}}
+							<ul v-if="parseInt(item2.students_num) > 0" v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.cat_id">
+								<li class="list-title2"> {{'【'+item2.cat_name+'】'}}
+									<ul class="studentsclass" v-for="(item3,index3) in item2.studentslist" :index="index3" :key="item3.uid">
+										<li>
+												<label class="checkbox">
+													<checkbox :value="item.com_id.toString()+'-'+item2.cat_id.toString()+'-'+item3.uid.toString()" :checked="ulist.indexOf(item.com_id+'-'+item2.cat_id+'-'+item3.uid)>=0" />
+												</label>
+												<view :class="{
+												 'boys0':(item3.sex==1),
+												 'grils0':(item3.sex==0)
+												 }">{{item3.uname}}
+												</view>
+									</li>
+									</ul>
+								</li>
+							</ul>							
+						</li>
+					</ul>
+					
+					
 					</checkbox-group>
 					
 					 
@@ -225,30 +233,67 @@
 
 
 <style>	
-	.studentsclass image{
-		width:50upx;
-		height: 50upx;
-	}
-	.ctitles{
-		background:url(/static/img/eat.png) 10upx 25upx no-repeat;
-		-webkit-background-size: 40upx 40upx;
-		background-size: 40upx 40upx;
-	}
-	.btnlist{
-		border-top:2px solid #eeeeee;
-		padding-top: 40upx;
-		width: 100%;
-		height:140upx;
-	}
-	.btnlist button{
-		float: left;
-		width:30%;
-		margin-left: 20upx;
-	}
-	.btnlist view{
-		float: left;
-		width: 20%;
-		margin-left: 20upx;
-	}
+
+    .content .title{
+    		background:url(@/static/img/eat.png) 10upx 22upx no-repeat;
+    		-webkit-background-size:50upx 50upx ;
+    		background-size:50upx 50upx;
+    		line-height: 60upx;
+    		height: 60upx;
+    		padding: 15upx 0upx 15upx 70upx;
+    	}
+    	.studentlist{
+    		margin-top: 30upx;
+    	}
+    	.studentsclass image{
+    		width:50upx;
+    		height: 50upx;
+    	}
+    	.list-title2{
+    		background-color: #eee;
+    	}
+    	
+    	.btnlist{
+    		border-top:2px solid #eeeeee;
+    		padding-top: 40upx;
+    		width: 100%;
+    		height:140upx;
+    	}
+    	.btnlist button{
+    		float: left;
+    		width:30%;
+    		margin-left: 20upx;
+    	}
+    	.btnlist view{
+    		float: left;
+    		width: 20%;
+    		margin-left: 20upx;
+    	}
+    	.list{
+    		line-height: 45upx;
+    		padding-left:50upx;	
+    		margin-bottom: 20upx;
+    	}
+    	.list-title{
+    		font-weight: bold;
+    		background: url(/static/img/company.png) no-repeat;
+    		-webkit-background-size: 45upx 45upx;
+    		background-size: 45upx 45upx;
+    	}
+    	.list-title2{		
+    		font-weight: normal;
+    		background: url(/static/img/course.png) no-repeat;
+    		-webkit-background-size: 45upx 45upx;
+    		background-size: 45upx 45upx;
+    		margin-top: 20upx;
+    		padding-left: 40upx;
+    	}
+    	li view{
+    		display: inline;
+    		padding-left: 80upx;
+    		height: 60upx;
+    		line-height: 60upx;
+    	}	
+
 	
 </style>

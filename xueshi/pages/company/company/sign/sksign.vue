@@ -5,9 +5,7 @@
 			<view class="title">
 				今日上课
 			</view>
-		</view>
-		<view class="line"></view>
-		<view class="content">				
+					
 				<view class="studentlist">
 					<checkbox-group  @change="checkboxChange"> 
 					<ul v-for="(item,index) in dataList" :index="index" :key="item.com_id">
@@ -232,13 +230,16 @@
 
 
 <style>	
- .content .title{
+     .content .title{
 		background:url(@/static/img/clock.png) 10upx 22upx no-repeat;
 		-webkit-background-size:50upx 50upx ;
 		background-size:50upx 50upx;
 		line-height: 60upx;
 		height: 60upx;
 		padding: 15upx 0upx 15upx 70upx;
+	}
+	.studentlist{
+		margin-top: 30upx;
 	}
 	.studentsclass image{
 		width:50upx;
