@@ -259,10 +259,10 @@
 				_self.navigateTo('../sign/ygsign');
 			},
 			bindstudentssearch(){ //学生查询
-				_self.navigateTo('studentssearch');
+				_self.navigateTo('../search/studentssearch');
 			},
 			bindstatistics(){ //统计
-				_self.navigateTo('statistics');
+				_self.navigateTo('../statistics/statistics');
 			},
 			bindbrithday(){ //生日提醒
 				_self.navigateTo('birthday')

@@ -36,6 +36,22 @@
 				"navigationBarTitleText": "吃饭签到"
 			}
 		},
+		{
+			"path": "pages/company/company/search/studentssearch",
+			"style": {				
+				"navigationBarTitleText": "学生查询"
+			}
+		},{
+			"path": "pages/company/company/search/studentsshow",
+			"style": {				
+				"navigationBarTitleText": "学生详情"
+			}
+		},{
+			"path": "pages/company/company/statistics/statistics",
+			"style": {				
+				"navigationBarTitleText": "统计"
+			}
+		},
 		//公司结束
 		
 		//系统页面开始
