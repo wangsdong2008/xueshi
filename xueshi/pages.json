@@ -16,7 +16,7 @@
 		{
 			"path": "pages/company/company/index/index",
 			"style": {				
-				"navigationBarTitleText": "机构"
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
@@ -50,6 +50,51 @@
 			"path": "pages/company/company/statistics/statistics",
 			"style": {				
 				"navigationBarTitleText": "统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticsstudents",
+			"style": {				
+				"navigationBarTitleText": "统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticsresult",
+			"style": {				
+				"navigationBarTitleText": "统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticscompany",
+			"style": {				
+				"navigationBarTitleText": "统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticcompanyresult",
+			"style": {				
+				"navigationBarTitleText": "统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticstw",
+			"style": {				
+				"navigationBarTitleText": "体温统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticstwresult",
+			"style": {				
+				"navigationBarTitleText": "体温统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticsmember",
+			"style": {				
+				"navigationBarTitleText": "体温统计"
+			}
+		},{
+			"path": "pages/company/company/statistics/statisticsmemberresult",
+			"style": {				
+				"navigationBarTitleText": "体温统计"
+			}
+		},{
+			"path": "pages/company/company/brithday/birthday",
+			"style": {				
+				"navigationBarTitleText": "生日榜"
 			}
 		},
 		//公司结束

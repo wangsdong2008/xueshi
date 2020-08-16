@@ -265,7 +265,7 @@
 				_self.navigateTo('../statistics/statistics');
 			},
 			bindbrithday(){ //生日提醒
-				_self.navigateTo('birthday')
+				_self.navigateTo('../brithday/birthday')
 			},
 			show(){
 				let ret = uni.getStorageSync(_self.USERS_KEY);				

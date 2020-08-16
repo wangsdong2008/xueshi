@@ -122,8 +122,9 @@
 	}
 	
 	ul.t1 li{
-		line-height: 65upx;
+		line-height: 95upx;
 		padding-left: 30upx;
+		border-bottom: 1upx solid #ccc;
 	}
 	
 </style>
