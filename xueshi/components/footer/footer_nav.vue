@@ -20,45 +20,23 @@
 				tabBar: [
 				{
 					nav: 'index',
-					url: 'index/index/index',					
+					url: 'company/company/index/index',					
 					text: '首页',
 					imgNormal:'/static/img/home.png',
 					imgClick:'/static/img/homeHL.png'
-				},				
-				{
-					nav: 'company',
-					url: 'company/company/index/index',
-					text: '企业',
-					imgNormal:'/static/img/mechanism.png',
-					imgClick:'/static/img/mechanismHL.png'
-				},
-				{
+				},{
 					nav: 'companysite',
 					url: 'company/site/index/index',
-					text: '设置',
+					text: '我的',
 					imgNormal:'/static/img/companysite.png',
 					imgClick:'/static/img/companysiteHL.png'
 				},
 				{
-					nav: 'family',
-					url: 'parents/parents/index',
-					text: '家长',
-					imgNormal:'/static/img/family.png',
-					imgClick:'/static/img/familyHL.png'
-				},
-				{
 					nav: 'familysite',
-					url: 'parents/site/index',
+					url: 'users/main/index/main',
 					text: '设置',
 					imgNormal:'/static/img/familysite.png',
 					imgClick:'/static/img/familysiteHL.png'
-				},
-				{
-					nav: 'mine',
-					url: 'users/main/index/main',
-					text: '我的',
-					imgNormal:'/static/img/user.png',
-					imgClick:'/static/img/userHL.png'
 				}]
 			}
 		},	

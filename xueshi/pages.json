@@ -1,17 +1,17 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/users/login/login",
-			"style": {				
-				"navigationBarTitleText": "登录"
-			}
-		},{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
-		},
-		
+		},	
+		{
+			"path": "pages/users/login/login",
+			"style": {				
+				"navigationBarTitleText": "登录"
+			}
+		},		
 		//公司开始
 		{
 			"path": "pages/company/company/index/index",
@@ -34,6 +34,11 @@
 			"path": "pages/company/company/sign/cfsign",
 			"style": {				
 				"navigationBarTitleText": "吃饭签到"
+			}
+		},{
+			"path": "pages/company/company/sign/ygsign",
+			"style": {				
+				"navigationBarTitleText": "员工签到"
 			}
 		},
 		{
@@ -97,6 +102,46 @@
 				"navigationBarTitleText": "生日榜"
 			}
 		},
+		//公司设置
+		{
+			"path": "pages/company/site/index/index",
+			"style": {				
+				"navigationBarTitleText": "设置"
+			}
+		},{
+			"path": "pages/company/site/company/company",
+			"style": {				
+				"navigationBarTitleText": "公司设置"
+			}
+		},{
+			"path": "pages/company/site/company/companyedit",
+			"style": {				
+				"navigationBarTitleText": "公司编辑"
+			}
+		},{
+			"path": "pages/company/site/category/category",
+			"style": {				
+				"navigationBarTitleText": "课程编辑"
+			}
+		},{
+			"path": "pages/company/site/category/categoryedit",
+			"style": {				
+				"navigationBarTitleText": "课程编辑"
+			}
+		},{
+			"path": "pages/company/site/classroom/classroom",
+			"style": {				
+				"navigationBarTitleText": "教室编辑"
+			}
+		},{
+			"path": "pages/company/site/classroom/classroomedit",
+			"style": {				
+				"navigationBarTitleText": "教室编辑"
+			}
+		},
+		
+		
+		
 		//公司结束
 		
 		//系统页面开始

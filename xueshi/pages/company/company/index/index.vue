@@ -37,7 +37,7 @@
 				</view>
 				<!-- 提交信息 -->
 				<uni-popup ref="dialogInput" type="dialog" @change="change">
-					<uni-popup-dialog mode="number" :title="title2" value="" placeholder="请输入学生体温" @confirm="dialogInputConfirm"></uni-popup-dialog>
+					<uni-popup-dialog mode="input" :title="title2" value="" placeholder="请输入学生体温" @confirm="dialogInputConfirm"></uni-popup-dialog>
 				</uni-popup>	
 				
 				<uni-popup ref="dialogInput2" type="dialog">
@@ -199,6 +199,7 @@
 			 * 输入对话框的确定事件
 			 */
 			dialogInputConfirm(done, val) {
+				console.log(val);
 				if(val.trim() == ''){
 					return false;
 				}
@@ -247,7 +248,7 @@
 				_self.$refs.dialogInput.open();
 			},
 			bindsystem(){
-				_self.navigateTo('../site/index');
+				_self.navigateTo('../../site/index/index');
 			},
 			bindsksign(){//上课签到
 				_self.navigateTo('../sign/sksign');

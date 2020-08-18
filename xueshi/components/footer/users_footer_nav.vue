@@ -22,27 +22,27 @@
 				{
 					nav: 'family',
 					url: 'parents/parents/index',
-					text: '首页1',
+					text: '首页',
 					imgNormal:'/static/img/home.png',
 					imgClick:'/static/img/homeHL.png'
 				},				
 				{
 					nav: 'mine',
 					url: 'parents/site/index/index',
-					text: '我的1',
+					text: '我的',
 					imgNormal:'/static/img/user.png',
 					imgClick:'/static/img/userHL.png'
 				},{
 					nav: 'findsite',
 					url: 'parents/find/find/index',
-					text: '发现1',
+					text: '发现',
 					imgNormal:'/static/img/find.png',
 					imgClick:'/static/img/findHL.png'
 				},
 				{
 					nav: 'familysite',
 					url: 'users/main/index/main',
-					text: '设置1',
+					text: '设置',
 					imgNormal:'/static/img/familysite.png',
 					imgClick:'/static/img/familysiteHL.png'
 				},
@@ -50,14 +50,13 @@
 				{
 					nav: 'family',
 					url: 'company/company/index',
-					text: '首页2',
+					text: '首页',
 					imgNormal:'/static/img/home.png',
 					imgClick:'/static/img/homeHL.png'
-				},
-				{
+				},{
 					nav: 'mine',
 					url: 'company/site/index/index',
-					text: '我的2',
+					text: '我的',
 					imgNormal:'/static/img/user.png',
 					imgClick:'/static/img/userHL.png'
 				}
