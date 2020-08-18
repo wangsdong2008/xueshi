@@ -131,12 +131,22 @@
 		},{
 			"path": "pages/company/site/classroom/classroom",
 			"style": {				
-				"navigationBarTitleText": "教室编辑"
+				"navigationBarTitleText": "教室管理"
 			}
 		},{
 			"path": "pages/company/site/classroom/classroomedit",
 			"style": {				
 				"navigationBarTitleText": "教室编辑"
+			}
+		},{
+			"path": "pages/company/site/school/school",
+			"style": {				
+				"navigationBarTitleText": "学校管理"
+			}
+		},{
+			"path": "pages/company/site/school/schooledit",
+			"style": {				
+				"navigationBarTitleText": "学校编辑"
 			}
 		},
 		

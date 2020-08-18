@@ -47,7 +47,7 @@
 					{"image":"company.png","text":"公司设置","url":"../company/company"},
 					{"image":"category.png","text":"课程分类","url":"../category/category"},
 					{"image":"classroom.png","text":"教室管理","url":"../classroom/classroom"},
-					{"image":"school.png","text":"学校管理(托班)","url":""},
+					{"image":"school.png","text":"学校管理(托班)","url":"../school/school"},
 					{"image":"grade.png","text":"年级管理(托班)","url":""},
 					{"image":"classs.png","text":"班级管理(托班)","url":""},
 					{"image":"students.png","text":"学生管理","url":""},

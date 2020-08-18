@@ -1,9 +1,13 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="contents">
-			<view class="content sites">
-				<view class="title ctitles fz35">教室编辑</view>	
+		<view class="content">
+			<view class="title">
+				教室编辑
+			</view>	
+		</view>
+		<view class="line"></view>
+		<view class="content">			
 				<view class="icenter">		
 					<view class="register_account_input">
 						<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
@@ -23,8 +27,7 @@
 				</view>
 				<view class="btn-row">
 					<button type="primary" class="primary btn" @tap="bindmodify">{{btntxt}}</button>
-				</view>
-			</view>
+				</view>			
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
