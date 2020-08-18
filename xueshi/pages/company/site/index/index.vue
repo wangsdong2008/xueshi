@@ -50,7 +50,7 @@
 					{"image":"school.png","text":"学校管理(托班)","url":"../school/school"},
 					{"image":"grade.png","text":"年级管理(托班)","url":"../grade/grade"},
 					{"image":"classs.png","text":"班级管理(托班)","url":"../classs/classs"},
-					{"image":"students.png","text":"学生管理","url":""},
+					{"image":"students.png","text":"学生管理","url":"../students/students"},
 					{"image":"plan.png","text":"上课安排","url":""},
 					
 				],

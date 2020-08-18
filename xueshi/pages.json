@@ -168,6 +168,16 @@
 			"style": {				
 				"navigationBarTitleText": "班级编辑"
 			}
+		},{
+			"path": "pages/company/site/students/students",
+			"style": {				
+				"navigationBarTitleText": "学生管理"
+			}
+		},{
+			"path": "pages/company/site/students/studentsedit",
+			"style": {				
+				"navigationBarTitleText": "学生编辑"
+			}
 		},
 		
 		
