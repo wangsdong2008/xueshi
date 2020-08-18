@@ -148,6 +148,16 @@
 			"style": {				
 				"navigationBarTitleText": "学校编辑"
 			}
+		},{
+			"path": "pages/company/site/grade/grade",
+			"style": {				
+				"navigationBarTitleText": "教室管理"
+			}
+		},{
+			"path": "pages/company/site/grade/gradeedit",
+			"style": {				
+				"navigationBarTitleText": "教室编辑"
+			}
 		},
 		
 		
