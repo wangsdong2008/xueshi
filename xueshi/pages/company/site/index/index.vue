@@ -56,9 +56,9 @@
 				],
 				dataList2:[
 					
-					{"image":"staff.png","text":"员工管理","url":""},
-					{"image":"power.png","text":"权限管理","url":""},
-					{"image":"help.png","text":"帮助文档","url":""},
+					{"image":"staff.png","text":"员工管理","url":"../member/member"},
+					/* {"image":"power.png","text":"权限管理","url":""}, */
+					{"image":"help.png","text":"帮助文档","url":"../help/help"},
 					
 				],	
 				
