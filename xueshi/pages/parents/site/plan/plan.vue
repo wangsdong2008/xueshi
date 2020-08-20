@@ -60,7 +60,7 @@
 	import headerNav from "@/components/header/company_header.vue"
 	import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
 	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'
-	import footerNav from "@/components/footer/users_footer_nav.vue"
+	import footerNav from "@/components/footer/footer_nav.vue"
 	var _self;
 	export default {
 	    components: {

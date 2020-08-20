@@ -174,7 +174,7 @@
 	
 	import mInput from '@/components/m-input.vue'
 	import headerNav from "@/components/header/users_header.vue"
-	import footerNav from "@/components/footer/users_footer_nav.vue"
+	import footerNav from "@/components/footer/footer_nav.vue"
 	import uniGrid from "@/components/uni-grid/uni-grid.vue"
 	import uniGridItem from "@/components/uni-grid-item/uni-grid-item.vue"
 	

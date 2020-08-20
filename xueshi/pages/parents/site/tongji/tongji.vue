@@ -52,7 +52,7 @@
 	import mInput from '@/components/m-input.vue'
 	import uniSection from '@/components/uni-section/uni-section.vue'
 	import headerNav from "@/components/header/users_header.vue"	
-	import footerNav from "@/components/footer/users_footer_nav.vue"
+	import footerNav from "@/components/footer/footer_nav.vue"
 	
 	var _self = this;
 	import {
