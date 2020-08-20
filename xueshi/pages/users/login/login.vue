@@ -46,14 +46,15 @@
 	    },
 		onLoad(){
 			_self = this;
+			_self.show();
 		},
 	    data() {
 	        return {
 				headermsg:'登录,login',
 	            providerList: [],
 				hasProvider: false,
-	            account: '13816141683',
-	            password: '123123',
+	            account: '',
+	            password: '',
 	            positionTop: 0
 	        }
 	    },		
@@ -62,7 +63,34 @@
 		    ...mapMutations(['login']),
 			getsession(){
 				_self.getcurrentsession();	
-			},			
+			},	
+			show(){
+				//debugger;
+				let ret = _self.getUserInfo();
+				if(!ret){
+					return false;
+				}else{
+					var identity = ret.identity;
+					var url = "";
+					switch(identity){
+						case 1:{ //家长
+							url = "/pages/parents/parents/index";
+							uni.reLaunch({
+								url:url
+							})
+							break;
+						}
+						case 2:{ //机构
+							url = "/pages/company/company/index/index";
+							uni.reLaunch({
+								url:url
+							})
+							break;
+						}
+						
+					}
+				}
+			},
 			bindLogin() {
                 /**
                  * 客户端对账号信息进行一些必要的校验。
