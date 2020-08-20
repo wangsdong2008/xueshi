@@ -49,7 +49,7 @@
 				//机构
 				{
 					nav: 'family',
-					url: 'company/company/index',
+					url: 'company/company/index/index',
 					text: '首页',
 					imgNormal:'/static/img/home.png',
 					imgClick:'/static/img/homeHL.png'
@@ -59,6 +59,12 @@
 					text: '我的',
 					imgNormal:'/static/img/user.png',
 					imgClick:'/static/img/userHL.png'
+				},{
+					nav: 'familysite',
+					url: 'users/main/index/main',
+					text: '设置',
+					imgNormal:'/static/img/familysite.png',
+					imgClick:'/static/img/familysiteHL.png'
 				}
 				
 				

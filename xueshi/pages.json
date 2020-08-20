@@ -178,6 +178,26 @@
 			"style": {				
 				"navigationBarTitleText": "学生编辑"
 			}
+		},{
+			"path": "pages/company/site/students/students",
+			"style": {				
+				"navigationBarTitleText": "学生管理"
+			}
+		},{
+			"path": "pages/company/site/companyplan/companyplan",
+			"style": {				
+				"navigationBarTitleText": "计划管理"
+			}
+		},{
+			"path": "pages/company/site/companyplan/companyplanedit",
+			"style": {				
+				"navigationBarTitleText": "计划编辑"
+			}
+		},{
+			"path": "pages/company/site/companyplan/companyplanadd",
+			"style": {				
+				"navigationBarTitleText": "计划编辑"
+			}
 		},
 		
 		

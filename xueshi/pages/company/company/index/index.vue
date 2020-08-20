@@ -121,7 +121,7 @@
 				dataList:[],
 				isBrithday: 0,
 				is_brithday:0,
-				footer: 'company',
+				footer: 'index',
 				gonggaoList:[],
 				gonggaonum:0,
 				com_id:0, //公司id
