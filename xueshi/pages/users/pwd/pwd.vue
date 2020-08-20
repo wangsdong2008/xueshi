@@ -44,6 +44,7 @@
 	.icenter{
 		width: 95%;
 		margin: 0 auto;
+		margin-top: 30upx;
 	}
 	
 	.register_account{
