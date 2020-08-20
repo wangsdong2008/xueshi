@@ -248,7 +248,7 @@
 				_self.$refs.dialogInput.open();
 			},
 			bindsystem(){
-				_self.navigateTo('../../site/index/index');
+				_self.navigateTo('/pages/users/main/index/main');
 			},
 			bindsksign(){//上课签到
 				_self.navigateTo('../sign/sksign');
