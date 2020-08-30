@@ -31,7 +31,7 @@
 
 <script>
 	import service from '@/service.js';
-	/* import mInput from '@/components/m-input.vue' */
+	import mInput from '@/components/m-input.vue'
 	import headerNav from "@/components/header/users_header.vue";
 	var _self;
 	import {

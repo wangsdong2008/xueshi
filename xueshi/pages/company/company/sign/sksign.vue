@@ -262,7 +262,7 @@
 	}
 	.btnlist view{
 		float: left;
-		width: 20%;
+		width: 25%;
 		margin-left: 20upx;
 	}
 	.list{

@@ -22,7 +22,64 @@
 					
 					<view class="register_account_input">
 						<m-input class="m-input fz30" type="text" clearable focus v-model="grade_name" placeholder="填写年级名"></m-input>
-					</view>				
+					</view>
+						
+					<view class="week">
+						<picker mode="time" :value="grade_time1" start="00:01" end="23:59" @change="bindTimeChange($event,1)" :class="{
+							'awidth':true
+							}">
+							<view class="uni-input">{{grade_time1}}</view>
+						</picker>
+						<view class="register_account_input weekform">
+							<m-input class="m-input fz30" type="text" clearable v-model="grade_address1" placeholder="填写周一接的地点"></m-input>
+						</view>	
+					</view>
+					
+					<view class="week">
+						<picker mode="time" :value="grade_time2" start="00:01" end="23:59" @change="bindTimeChange($event,2)" :class="{
+							'awidth':true
+							}">
+							<view class="uni-input">{{grade_time2}}</view>
+						</picker>
+						<view class="register_account_input weekform">
+							<m-input class="m-input fz30" type="text" clearable v-model="grade_address2" placeholder="填写周二接的地点"></m-input>
+						</view>	
+					</view>
+					
+					<view class="week">
+						<picker mode="time" :value="grade_time3" start="00:01" end="23:59" @change="bindTimeChange($event,3)" :class="{
+							'awidth':true
+							}">
+							<view class="uni-input">{{grade_time3}}</view>
+						</picker>
+						<view class="register_account_input weekform">
+							<m-input class="m-input fz30" type="text" clearable v-model="grade_address3" placeholder="填写周三接的地点"></m-input>
+						</view>	
+					</view>
+					
+					<view class="week">
+						<picker mode="time" :value="grade_time4" start="00:01" end="23:59" @change="bindTimeChange($event,4)" :class="{
+							'awidth':true
+							}">
+							<view class="uni-input">{{grade_time4}}</view>
+						</picker>
+						<view class="register_account_input weekform">
+							<m-input class="m-input fz30" type="text" clearable v-model="grade_address4" placeholder="填写周四接的地点"></m-input>
+						</view>	
+					</view>
+					
+					<view class="week">
+						
+						<picker mode="time" :value="grade_time5" start="00:01" end="23:59" @change="bindTimeChange($event,5)" :class="{
+							'awidth':true
+							}">
+							<view class="uni-input">{{grade_time5}}</view>
+						</picker>	
+						<view class="register_account_input weekform">
+							<m-input class="m-input fz30" type="text" clearable v-model="grade_address5" placeholder="填写周五接的地点"></m-input>
+						</view>	
+						
+					</view>
 					
 					<view class="register_account_input">
 						<m-input class="m-input fz30" type="text" clearable v-model="grade_order" placeholder="填写顺序"></m-input>
@@ -91,10 +148,41 @@
 				
 				headermsg:'',
 				footer:'',
-				btntxt:''
+				btntxt:'',
+				
+				grade_time1:'15:30',grade_address1:'',
+				grade_time2:'15:30',grade_address2:'',
+				grade_time3:'15:30',grade_address3:'',
+				grade_time4:'15:30',grade_address4:'',
+				grade_time5:'15:30',grade_address5:'',
 			}
 		},
 		methods:{
+			bindTimeChange:function(e,id){
+				switch(id){
+					case 1:{
+						_self.grade_time1 = e.target.value;
+						break;
+					}
+					case 2:{
+						_self.grade_time2 = e.target.value;
+						break;
+					}
+					case 3:{
+						_self.grade_time3 = e.target.value;
+						break;
+					}
+					case 4:{
+						_self.grade_time4 = e.target.value;
+						break;
+					}
+					case 5:{
+						_self.grade_time5 = e.target.value;
+						break;
+					}
+				}
+				
+			},
 			SchoolPickerChange:function(e){
 				console.log('学校picker发送选择改变，携带值为', e.target.value+"===="+_self.school_dataList[e.target.value] + _self.school_dataIDList[e.target.value]);
 				var school_id = _self.school_dataIDList[e.target.value];
@@ -168,6 +256,22 @@
 							"grade_name": _self.grade_name,
 							"grade_order":_self.grade_order,
 							"school_id":_self.school_id,
+							
+							"grade_time1":_self.grade_time1,
+							"grade_address1":_self.grade_address1,
+							
+							"grade_time2":_self.grade_time2,
+							"grade_address2":_self.grade_address2,
+							
+							"grade_time3":_self.grade_time3,
+							"grade_address3":_self.grade_address3,
+							
+							"grade_time4":_self.grade_time4,
+							"grade_address4":_self.grade_address4,
+							
+							"grade_time5":_self.grade_time5,
+							"grade_address5":_self.grade_address5,
+							
 							"t":Math.random()
 						},
 				        hideLoading : false,
@@ -285,6 +389,21 @@
 									j = _self.school_dataIDList.findIndex(i => i == _self.school_id);
 									_self.school_index = j;
 									
+									_self.grade_time1 = data.grade_time1.substring(0,5);
+									_self.grade_address1 = data.grade_address1;
+									
+									_self.grade_time2 = data.grade_time2.substring(0,5);
+									_self.grade_address2 = data.grade_address2;
+									
+									_self.grade_time3 = data.grade_time3.substring(0,5);
+									_self.grade_address3 = data.grade_address3;
+									
+									_self.grade_time4 = data.grade_time4.substring(0,5);
+									_self.grade_address4 = data.grade_address4;
+									
+									_self.grade_time5 = data.grade_time5.substring(0,5);
+									_self.grade_address5 = data.grade_address5;
+									
 				    			}
 								
 				    	    }
@@ -297,6 +416,26 @@
 </script>
 
 <style>
+	.week{
+		border:1upx solid #ccc;
+		border-top-left-radius: 25upx;
+		border-top-right-radius: 25upx;		
+		margin-top: 40upx;
+	}
+	.week picker{
+		width: 100%;
+		height: 80upx;
+		line-height: 80upx;	
+		border-bottom: 1upx solid #ccc;
+		padding-left: 5upx;
+		text-indent: 20upx;
+		margin-top: 10upx;
+		
+	}
+	.weekform .m-input{
+		text-indent: 20upx;
+		width: 90%;
+	}
 	.content .title{
 	  		background:url(@/static/img/grade.png) 10upx 25upx no-repeat;
 	  		-webkit-background-size:50upx 50upx ;

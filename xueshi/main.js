@@ -19,8 +19,8 @@ Vue.prototype.temp_status = 0; //临时状态,调试用,=1时,debugger起作用
 Vue.prototype.STUDYTIME = "2020-06-01";
 
 //服务器
-Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-//Vue.prototype.WebUrl = "http://192.168.1.104/";
+Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/api/";
+Vue.prototype.WebUrl = "http://www.tp5.com/index/";
 Vue.prototype.Method = "get"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
@@ -41,16 +41,16 @@ Vue.prototype.payAccount = {
 }; //支付帐号
 
 
-Vue.prototype.biglogo = "../../../static/img/indeximg.png";
+Vue.prototype.biglogo = "/static/img/indeximg.png";
 Vue.prototype.logo = "/static/img/logo.png";
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
 
 //api接口变量
-Vue.prototype.GeneralUrl = Vue.prototype.WebUrl + "api/general/"; //通用地址
-Vue.prototype.ParentUrl = Vue.prototype.WebUrl + "api/parents/";   //家长地址
-Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "api/company/"; //公司地址
+Vue.prototype.GeneralUrl = Vue.prototype.WebUrl + "general/"; //通用地址
+Vue.prototype.ParentUrl = Vue.prototype.WebUrl + "parents/";   //家长地址
+Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "company/"; //公司地址
 
 Vue.prototype.getTestUrl = Vue.prototype.GeneralUrl + "gettest" //测试页面
 
