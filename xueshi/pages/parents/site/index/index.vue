@@ -1,13 +1,7 @@
 <template>
 	<view class="main_content">
-		<view class="header-title">
-		    <view class="login_center login_title_txt">
-				<view class="header-img"><image :src="childface" mode=""  @click="upload"></image></view>
-				<view class="titles"> <span>{{userinfo.nick_name}}</span></view>	
-			</view>
-			<view class="logo" :style="'background:url('+logo+') 0upx 0upx / 320upx 320upx no-repeat;'"> </view>
-			<view class="logo" :style="'background:url('+logo+') 0upx 0upx no-repeat;-webkit-background-size: 320upx 320upx;background-size: 320upx 320upx;'"> </view>
-		</view>	
+		
+		<headerNav :msg="headermsg"></headerNav>
 		
 		<view class="line"></view>
 		<view class="content">
@@ -168,47 +162,7 @@
 						}
 				    }
 				},"1","");
-			},
-			
-			upload(){
-				uni.chooseImage({
-				 count: 1,
-				 sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-				 sourceType: ['album'], //从相册选择
-				 success: function (res) {					
-					let ret = _self.getUserInfo();
-					var url = _self.ModifyParentfaceUrl;
-					const tempFilePaths = res.tempFilePaths;
-					const uploadTask = uni.uploadFile({
-					"url" : url,
-					"filePath": tempFilePaths[0],
-					"name": 'file',
-					"formData": {
-						guid: ret.guid,
-						token: ret.token,
-						t:Math.random()
-					},
-					success: function (uploadFileRes) {
-						let imgpath = uploadFileRes.data;
-						_self.childface = imgpath;
-						uni.showToast({
-							title: '上传成功',
-							icon: 'none'
-						});						
-					}
-				});							 
-				uploadTask.onProgressUpdate(function (res) {
-					   _self.percent = res.progress;
-					   console.log('上传进度' + res.progress);
-					   console.log('已经上传的数据长度' + res.totalBytesSent);
-					   console.log('预期需要上传的数据总长度' + res.totalBytesExpectedToSend);
-					  });
-					},
-					 error : function(e){
-					  console.log(e);
-					}
-				});	
-			}
+			}			
 		}
 	}
 </script>
@@ -248,7 +202,6 @@
 		background:url(/static/img/login_title.png) #ffffff center 0 no-repeat;
 	    background-size:100% 100%;
 	    padding-bottom:20%;
-		padding-left: 50upx;
 		position: relative;
 	}
 	

@@ -23,7 +23,7 @@
 											 'green':(item3.sign_status == 1),
 											 'xblist':true,
 											 'fz30':true
-											}">{{item3.uname}} <span class="t1"><span class="t2 fz30" v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span> <span class="t2 fz30" v-if="item3.giveaddress != ''" @tap="jie(item3.uname,item3.givetime,item3.giveaddress,2)">送</span> <span class="t2 fz30" v-if="item3.backtime != '00:00:00'" @tap="jie(item3.uname,item3.backtime,item3.giveaddress,3)">回</span></span>
+											}">{{item3.uname}}<span v-if="item3.teacher != ''">（{{item3.teacher+" "+item3.class_name}})</span> <span class="t1"><span class="t2 fz30" v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span> <span class="t2 fz30" v-if="item3.giveaddress != ''" @tap="jie(item3.uname,item3.givetime,item3.giveaddress,2)">送</span> <span class="t2 fz30" v-if="item3.backtime != '00:00:00'" @tap="jie(item3.uname,item3.backtime,item3.giveaddress,3)">回</span></span>
 											<view class="times fz30" v-if="(item3.sign_status == 0 || item3.sign_status == 1)">				
 												<span v-if="item3.tw_time > 2" @tap="bindtw(item3.uname,item3.uid,item2.cat_id,item.com_id,index,index2,index3)">体温</span>
 											</view>	
@@ -37,7 +37,7 @@
 				</view>
 				<!-- 提交信息 -->
 				<uni-popup ref="dialogInput" type="dialog" @change="change">
-					<uni-popup-dialog mode="input" :title="title2" value="" placeholder="请输入学生体温" @confirm="dialogInputConfirm"></uni-popup-dialog>
+					<uni-popup-dialog mode="input" :title="title2" value="36.8" placeholder="请输入学生体温" @confirm="dialogInputConfirm"></uni-popup-dialog>
 				</uni-popup>	
 				
 				<uni-popup ref="dialogInput2" type="dialog">
@@ -305,30 +305,31 @@
 							"t":Math.random()
 						},
 						hideLoading : true,
-						success:function (res) {						
+						success:function (res) {
 							if(res){
 								var data = res.list;
-								if(parseInt(res.status) == 3){
-									if(data.length > 0){
-										let list = [];
-										for (var i = 0; i < data.length; i++) {
-											var item = data[i];
-											list.push(item);
-										}							
-										_self.dataList = list;
+								if(data != undefined){
+									if(parseInt(res.status) == 3){
+										if(data.length > 0){
+											let list = [];
+											for (var i = 0; i < data.length; i++) {
+												var item = data[i];
+												list.push(item);
+											}
+											_self.dataList = list;
+										}																			
+										_self.isBrithday = res.isBrithday; 
 									}
-									_self.isBrithday = res.isBrithday; 
-								}	
-								
-								//公告内容
-								let list = [];
-								data = res.gonggaolist;
-								_self.gonggaonum = res.gonggaonum;
-								for (var i = 0; i < data.length; i++) {
-									var item = data[i];
-									list.push(item);								
-								}								
-								_self.gonggaoList = list;
+									//公告内容
+									let list = [];
+									data = res.gonggaolist;
+									_self.gonggaonum = res.gonggaonum;
+									for (var i = 0; i < data.length; i++) {
+										var item = data[i];
+										list.push(item);								
+									}								
+									_self.gonggaoList = list;
+								}
 							}
 						}
 					},"1","");

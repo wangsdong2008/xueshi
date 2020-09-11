@@ -43,6 +43,7 @@
 				cid:0, //课程id
 				uid:0, //学生id
 				d:'',//月份
+				com_id:'',//机构
 				cat_name:'吃饭统计' ,//课程分类名称
 			}
 		},
@@ -54,6 +55,7 @@
 			_self.cid = options['cid'];  //课程id
 			_self.uid = options['uid']; //学生
 			_self.d = options['d']; //日期
+			_self.com_id = options['com_id']; //机构
 			var strname = "";
 			switch(parseInt(_self.id)){
 				case 1:{
@@ -97,10 +99,11 @@
 				        data : {
 							"guid": data.guid,
 							"token":data.token,
+							"com_id":_self.com_id,
 							"uid":_self.uid,
-							"cid":_self.cid,
+							"cid":_self.cid, //课程
 							"d":_self.d,
-							"id":_self.id,
+							"id":_self.id,  //上课和吃饭
 							"t":Math.random()
 						},
 				        hideLoading : true,
@@ -118,7 +121,8 @@
 				        					for (var i = 0; i < signlist.length; i++) {
 				        						var item = signlist[i];									
 				        						list.push(item);
-				        					}									
+				        					}					
+											debugger;
 				        					_self.selected = list;
 				        				}								
 				        			}			    	

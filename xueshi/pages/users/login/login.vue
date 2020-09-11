@@ -166,13 +166,15 @@
 				        				id:data.id,
 				        				mobile:data.mobile,
 				        				username:data.username,
+										true_name:data.true_name,
+										nick_name:data.nick_name,
 				        				token:data.token,
 				        				guid:data.guid,
 				        				time:data.time,
 				        				identity:data.user_identity,
 				        				is_brithday:data.is_brithday, //是否显示生日功能
-										true_name:data.true_name,
 										pay_status:data.pay_status,
+										facedata:data.facedata,
 										power:data.power //权限
 				        			}
 				        			

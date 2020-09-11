@@ -62,15 +62,15 @@
 					{
 						show:true,
 						value: '2',
-						name: '二公里内'
+						name: '2km'
 					},{
 						show:false,
 						value: '5',
-						name: '五公里内'
+						name: '5km'
 					},{
 						show:false,
 						value: '10',
-						name: '十公里内'
+						name: '10km'
 					}
 				],
 				footer: 'findsite',
@@ -112,7 +112,7 @@
 				  type: 'wgs84',
 				  geocode: true,
 				  success: (data) => {
-					if (data.address){						
+					if (data.address){
 						  _self.location = data.address.city + data.address.district; // +data.address.street;
 						  _self.longitude = data.longitude;
 						  _self.latitude = data.latitude;

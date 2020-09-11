@@ -6,7 +6,7 @@
 			"style": {				
 				"navigationBarTitleText": "登录"
 			}
-		},	
+		},
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -278,6 +278,11 @@
 						"autoBackButton":"false"
 					}
 				}//隐藏顶部导航栏			
+			}
+		},{
+			"path": "pages/users/main/face/face",
+			"style": {
+				"navigationBarTitleText": "更换头像"
 			}
 		},{
 			"path": "pages/parents/find/find/index",

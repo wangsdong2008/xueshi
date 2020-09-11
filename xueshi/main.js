@@ -19,9 +19,9 @@ Vue.prototype.temp_status = 0; //临时状态,调试用,=1时,debugger起作用
 Vue.prototype.STUDYTIME = "2020-06-01";
 
 //服务器
-Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/api/";
-Vue.prototype.WebUrl = "http://www.tp5.com/index/";
-Vue.prototype.Method = "get"; //请求方式
+Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
+//Vue.prototype.WebUrl = "http://192.168.1.104/";
+Vue.prototype.Method = "post"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
 
@@ -48,9 +48,9 @@ Vue.prototype.logo = "/static/img/logo.png";
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
 
 //api接口变量
-Vue.prototype.GeneralUrl = Vue.prototype.WebUrl + "general/"; //通用地址
-Vue.prototype.ParentUrl = Vue.prototype.WebUrl + "parents/";   //家长地址
-Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "company/"; //公司地址
+Vue.prototype.GeneralUrl = Vue.prototype.WebUrl + "index/general/"; //通用地址
+Vue.prototype.ParentUrl = Vue.prototype.WebUrl + "index/parents/";   //家长地址
+Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "index/company/"; //公司地址
 
 Vue.prototype.getTestUrl = Vue.prototype.GeneralUrl + "gettest" //测试页面
 
@@ -75,6 +75,8 @@ Vue.prototype.MessageshowUrl = Vue.prototype.GeneralUrl + "messageshow" //某人
 //Vue.prototype.AlipayUrl = Vue.prototype.GeneralUrl + "alipay" //支付,待完成
 Vue.prototype.ArticleListUrl = Vue.prototype.GeneralUrl + "getarticlelist" //获取文章信息
 Vue.prototype.helpshowUrl = Vue.prototype.GeneralUrl + "getarticleshow" //获取帮助信息
+
+Vue.prototype.ChangeUserFaceUrl = Vue.prototype.GeneralUrl + "changeface" //更换头像
 
 //家长相关
 Vue.prototype.DayClassUrl = Vue.prototype.ParentUrl + "dayclass" //当天课程

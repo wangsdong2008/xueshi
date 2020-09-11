@@ -10,12 +10,8 @@
 		<view class="content">
 			<view class="main-body write lists">
 				<view class="facecss">
-					<!-- <image :src="facedata" mode="" @tap="upload" :style="'position:absolute;width:'+imageW+'upx;height:'+imageH+'upx;'"></image> -->
-					<avatar						
-						selWidth="200px" selHeight="200px"  ref='avatar' fileType='png'
-						:avatarSrc="url" @upload="myUpload" quality="1" inner=true			
-						avatarStyle="width: 200px; height: 200px; margin: 0px;">
-					</avatar>
+					<image :src="facedata" mode="" @tap="upload" :style="'position:absolute;width:'+imageW+'upx;height:'+imageH+'upx;'"></image>
+					
 				</view>
 				<view class="register_account_input">
 					<m-input class="m-input" type="text" clearable v-model="nick_name" placeholder="请输入昵称"></m-input>
@@ -35,8 +31,8 @@
 </template>
 <style>	
 	.facecss{
-		width: 380upx;
-		height: 380;
+		width: 300upx;
+		height: 300upx;
 		border:1upx solid #666;
 	}
     .content .title{
@@ -66,13 +62,12 @@
 	import mInput from '@/components/m-input.vue'
 	import headerNav from "@/components/header/users_header.vue"
 	import footerNav from "@/components/footer/footer_nav.vue"
-	import avatar from "@/components/yq-avatar/yq-avatar.vue";
 	
 	var _self;
 	
 	export default { 
 	    components: {			
-			mInput,headerNav,footerNav,avatar
+			mInput,headerNav,footerNav
 		},
 		onLoad(){
 			_self = this;
@@ -83,7 +78,7 @@
 		},
 		computed:{
 			captchaSrc(){
-				//return this.facedata.replace(/[\r\n]/g, "");
+			return this.facedata.replace(/[\r\n]/g, "");
 			}
 		},
 		data(){
@@ -97,37 +92,13 @@
 				imageW:300,
 				imageH:300,
 				headermsg:'会员中心,Member Center',
-				url:'',
 				footer:''
 			}
 		},
-		methods:{
-			clk() {
-				let avatar = this.$refs.avatar;
-				avatar.fChooseImg(1, {selWidth: "480upx", selHeight: "480upx", expWidth: "280upx", expHeight: "280upx", inner:true, canRotate: true, canScale:true}, {data: 'xxx'});
+		methods:{	
+			upload(){
+				_self.navigateTo("../face/face");
 			},
-			myUpload(rsp) {	
-				let ret = _self.getUserInfo();
-				//上传图片
-				_self.sendRequest({
-				url : _self.ChangeUserFaceUrl,
-					method :_self.Method,
-					data : {
-						"guid": ret.guid,
-						"token": ret.token,	
-						"imgdata":rsp.base64,
-						"t":Math.random()
-					},
-					hideLoading : false,
-					success: (res) => {
-						let data = res;
-						if(parseInt(data.status) == 3){	
-							_self.url = rsp.path;
-						}
-					}
-				},"1","");
-			},
-			
 			bindsaveuserinfo(){
 				if(_self.nick_name.trim() == '' || _self.nick_name.trim().length == 0){
 					uni.showToast({
@@ -175,14 +146,7 @@
 			},
 			getData(data){
 				let ret = _self.getUserInfo();
-				
-				_self.nick_name = ret.nick_name;
-				_self.true_name = ret.true_name;	
-				//头像
-				_self.url =  ret.facedata;
-				
-				
-				/* _self.sendRequest({
+				_self.sendRequest({
 					url : _self.getUsersInfoUrl,
 				    method : _self.Method,
 				    data : {"token":ret.token,"guid":ret.guid,"t":Math.random()},
@@ -193,14 +157,15 @@
 							if(data.status == 3){
 								_self.userinfo = data.userinfo;
 								_self.nick_name = _self.userinfo.nick_name;
-								_self.true_name = _self.userinfo.true_name;	
-								//头像
-								_self.url =  _self.userinfo.facedata;
+								_self.true_name = _self.userinfo.true_name;								
+								
+								
+								_self.facedata = _self.userinfo.facedata.replace(/[\r\n]/g, "");
 								
 							}
 						}
 				    }
-				},"1");			 */	
+				},"1");				
 			}
 			
 		}

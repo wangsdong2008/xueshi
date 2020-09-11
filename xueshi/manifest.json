@@ -1,7 +1,7 @@
 {
-    "name" : "xueshi",
-    "appid" : "__UNI__657A96F",
-    "description" : "",
+    "name" : "学时",
+    "appid" : "__UNI__com.xueshi.xueshi",
+    "description" : "安排孩子的学习时间",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -23,15 +23,24 @@
             /* android打包配置 */
             "android" : {
                 "permissions" : [
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.INSTALL_LOCATION_PROVIDER\"/>"
+					"<uses-permission android:name=\"android.permission.INSTALL_LOCATION_PROVIDER\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>"
                 ]
             },
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {},
+                "payment" : {
+                    "weixin" : {
+                        "__platform__" : [ "android" ],
+                        "appid" : "",
+                        "UniversalLinks" : ""
+                    }
+                }
             },
             "icons" : {
                 "android" : {

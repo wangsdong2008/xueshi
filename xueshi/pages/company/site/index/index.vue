@@ -42,7 +42,7 @@
 		data(){
 			return{				
 				headermsg:'公司设置,Company Siteup',
-				footer: 'companysite',
+				footer: 'mine',
 				dataList:[
 					{"image":"company.png","text":"公司设置","url":"../company/company"},
 					{"image":"category.png","text":"课程分类","url":"../category/category"},

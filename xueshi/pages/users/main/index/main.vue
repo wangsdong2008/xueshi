@@ -1,9 +1,16 @@
 <template>
 	<view class="main_content">
-		<headerNav :msg="headermsg"></headerNav>
+		<view class="header-title">
+				    <view class="login_center login_title_txt">
+						<view class="header-img"><image :src="childface" mode="" ></image></view>
+						<view class="titles"> <span>{{nick_name}}</span></view>	
+					</view>
+					<view class="logo" :style="'background:url('+logo+') 0upx 0upx / 320upx 320upx no-repeat;'"> </view>
+					<view class="logo" :style="'background:url('+logo+') 0upx 0upx no-repeat;-webkit-background-size: 320upx 320upx;background-size: 320upx 320upx;'"> </view>
+				</view>	
 		<view class="content">
 			<view class="title">
-				设置
+				系统设置
 			</view>
 		</view>
 		<view class="line"></view>
@@ -53,7 +60,7 @@
 				name:'',
 				en_name:'',				
 				childface:'',
-				userinfo:[],
+				nick_name:'',
 				dataList2:[					
 					{image:'about.png',text:'关于学时',url:"/pages/system/setup/index"},
 					{image:'quit.png',text:'退出',url:"../../login/loginout"},
@@ -123,11 +130,15 @@
 			},
 			show(){
 				let ret = _self.getUserInfo();
-							
 				
 				if(!ret){					
 					return false;
 				}
+				let face = ret.facedata;
+				if(face != null ){
+					_self.childface = face;
+				}
+				_self.nick_name = ret.nick_name;
 				const data = {
 				    guid: ret.guid,
 				    token: ret.token
@@ -143,12 +154,7 @@
 				    success:function (res) {
 						if(res){
 							let data = res;
-							if(data.status == 3){
-								_self.userinfo = data.userinfo;
-								let face = data.userinfo.face;
-								if(face != null ){
-									_self.childface = _self.PicUrl + 'users' + data.userinfo.face;
-								}								
+							if(data.status == 3){															
 								_self.dataList[3].text = "我的消息("+data.messagenum+")";
 								
 								/* let vlist = data.versionlist; //获取最新版本信息
@@ -243,7 +249,8 @@
 	.header-title{
 		background:url(/static/img/login_title.png) #ffffff center 0 no-repeat;
 	    background-size:100% 100%;
-	    padding-bottom:20%;
+	    padding-bottom:20%;		
+		padding-left: 50upx;
 		position: relative;
 	}
 	

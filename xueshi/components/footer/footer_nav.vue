@@ -48,7 +48,7 @@
 				},
 				//机构
 				{
-					nav: 'family',
+					nav: 'index',
 					url: 'company/company/index/index',
 					text: '首页',
 					imgNormal:'/static/img/home.png',
