@@ -21,7 +21,7 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 //服务器
 Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
 //Vue.prototype.WebUrl = "http://192.168.1.104/";
-Vue.prototype.Method = "post"; //请求方式
+Vue.prototype.Method = "get"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
 
@@ -116,6 +116,7 @@ Vue.prototype.GetStudentsDetail = Vue.prototype.CompanyUrl + "getstudentsdetail"
 Vue.prototype.GetStudentsCategory = Vue.prototype.CompanyUrl + "getstudentscategory"//学生所报的课程分类
 Vue.prototype.GetStudentssign = Vue.prototype.CompanyUrl + "getstudentssign" //学生签到查询
 Vue.prototype.SetsignUrl = Vue.prototype.CompanyUrl + "setsign" //设置签到
+Vue.prototype.RepairsignUrl = Vue.prototype.CompanyUrl + "repairsign" //补签
 Vue.prototype.GetBirthdaytStudentsUrl = Vue.prototype.CompanyUrl + "getbirthdaystudents"  //获取一周内过生日的学生
 Vue.prototype.SetStudentsTemperatureUrl = Vue.prototype.CompanyUrl + "savestudentstemperature"  //保存体温
 

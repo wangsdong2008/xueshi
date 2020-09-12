@@ -23,7 +23,11 @@
 											 'green':(item3.sign_status == 1),
 											 'xblist':true,
 											 'fz30':true
-											}">{{item3.uname}}<span v-if="item3.teacher != ''">（{{item3.teacher+" "+item3.class_name}})</span> <span class="t1"><span class="t2 fz30" v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span> <span class="t2 fz30" v-if="item3.giveaddress != ''" @tap="jie(item3.uname,item3.givetime,item3.giveaddress,2)">送</span> <span class="t2 fz30" v-if="item3.backtime != '00:00:00'" @tap="jie(item3.uname,item3.backtime,item3.giveaddress,3)">回</span></span>
+											}">{{item3.uname}}<span class="tname" v-if="item3.teacher != ''">({{item3.teacher}})</span><span class="cname">{{item3.class_name+' '+item3.utime}}</span> <span class="t1"><view class="t2 fz30"><span v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span></view> 
+<view class="t2 fz30"><span v-if="item3.giveaddress != ''" @tap="jie(item3.uname,item3.givetime,item3.giveaddress,2)">送</span></view> 
+<view class="t2 fz30"><span v-if="item3.backtime != '00:00:00'" @tap="jie(item3.uname,item3.backtime,item3.giveaddress,3)">回</span></view>
+
+</span>
 											<view class="times fz30" v-if="(item3.sign_status == 0 || item3.sign_status == 1)">				
 												<span v-if="item3.tw_time > 2" @tap="bindtw(item3.uname,item3.uid,item2.cat_id,item.com_id,index,index2,index3)">体温</span>
 											</view>	
@@ -341,12 +345,23 @@
 </script>
 
 <style>
+	.tname{
+	}
+	.cname{
+		margin-left: 20upx;
+	}
 	.t1{
-		margin-left: 200upx;
+		right:60upx;
+		width:150upx;
+		position: absolute;
 	}
 	.t2{
-		margin-right:20upx;
+		margin-right:10upx;
 		color:#f00;
+		width:35upx;
+		border:1upx solid #fff;
+		float: left;
+		display: inline;		
 	}
 	.green{
 		color:green;
@@ -383,6 +398,7 @@
 		line-height: 50upx;
 		height: 50upx;
 		margin-top: 20upx;
+		position: relative;
 	}
 	
 	.xb1{

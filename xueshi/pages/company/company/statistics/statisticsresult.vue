@@ -5,17 +5,19 @@
 			<view class="title">
 				{{studentsname+_self.d+'【'+_self.category_name+'】'+cat_name}}
 			</view>
-				<uni-calendar 
-					:insert="true"
-					:lunar="false" 
-					:selected="selected"
-					:start-date="'2019-3-2'"
-					:end-date="'2059-5-20'"
-					:date = "d+'-01'"
-					@monthSwitch="changeMonth"
-				></uni-calendar>		
-			</view>
-			</view>
+			<uni-calendar 
+				:insert="true"
+				:lunar="false" 
+				:selected="selected"
+				:start-date="'2019-3-2'"
+				:end-date="'2059-5-20'"
+				:date = "d+'-01'"
+				@monthSwitch="changeMonth"
+				@change="changes"
+			></uni-calendar>
+			<uni-popup ref="dialogInput2" type="dialog">
+			    <uni-popup-dialog type="info" mode="base" :title="title" :content="content" :duration="2000" :before-close="true" @close="close" @confirm="confirm"></uni-popup-dialog>
+			</uni-popup>
 		</view>
 	</view>
 </template>
@@ -26,11 +28,20 @@
 	import headerNav from "@/components/header/company_header.vue"
 	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
+	
+	import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue'
+	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
+	import uniPopupShare from '@/components/uni-popup/uni-popup-share.vue'
+	
+	
 	var _self;
 	
 	export default {
 	    components: {
-			headerNav,uniSection,uniCalendar
+			headerNav,uniSection,uniCalendar,
+			uniPopupMessage,
+			uniPopupDialog,
+			uniPopupShare
 		},
 		data(){
 			return{
@@ -45,6 +56,11 @@
 				d:'',//月份
 				com_id:'',//机构
 				cat_name:'吃饭统计' ,//课程分类名称
+				title:'',
+				content:'',
+				title2:'',
+				currstatus:0,
+				currentday:'' //当前选择的日期
 			}
 		},
 		onLoad(options){
@@ -59,27 +75,119 @@
 			var strname = "";
 			switch(parseInt(_self.id)){
 				case 1:{
+					_self.title2 = "上课";
 					strname = "上课统计";
 					_self.headermsg = '上课统计,Statistics';
 					break;
 				}
 				case 2:{
+					_self.title2 = "吃饭";
 					strname = "吃饭统计";
 					_self.headermsg = '吃饭统计,Statistics';
 					break;
 				}
 				case 3:{
+					_self.title2 = "员工";
 					strname = "员工统计";
 					_self.headermsg = '员工统计,Statistics';
 					break;
 				}
 			}
 			_self.cat_name = strname;
+			
 		},
 		onReady(){
 			_self.show();
 		},
 		methods:{
+			/**
+			        * 点击取消按钮触发
+			        * @param {Object} done
+			        */
+			       close(done){
+			           // TODO 做一些其他的事情，before-close 为true的情况下，手动执行 done 才会关闭对话框
+			           // ...
+			           done()
+			       },
+			       /**
+			        * 点击确认按钮触发
+			        * @param {Object} done
+			        * @param {Object} value
+			        */
+			       confirm(done,value){
+					   let ret = _self.getUserInfo();
+					   const data = {
+					       guid: ret.guid,
+					       token: ret.token
+					   };
+					   //临时添厍签到记录
+					   _self.sendRequest({
+					           url : _self.RepairsignUrl,
+					           method : _self.Method,
+					           data : {
+					   			"guid": data.guid,
+					   			"token":data.token,
+					   			"com_id":_self.com_id,
+					   			"uid":_self.uid,
+					   			"cid":_self.cid, //课程
+					   			"d":_self.currentday,//
+					   			"id":_self.id,  //上课和吃饭
+								"signstatus":_self.currstatus,
+					   			"t":Math.random()
+					   		},
+					           hideLoading : true,
+					           success: (res) => {
+					           	    if(res){					   					
+					           				if(parseInt(res.status) == 3){
+					           					if(_self.currstatus == 0){
+					           						let index = _self.selected.length;
+					           						let item = {};
+					           						item['date'] = _self.currentday;
+					           						item['status'] = 1;
+					           						_self.selected.push(item);
+					           					}else{
+					           						let currday = _self.currentday;
+					           						for(let i = 0; i<_self.selected.length; i++ ){
+					           						let t = _self.selected[i].date;
+					           						if(_self.selected[i].date == currday){
+														_self.selected.splice(i, 1);
+					           							break;
+					           						}
+					           					}
+					           				}								
+					           			}			    	
+					           	    }
+					           	}				        
+					       },"1","");
+						   
+					   
+					   
+					   
+			           // 输入框的值
+			           console.log(value)
+			           // TODO 做一些其他的事情，手动执行 done 才会关闭对话框
+			           // ...
+			           done()
+			       },
+			changes(e){
+				_self.$refs.dialogInput2.open();
+				
+				let status = 0;
+				let statusname = "设置";
+				let currday = _self.d+'-' + ("00"+e.date).slice(-2);
+				for(let i = 0; i<_self.selected.length; i++ ){
+					let t = _self.selected[i].date;
+					if(_self.selected[i].date == currday){
+						status = 1; //已经有了，只能取消
+						statusname = "取消";
+						break;
+					}
+				}
+				_self.currstatus = status;
+				_self.currentday = currday;
+				_self.title = "您确定要【" + statusname + "】\r\n"+_self.studentsname+'' + currday + '\r\n在'+_self.category_name+_self.title2+"签到吗？";
+				
+			},
 			changeMonth(e){
 				_self.d = e.year + "-" + ("0"+e.month).trimRight(2);
 				_self.show();
@@ -110,9 +218,11 @@
 				        success: (res) => {
 				        	    if(res){
 									_self.studentsname = res.studentsinfo.uname;
-									_self.category_name = res.categoryinfo.cat_name;
+									_self.category_name = res.categoryinfo.cat_name;									
 				        			if(parseInt(res.status) == 3){								
 				        				//_self.cat_name = res.categorylist.cat_name;
+										
+										
 				        				var data = res;
 				        				if(parseInt(res.status) == 3){
 				        					//所有签到记录
@@ -121,8 +231,7 @@
 				        					for (var i = 0; i < signlist.length; i++) {
 				        						var item = signlist[i];									
 				        						list.push(item);
-				        					}					
-											debugger;
+				        					}	
 				        					_self.selected = list;
 				        				}								
 				        			}			    	

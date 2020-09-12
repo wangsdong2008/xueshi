@@ -151,8 +151,9 @@
 							"username": name,
 							"password": password
 						},
-				        hideLoading : true,
+				        hideLoading : false,
 				        success: (res) => {
+							debugger;
 				        	    var data = res;
 				        	    if(data.status == 3){
 				        			//清空原来的缓存
@@ -173,8 +174,8 @@
 				        				time:data.time,
 				        				identity:data.user_identity,
 				        				is_brithday:data.is_brithday, //是否显示生日功能
-										pay_status:data.pay_status,
-										facedata:data.facedata,
+										//pay_status:data.pay_status,
+										facedata:'',
 										power:data.power //权限
 				        			}
 				        			
