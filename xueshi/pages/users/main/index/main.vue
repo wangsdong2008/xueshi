@@ -134,7 +134,7 @@
 				if(!ret){					
 					return false;
 				}
-				let face = ret.facedata;
+				let face = _self.WebUrl + ret.face;
 				if(face != null ){
 					_self.childface = face;
 				}

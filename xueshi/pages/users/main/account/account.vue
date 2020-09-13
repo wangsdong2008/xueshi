@@ -123,6 +123,34 @@
 						let data = res;
 						if(parseInt(data.status) == 3){	
 							_self.url = rsp.path;
+							
+							//把新图片保存到缓存中去
+							let d2 = {
+								id:ret.id,
+								mobile:ret.mobile,
+								username:ret.username,
+								true_name:ret.true_name,
+								nick_name:ret.nick_name,
+								token:ret.token,
+								guid:ret.guid,
+								time:ret.time,
+								identity:ret.identity,
+								is_brithday:ret.is_brithday, //是否显示生日功能
+								pay_status:ret.pay_status,
+								face:data.imgpath,
+								power:ret.power //权限
+							}
+							uni.removeStorageSync(_self.USERS_KEY);
+							//存储数组前，将数组转为字符串
+							//uni.setStorageSync(_self.USERS_KEY,JSON.stringify(d2));
+							uni.setStorage({
+							    key:_self.USERS_KEY,          //key String 本地缓存中的指定key
+							    data: d2,               //data Any 需要存储的内容，只支持原生类型、及能够通过 JSON.stringify 序列化的对象
+							    success: function () {       //success Function	接口调用成功的回调函数
+							        //console.log('success');
+							    }
+							});
+							
 						}
 					}
 				},"1","");
@@ -179,7 +207,7 @@
 				_self.nick_name = ret.nick_name;
 				_self.true_name = ret.true_name;	
 				//头像
-				_self.url =  ret.facedata;
+				_self.url =  _self.WebUrl + ret.face;
 				
 				
 				/* _self.sendRequest({

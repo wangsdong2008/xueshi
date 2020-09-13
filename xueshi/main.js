@@ -21,7 +21,7 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 //服务器
 Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
 //Vue.prototype.WebUrl = "http://192.168.1.104/";
-Vue.prototype.Method = "get"; //请求方式
+Vue.prototype.Method = "post"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
 

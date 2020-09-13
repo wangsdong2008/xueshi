@@ -53,8 +53,8 @@
 				headermsg:'登录,login',
 	            providerList: [],
 				hasProvider: false,
-	            account: '',
-	            password: '',
+	            account: '13816141685',
+	            password: '123123',
 	            positionTop: 0
 	        }
 	    },		
@@ -153,7 +153,6 @@
 						},
 				        hideLoading : false,
 				        success: (res) => {
-							debugger;
 				        	    var data = res;
 				        	    if(data.status == 3){
 				        			//清空原来的缓存
@@ -174,11 +173,10 @@
 				        				time:data.time,
 				        				identity:data.user_identity,
 				        				is_brithday:data.is_brithday, //是否显示生日功能
-										//pay_status:data.pay_status,
-										facedata:'',
+										pay_status:data.pay_status,
+										face:data.face,
 										power:data.power //权限
 				        			}
-				        			
 				        			let url = '';
 				        			switch(parseInt(data.user_identity))
 				        			{
