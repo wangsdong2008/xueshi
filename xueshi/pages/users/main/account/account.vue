@@ -12,9 +12,9 @@
 				<view class="facecss">
 					<!-- <image :src="facedata" mode="" @tap="upload" :style="'position:absolute;width:'+imageW+'upx;height:'+imageH+'upx;'"></image> -->
 					<avatar						
-						selWidth="200px" selHeight="200px"  ref='avatar' fileType='png'
+						selWidth="180px" selHeight="180px" expWidth="150px" expHeight="150px" ref='avatar' fileType='png'
 						:avatarSrc="url" @upload="myUpload" quality="1" inner=true			
-						avatarStyle="width: 200px; height: 200px; margin: 0px;">
+						avatarStyle="width: 180px; height: 180px; margin: 0px;">
 					</avatar>
 				</view>
 				<view class="register_account_input">
@@ -107,53 +107,69 @@
 				avatar.fChooseImg(1, {selWidth: "480upx", selHeight: "480upx", expWidth: "280upx", expHeight: "280upx", inner:true, canRotate: true, canScale:true}, {data: 'xxx'});
 			},
 			myUpload(rsp) {	
-				let ret = _self.getUserInfo();
-				//上传图片
-				_self.sendRequest({
-				url : _self.ChangeUserFaceUrl,
-					method :_self.Method,
-					data : {
+				//debugger;
+				//_self.url = rsp.path;
+				
+				//app获取图片转成base64;
+				const path = plus.io.convertLocalFileSystemURL(rsp.path) //绝对路径
+				const fileReader = new plus.io.FileReader()
+				fileReader.readAsDataURL(path)
+				fileReader.onloadend = (res) => { //读取文件成功完成的回调函数
+				    //console.log(res.target.result) //输出base64内容					
+					let datas1 = res.target.result;
+					
+					let ret = _self.getUserInfo();
+					let datas = {
 						"guid": ret.guid,
 						"token": ret.token,	
-						"imgdata":rsp.base64,
+						"imgdata":datas1,
 						"t":Math.random()
-					},
-					hideLoading : false,
-					success: (res) => {
-						let data = res;
-						if(parseInt(data.status) == 3){	
-							_self.url = rsp.path;
-							
-							//把新图片保存到缓存中去
-							let d2 = {
-								id:ret.id,
-								mobile:ret.mobile,
-								username:ret.username,
-								true_name:ret.true_name,
-								nick_name:ret.nick_name,
-								token:ret.token,
-								guid:ret.guid,
-								time:ret.time,
-								identity:ret.identity,
-								is_brithday:ret.is_brithday, //是否显示生日功能
-								pay_status:ret.pay_status,
-								face:data.imgpath,
-								power:ret.power //权限
+					};
+					
+					//上传图片
+					_self.sendRequest({
+						url : _self.ChangeUserFaceUrl,
+						method :_self.Method,
+						data : datas,
+						hideLoading : false,
+						success: (res) => {
+							let data = res;
+							if(parseInt(data.status) == 3){	
+								_self.url = rsp.path;
+								
+								//把新图片保存到缓存中去
+								let d2 = {
+									id:ret.id,
+									mobile:ret.mobile,
+									username:ret.username,
+									true_name:ret.true_name,
+									nick_name:ret.nick_name,
+									token:ret.token,
+									guid:ret.guid,
+									time:ret.time,
+									identity:ret.identity,
+									is_brithday:ret.is_brithday, //是否显示生日功能
+									pay_status:ret.pay_status,
+									face:data.imgpath,
+									power:ret.power //权限
+								}
+								uni.removeStorageSync(_self.USERS_KEY);
+								//存储数组前，将数组转为字符串
+								//uni.setStorageSync(_self.USERS_KEY,JSON.stringify(d2));
+								uni.setStorage({
+								    key:_self.USERS_KEY,          //key String 本地缓存中的指定key
+								    data: d2,               //data Any 需要存储的内容，只支持原生类型、及能够通过 JSON.stringify 序列化的对象
+								    success: function () {       //success Function	接口调用成功的回调函数
+								        //console.log('success');
+								    }
+								});
+								
 							}
-							uni.removeStorageSync(_self.USERS_KEY);
-							//存储数组前，将数组转为字符串
-							//uni.setStorageSync(_self.USERS_KEY,JSON.stringify(d2));
-							uni.setStorage({
-							    key:_self.USERS_KEY,          //key String 本地缓存中的指定key
-							    data: d2,               //data Any 需要存储的内容，只支持原生类型、及能够通过 JSON.stringify 序列化的对象
-							    success: function () {       //success Function	接口调用成功的回调函数
-							        //console.log('success');
-							    }
-							});
-							
 						}
-					}
-				},"1","");
+					},"1","");
+					
+				}
+			
 			},
 			
 			bindsaveuserinfo(){

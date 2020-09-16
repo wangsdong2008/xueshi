@@ -53,8 +53,8 @@
 				headermsg:'登录,login',
 	            providerList: [],
 				hasProvider: false,
-	            account: '13816141685',
-	            password: '123123',
+	            account: '',
+	            password: '',
 	            positionTop: 0
 	        }
 	    },		
