@@ -43,10 +43,10 @@
 								</label>
 							</view>							
 							<button type="primary" @tap="bindclick(1)"  v-if="parseInt(_self.dataList_num ) > 0">吃饭</button>
-							<button type="primary" @tap="bindclick(2)" v-if="parseInt(_self.dataList_num ) > 0">不吃</button>
+							<button type="primary" @tap="bindclick(2)" v-if="parseInt(_self.dataList_num ) > 0">没吃</button>
 							<button type="primary" disabled="true" v-if="parseInt(_self.dataList_num) == 0">吃饭</button>
-							<button type="primary" disabled="true" v-if="parseInt(_self.dataList_num) == 0">不吃</button>
-							
+							<button type="primary" disabled="true" v-if="parseInt(_self.dataList_num) == 0">没吃</button>
+							<button type="primary" @tap="bindjcclick" >临时加餐</button>							
 							
 							
 							
@@ -225,6 +225,9 @@
 				}
 				//调用签到函数
 				_self.setSign(2,sid,_self.selectid.toString(),'cfsign');
+			},
+			bindjcclick(){
+				_self.navigateTo("jc");
 			}
 		}
 	}
@@ -261,12 +264,12 @@
     	}
     	.btnlist button{
     		float: left;
-    		width:30%;
+    		width:auto;
     		margin-left: 20upx;
     	}
     	.btnlist view{
     		float: left;
-    		width: 25%;
+    		width: auto;
     		margin-left: 20upx;
     	}
     	.list{

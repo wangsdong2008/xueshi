@@ -37,6 +37,11 @@
 				"navigationBarTitleText": "吃饭签到"
 			}
 		},{
+			"path": "pages/company/company/sign/jc",
+			"style": {				
+				"navigationBarTitleText": "临时加餐"
+			}
+		},{
 			"path": "pages/company/company/sign/ygsign",
 			"style": {				
 				"navigationBarTitleText": "员工签到"

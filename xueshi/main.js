@@ -20,8 +20,8 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 
 //服务器
 Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
-//Vue.prototype.WebUrl = "http://192.168.1.104/";
-Vue.prototype.Method = "post"; //请求方式
+Vue.prototype.WebUrl = "http://192.168.1.104/";
+Vue.prototype.Method = "get"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
 
@@ -108,6 +108,8 @@ Vue.prototype.GetChildStatisticsUrl = Vue.prototype.ParentUrl + "getchildstatist
 //当天要接的孩子
 Vue.prototype.GetCurrentStudents = Vue.prototype.CompanyUrl + "getcurrentstudents" //要接送的学生
 Vue.prototype.GetCurrentCFStudents = Vue.prototype.CompanyUrl + "getcurrentcfstudents" //吃饭的学生
+Vue.prototype.GetCurrentNOCFStudents = Vue.prototype.CompanyUrl + "getcurrentnocfstudents" //当天不吃饭的学生
+Vue.prototype.SetStudentsExtrameal = Vue.prototype.CompanyUrl + "setextrameal" //某个学生加餐
 Vue.prototype.GetCurrentYgStudents = Vue.prototype.CompanyUrl + "getcurrentygchildren" //员工
 Vue.prototype.GetNoSignStudents = Vue.prototype.CompanyUrl + "getnosignstudents" //获取未签到的学生
 
