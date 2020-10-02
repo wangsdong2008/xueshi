@@ -14,10 +14,7 @@
 				:date = "d+'-01'"
 				@monthSwitch="changeMonth"
 				@change="changes"
-			></uni-calendar>
-			<uni-popup ref="dialogInput2" type="dialog">
-			    <uni-popup-dialog type="info" mode="base" :title="title" :content="content" :duration="2000" :before-close="true" @close="close" @confirm="confirm"></uni-popup-dialog>
-			</uni-popup>
+			></uni-calendar>			
 		</view>
 	</view>
 </template>
@@ -27,21 +24,14 @@
 	import mInput from '@/components/m-input.vue'
 	import headerNav from "@/components/header/company_header.vue"
 	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
-	
-	import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue'
-	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
-	import uniPopupShare from '@/components/uni-popup/uni-popup-share.vue'
-	
+	import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'	
 	
 	var _self;
 	
 	export default {
 	    components: {
-			headerNav,uniSection,uniCalendar,
-			uniPopupMessage,
-			uniPopupDialog,
-			uniPopupShare
+			headerNav,uniSection,uniCalendar
+			
 		},
 		data(){
 			return{
@@ -60,7 +50,8 @@
 				content:'',
 				title2:'',
 				currstatus:0,
-				currentday:'' //当前选择的日期
+				currentday:'' ,//当前选择的日期
+				itemList:[] //按纽上文字
 			}
 		},
 		onLoad(options){
@@ -77,13 +68,15 @@
 				case 1:{
 					_self.title2 = "上课";
 					strname = "上课统计";
-					_self.headermsg = '上课统计,Statistics';
+					_self.headermsg = '上课统计,Statistics';	
+					_self.itemList = Array('签到','请假','删除');
 					break;
 				}
 				case 2:{
 					_self.title2 = "吃饭";
 					strname = "吃饭统计";
 					_self.headermsg = '吃饭统计,Statistics';
+					_self.itemList = Array('已吃','没吃','删除');
 					break;
 				}
 				case 3:{
@@ -94,83 +87,72 @@
 				}
 			}
 			_self.cat_name = strname;
-			
 		},
 		onReady(){
 			_self.show();
 		},
 		methods:{
-			/**
-			        * 点击取消按钮触发
-			        * @param {Object} done
-			        */
-			       close(done){
-			           // TODO 做一些其他的事情，before-close 为true的情况下，手动执行 done 才会关闭对话框
-			           // ...
-			           done()
-			       },
-			       /**
-			        * 点击确认按钮触发
-			        * @param {Object} done
-			        * @param {Object} value
-			        */
-			       confirm(done,value){
-					   let ret = _self.getUserInfo();
-					   const data = {
-					       guid: ret.guid,
-					       token: ret.token
-					   };
-					   //临时添厍签到记录
-					   _self.sendRequest({
-					           url : _self.RepairsignUrl,
-					           method : _self.Method,
-					           data : {
-					   			"guid": data.guid,
-					   			"token":data.token,
-					   			"com_id":_self.com_id,
-					   			"uid":_self.uid,
-					   			"cid":_self.cid, //课程
-					   			"d":_self.currentday,//
-					   			"id":_self.id,  //上课和吃饭
-								"signstatus":_self.currstatus,
-					   			"t":Math.random()
-					   		},
-					           hideLoading : true,
-					           success: (res) => {
-					           	    if(res){					   					
-					           				if(parseInt(res.status) == 3){
-					           					if(_self.currstatus == 0){
-					           						let index = _self.selected.length;
-					           						let item = {};
-					           						item['date'] = _self.currentday;
-					           						item['status'] = 1;
-					           						_self.selected.push(item);
-					           					}else{
-					           						let currday = _self.currentday;
-					           						for(let i = 0; i<_self.selected.length; i++ ){
-					           						let t = _self.selected[i].date;
-					           						if(_self.selected[i].date == currday){
-														_self.selected.splice(i, 1);
-					           							break;
-					           						}
-					           					}
-					           				}								
-					           			}			    	
-					           	    }
-					           	}				        
-					       },"1","");
-						   
-					   
-					   
-					   
-			           // 输入框的值
-			           console.log(value)
-			           // TODO 做一些其他的事情，手动执行 done 才会关闭对话框
-			           // ...
-			           done()
-			       },
+			setsignstatus(currstatus){
+				let ret = _self.getUserInfo();
+				const data = {
+				    guid: ret.guid,
+				    token: ret.token
+				};
+				let data2 = {
+							"guid": data.guid,
+							"token":data.token,
+							"com_id":_self.com_id,
+							"uid":_self.uid,
+							"cid":_self.cid, //课程
+							"d":_self.currentday,//
+							"id":_self.id,  //上课和吃饭
+							"signstatus":currstatus,
+							"t":Math.random()
+						};
+				//临时添厍签到记录
+				_self.sendRequest({
+				        url : _self.RepairsignUrl,
+				        method : _self.Method,
+				        data : data2,
+				        hideLoading : true,
+				        success: (res) => {
+							if(res){
+									if(parseInt(res.status) == 3){
+										switch(currstatus){
+											case 1:{ //签到
+												let item = {};
+												item['date'] = _self.currentday;
+												item['status'] = 1;
+												_self.selected.push(item);
+												break;
+											}
+											case 2:{ //请假
+												let item = {};
+												item['date'] = _self.currentday;
+												item['status'] = 2;
+												_self.selected.push(item);											
+												break;
+											}
+											case 0:{ //删除
+												let currday = _self.currentday;
+												for(let i = 0; i<_self.selected.length; i++ ){
+												let t = _self.selected[i].date;
+												if(_self.selected[i].date == currday){
+													_self.selected.splice(i, 1);
+													break;
+												}
+												break;
+											}
+										}
+									}								
+								}			    	
+							}
+				        }				        
+				    },"1","");
+			},
+			
 			changes(e){
-				_self.$refs.dialogInput2.open();
+				/* _self.$refs.dialogInput2.open();
 				
 				let status = 0;
 				let statusname = "设置";
@@ -185,7 +167,38 @@
 				}
 				_self.currstatus = status;
 				_self.currentday = currday;
-				_self.title = "您确定要【" + statusname + "】\r\n"+_self.studentsname+'' + currday + '\r\n在'+_self.category_name+_self.title2+"签到吗？";
+				_self.title = "您确定要【" + statusname + "】\r\n"+_self.studentsname+'' + currday + '\r\n在'+_self.category_name+_self.title2+"签到吗？"; */
+				
+				
+				let currday = _self.d+'-' + ("00"+e.date).slice(-2);
+				_self.currentday = currday;
+				
+				uni.showActionSheet({
+					itemList: _self.itemList,
+					success: function (res) {
+						switch(res.tapIndex){
+							case 0:{ //签到
+								//console.log('你选中了A按钮');
+								_self.setsignstatus(1);
+								break;
+							}
+							case 1:{ //未签到
+								//console.log('你选中了B按钮');
+								_self.setsignstatus(2);
+								break;
+							}
+							case 2:{ //删除
+								//console.log('你选中了C按钮');
+								_self.setsignstatus(0);
+								break;
+							}
+						}						
+					},
+					fail: function (res) {
+						console.log(res.errMsg);
+					}
+				});
+				
 				
 			},
 			changeMonth(e){

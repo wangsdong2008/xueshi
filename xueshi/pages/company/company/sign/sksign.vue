@@ -220,6 +220,7 @@
 					return false;
 				}				
 				//调用签到函数
+				debugger;
 				_self.setSign(1,sid,_self.selectid.toString(),'sksign');
 				_self.selectid = '';
 			}

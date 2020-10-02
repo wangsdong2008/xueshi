@@ -23,14 +23,18 @@
 											 'green':(item3.sign_status == 1),
 											 'xblist':true,
 											 'fz30':true
-											}">{{item3.uname}}<span class="tname" v-if="item3.teacher != ''">({{item3.teacher}})</span><span class="cname">{{item3.class_name+' '+item3.utime}}</span> <span class="t1"><view class="t2 fz30"><span v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span></view> 
+											}">{{item3.uname}}<span class="tname" v-if="(item3.teacher != '') && (is_teacher == 1)">({{item3.teacher+' '}})</span><span class="cname" v-if="is_grade == 1">{{item3.class_name+' '}}</span><span class="cname" v-if="is_time == 1">{{item3.utime+' '}}</span><span class="t1"><view class="t2 fz30"><span v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span></view> 
 <view class="t2 fz30"><span v-if="item3.giveaddress != ''" @tap="jie(item3.uname,item3.givetime,item3.giveaddress,2)">送</span></view> 
 <view class="t2 fz30"><span v-if="item3.backtime != '00:00'" @tap="jie(item3.uname,item3.backtime,item3.giveaddress,3)">回</span></view>
 
 </span>
-											<view class="times fz30" v-if="(item3.sign_status == 0 || item3.sign_status == 1)">				
-												<span v-if="item3.tw_time > 2" @tap="bindtw(item3.uname,item3.uid,item2.cat_id,item.com_id,index,index2,index3)">体温</span>
+											<view class="times fz30" v-if="(is_tw == 1) && (item3.sign_status == 0 || item3.sign_status == 1)">				
+												<span v-if="item3.tw_time > 2" @tap="bindtw(item3.uname,item3.uid,item2.cat_id,item.com_id,index,index2,index3)">温</span>
 											</view>	
+											<view class="times fz30" v-if="(is_sign == 1) && (item3.sign_status == 0)">
+												<span @tap="bindsign(item3.com_id,item3.cat_id,item3.uid,index,index2,index3)">签</span>
+											</view>
+											
 										</li>
 									</ul>
 									
@@ -124,7 +128,12 @@
 			return{
 				dataList:[],
 				isBrithday: 0,
-				is_brithday:0,
+				is_brithday:0, //生日
+				is_tw:0,//体温
+				is_sign:0,//签到
+				is_time:0,//时间
+				is_teacher:0, //老师
+				is_grade:0, //班级
 				footer: 'index',
 				gonggaoList:[],
 				gonggaonum:0,
@@ -146,6 +155,53 @@
 			_self.show();
 		},
 		methods: {
+			bindsign(com_id,cat_id,uid,index,index2,index3){
+				let selectid = com_id+'-'+cat_id+'-'+uid;
+				
+				let that = _self;
+				let ret = that.getUserInfo();
+				const data = {
+				    guid: ret.guid,
+				    token: ret.token
+				};
+				uni.request({
+					url: that.SetsignUrl,
+					header: {
+				        "Content-Type": "application/x-www-form-urlencoded"							 
+				    },
+				    data: {
+						"guid": data.guid,
+						"token":data.token,
+						"status":1,
+						"catid":cat_id,
+						"uidlist":selectid.toString(),
+						"t":Math.random()
+				    },
+				    method: that.Method,
+					success: (res) => {
+						if(res.data){
+							
+							switch(parseInt(res.data.status)){
+								case 0:{
+									uni.showToast({
+										title: '操作失败',
+										icon: 'none',
+									});
+								}
+								case 2:{						
+									uni.showToast({
+										title: '请选择要操作的'+str,
+										icon: 'none',
+									});
+								}
+								case 3:{									
+									_self.dataList[index]['categorylist'][index2]['studentslist'][index3]['sign_status'] = 1;
+								}
+							}
+						}
+					}
+				});					
+			},
 			showgg:function(guid){
 				_self.navigateTo('../../gonggao/showgonggao?id='+guid);
 			},
@@ -277,7 +333,14 @@
 				if(!ret){
 					return false;
 				}
-				_self.is_brithday = ret.is_brithday;
+				_self.is_brithday = parseInt(ret.is_brithday);
+				_self.is_tw = parseInt(ret.is_tw);
+				_self.is_sign = parseInt(ret.is_sign);
+				
+				_self.is_time = parseInt(ret.is_time);
+				_self.is_teacher = parseInt(ret.is_teacher);
+				_self.is_grade = parseInt(ret.is_grade);
+				
 				const data = {
 				    guid: ret.guid,
 				    token: ret.token

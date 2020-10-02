@@ -46,11 +46,10 @@
 							<button type="primary" @tap="bindclick(2)" v-if="parseInt(_self.dataList_num ) > 0">没吃</button>
 							<button type="primary" disabled="true" v-if="parseInt(_self.dataList_num) == 0">吃饭</button>
 							<button type="primary" disabled="true" v-if="parseInt(_self.dataList_num) == 0">没吃</button>
-							<button type="primary" @tap="bindjcclick" >临时加餐</button>							
-							
-							
-							
 						</checkbox-group> 
+					  </view>
+					  <view class="btns">
+						  <button type="primary" @tap="bindjcclick">临时加餐</button>	
 					  </view>
 					  
 				</view>
@@ -260,11 +259,11 @@
     		border-top:2px solid #eeeeee;
     		padding-top: 40upx;
     		width: 100%;
-    		height:140upx;
+    		height:80upx;
     	}
     	.btnlist button{
     		float: left;
-    		width:auto;
+    		width:30%;
     		margin-left: 20upx;
     	}
     	.btnlist view{
@@ -272,6 +271,10 @@
     		width: auto;
     		margin-left: 20upx;
     	}
+		.btns{
+			clear: both;
+			margin-top: 20upx;
+		}
     	.list{
     		line-height: 45upx;
     		padding-left:50upx;	

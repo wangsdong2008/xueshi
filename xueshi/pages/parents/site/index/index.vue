@@ -147,9 +147,9 @@
 								if(face != null ){
 									_self.childface = _self.PicUrl + 'users' + data.userinfo.face;
 								}								
-								_self.dataList[3].text = "我的消息("+data.messagenum+")";
+								/* _self.dataList[3].text = "我的消息("+data.messagenum+")";
 								
-								/* let vlist = data.versionlist; //获取最新版本信息
+								let vlist = data.versionlist; //获取最新版本信息
 								let soft_Version = parseFloat(_self.version); //此软件版本号
 								let version_num = parseFloat(vlist.v_num);
 								if(version_num > soft_Version){

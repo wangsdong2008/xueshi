@@ -20,8 +20,11 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 
 //服务器
 Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
-Vue.prototype.WebUrl = "http://192.168.1.104/";
-Vue.prototype.Method = "get"; //请求方式
+Vue.prototype.Method = "post"; //请求方式
+
+/* Vue.prototype.WebUrl = "http://192.168.1.104/";
+Vue.prototype.Method = "get"; //请求方式 */
+
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
 
@@ -77,6 +80,7 @@ Vue.prototype.ArticleListUrl = Vue.prototype.GeneralUrl + "getarticlelist" //获
 Vue.prototype.helpshowUrl = Vue.prototype.GeneralUrl + "getarticleshow" //获取帮助信息
 
 Vue.prototype.ChangeUserFaceUrl = Vue.prototype.GeneralUrl + "changeface" //更换头像
+Vue.prototype.SaveDisplaySiteUrl = Vue.prototype.GeneralUrl + "savedisplaysite" //显示设置
 
 //家长相关
 Vue.prototype.DayClassUrl = Vue.prototype.ParentUrl + "dayclass" //当天课程
@@ -188,6 +192,9 @@ Vue.prototype.GetAllSubCompanyMemberStatisticsUrl = Vue.prototype.CompanyUrl + "
 Vue.prototype.GetTwtatisticsUrl = Vue.prototype.CompanyUrl + "gettwtatistics" //某学生的体温数据查询
 Vue.prototype.GetAllSubCompanyCategoryByComidUrl = Vue.prototype.CompanyUrl + "getsubcompanycategory"  //通过com_id获取子公司所有分类
 Vue.prototype.GetAllStudentsByComidCatidUrl = Vue.prototype.CompanyUrl + "getstudentsbycategory"  //通过com_id，catid获取所有学生
+
+Vue.prototype.SetCompanyTiaokeUrl = Vue.prototype.CompanyUrl + "setcompanytiaoke"  //通过com_id，catid获取所有学生
+
 //常用函数
 //获取年份
 Vue.prototype.GetStudyYear = function () {	
@@ -550,7 +557,7 @@ Vue.prototype.setSign = function (catid,status,ulist,url,length) {
 			"uidlist":ulist,
 			"t":Math.random()
 	    },
-	    method: this.Method,
+	    method: that.Method,
 		success: (res) => {
 			if(res.data){
 				let str = '学生';

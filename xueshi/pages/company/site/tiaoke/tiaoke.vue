@@ -3,45 +3,67 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
 			<view class="title">
-				临时加餐
+				调课管理
 			</view>		
-				<view class="icenter bg">
-					<view class="input2 fz35">公司：</view>
-					<view class="searchinput input-txt">
-						<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
-							<view class="uni-input fz30">{{cList[cindex]}}</view>
-						</picker>
+				<view class="icenter">
+					<view class="line">
+						<view class="input2 fz35">公司：</view>
+						<view class="searchinput input-txt">
+							<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
+								<view class="uni-input fz35">{{cList[cindex]}}</view>
+							</picker>
+						</view>
+						<view class="clear"></view>
 					</view>
 					<view class="clear"></view>
 					
-					<view class="input2 fz35">课程：</view>
-					<view class="searchinput input-txt">
-						<picker @change="categoryPickerChange($event)" :value="category_index" :range="category_dataList">
-							<view class="uni-input fz30">{{category_dataList[category_index]}}</view>
-						</picker>
+					
+					<view class="line">					
+						<view class="input2 fz35">课程：</view>
+						<view class="searchinput input-txt">
+							<picker @change="categoryPickerChange($event)" :value="category_index" :range="category_dataList">
+								<view class="uni-input fz35">{{category_dataList[category_index]}}</view>
+							</picker>
+						</view>
+						<view class="clear"></view>
 					</view>
 					<view class="clear"></view>
 					
-					<view class="input2 fz35">日期：</view>
-					<view class="searchinput input-txt">
-						<picker mode="date" @change="pickerDateChange($event)" :value="dindex">
-							<view class="uni-input fz30">{{date}}</view>
-						</picker>
-					</view>
 					
-					<view class="input2 fz35">学生：</view>
-					<view class="searchinput input-txt">
-						<picker @change="studentsPickerChange($event)" :value="students_index" :range="students_dataList">
-							<view class="uni-input fz30">{{students_dataList[students_index]}}</view>
-						</picker>
+					<view class="line">
+						<view class="input2 fz35">上课日期：</view>
+						<view class="searchinput input-txt">
+							<picker mode="date" @change="pickerDateChange($event)" :value="dindex">
+								<view class="uni-input fz35">{{date}}</view>
+							</picker>
+						</view>
+						<view class="clear"></view>
 					</view>
 					<view class="clear"></view>
 					
+					<view class="line">					
+						<view class="input2 fz40"></view>	
+						<view class="jt"></view>
+						<view class="clear"></view>
+					</view>
+					<view class="clear"></view>
+					
+					
+					<view class="line">
+						<view class="input2 fz35">星期：</view>
+						<view class="searchinput input-txt">
+							<picker @change="weekChange($event)" :value="week_index" :range="week_dataList">
+								<view class="uni-input fz35">{{week_dataList[week_index]}}</view>
+							</picker>
+						</view>
+						<view class="clear"></view>
+					</view>
+					<view class="clear"></view>				
 					
 					
 				</view>
 				<view class="clear"></view>
-				<view class="btn-row"><button type="primary" class="btn" @tap="bindclick">加餐</button></view>
+				<view class="btn-row"><button type="primary" class="btn" @tap="bindclick">调课</button></view>
 			</view>			
 		</view>
 	</view>
@@ -92,12 +114,12 @@
 				dataIDList:[], //这里是每个值对应的id
 				dateList:[], //日期
 				
-				date:'==请选择加餐日期==',
+				date:'==请选择日期==',
 				cList:[], //分类
 				cIDList:[], //分类id
 				dateIDList:[], 
 				headermsg:'',
-				id:0,
+				id:1,
 				cid:0,
 				dateid:'',
 				c_id:0,
@@ -108,33 +130,17 @@
 				category_dataIDList:[],
 				
 				//学生列表
-				uid:0,
-				students_index:0,
-				students_dataList:[],
-				students_dataIDList:[]
+				wid:0,
+				week_index:0,
+				week_dataList:['周日','周一','周二','周三','周四','周五','周六'],
+				week_dataIDList:[0,1,2,3,4,5,6],
+				week_id:0
 			}
 		},
 		onLoad(options){
 			_self = this;
 			_self.checkLogin(2);
-			_self.headermsg = '查询,Temperature';
-			if(options == undefined) return false;
-			_self.id = options['id']; //id=1为上课统计 2为吃饭统计			
-			switch(parseInt(_self.id)){
-				case 1:{
-					_self.headermsg = '上课统计,Statistics';
-					break;
-				}
-				case 2:{
-					_self.headermsg = '吃饭统计,Statistics';
-					break;
-				}
-				case 3:{
-					_self.headermsg = '员工统计,Statistics';
-					break;
-				}
-			}
-			
+			_self.headermsg = '调课,Change course';	
 		},
 		onReady(){
 			_self.show();
@@ -144,16 +150,81 @@
 				let ret = _self.getUserInfo();
 				const data = {
 				    guid: ret.guid,
-				    token: ret.token
+				    token: ret.token,
+					id:_self.id
 				};
 				_self.getData(data);
 			},
 			bindclick(){
-				var com_id = _self.com_id;
-				var sid = _self.students_id;
+				var com_id = _self.com_id;			
 				var cat_id = _self.category_id;
-				var d = _self.dateid;				
-				debugger;
+				var week_id = _self.week_id;
+				var d = _self.dateid;
+				if(com_id*1 > 0 && cat_id*1 > 0 && d != '' ){
+					uni.showModal({
+					    title: '确认提示',
+					    content: '请确认【'+d+'】要上【'+_self.week_dataList[week_id]+'】的课吗？',
+					    success: function (res) {
+					        if (res.confirm) {
+					            //console.log('用户点击确定');
+								
+								
+								let ret = _self.getUserInfo();
+								const data = {
+								    guid: ret.guid,
+								    token: ret.token
+								};
+								_self.sendRequest({
+								    url : _self.SetCompanyTiaokeUrl,
+								    method : _self.Method,
+								    data : {
+										"guid": data.guid,
+										"token":data.token,
+										"com_id":com_id,
+										"week_id":week_id,
+										"cat_id":cat_id,
+										"d":d,
+										"t":Math.random()
+									},
+								    hideLoading : false,
+								    success: (res) => {
+										if(res){
+											if(parseInt(res.status) == 3){
+												uni.showToast({
+													title: '调课成功',
+													icon: 'none',
+													duration: 2000
+												});
+											}
+										}else{
+											uni.showToast({
+												title: '调课失败',
+												icon: 'none',
+												duration: 2000
+											});
+										}							
+								    }
+								},"1","");
+								
+								
+								
+					        } else if (res.cancel) {
+					            //console.log('用户点击取消');
+					        }
+					    }
+					});
+					
+				}else{
+					uni.showToast({
+						title: '请选择相关的信息',
+						icon: 'none',
+						duration: 2000
+					});
+				}
+				
+				
+				
+				/* 
 				if(com_id*1 > 0 && sid*1 > 0 && cat_id*1 > 0 && d != '' ){
 					let ret = _self.getUserInfo();
 					const data = {
@@ -200,7 +271,7 @@
 						icon: 'none',
 						duration: 2000
 					});
-				}
+				} */
 			},
 			getData(data){
 				_self.sendRequest({
@@ -219,7 +290,7 @@
 							let list = [];
 							let idlist = [];
 							let statuslist = [];
-							list.push("==请选择所属机构==");
+							list.push("==请选择机构==");
 							idlist.push(0);
 							statuslist.push(0)
 							for (var i = 0; i < data.length; i++) {
@@ -238,17 +309,10 @@
 							list.push("==请选择课程==");
 							idlist.push(0);
 							_self.category_dataList = list;
-							_self.category_dataIDList = idlist;
-							//if(_self.uid == 0)	_self.category_index = 0;							
+							_self.category_dataIDList = idlist;							
 							
 							
-							list = [];
-							idlist = [];
-							list.push("==请选择学生==");
-							idlist.push(0);
-							_self.students_dataList = list;
-							_self.students_dataIDList = idlist;
-							if(_self.uid == 0)	_self.students_index = 0;
+						
 							
 				    	}
 				},"1","");
@@ -256,11 +320,11 @@
 				
 			},
 			
-			studentsPickerChange:function(e){
-				console.log('学生picker发送选择改变，携带值为', e.target.value+"===="+_self.students_dataList[e.target.value] + _self.students_dataIDList[e.target.value]);
-				var students_id = _self.students_dataIDList[e.target.value];
-				_self.students_id = students_id;
-				_self.students_index = e.target.value;
+			weekChange:function(e){
+				console.log('星期picker发送选择改变，携带值为', e.target.value+"===="+_self.week_dataList[e.target.value] + _self.week_dataIDList[e.target.value]);
+				var week_id = _self.week_dataIDList[e.target.value];
+				_self.week_id = week_id;
+				_self.week_index = e.target.value;
 			},
 			categoryPickerChange:function(e){
 				console.log('学校picker发送选择改变，携带值为', e.target.value+"===="+_self.category_dataList[e.target.value] + _self.category_dataIDList[e.target.value]);
@@ -275,7 +339,7 @@
 				_self.dateid = e.target.value;
 				_self.dindex = e.target.value; 
 				_self.date = e.target.value; 
-				
+				/* 
 				//根据comid,catid获取学生
 				let ret = _self.getUserInfo();
 				this.sendRequest({
@@ -310,7 +374,7 @@
 							}							
 						}
 					}
-				});	
+				});	 */
 				
 				
 				
@@ -366,7 +430,7 @@
 
 <style>	
 	.content .title{
-			background:url(@/static/img/jc.png) 10upx 22upx no-repeat;
+			background:url(@/static/img/tiaoke.png) 10upx 22upx no-repeat;
 			-webkit-background-size:50upx 50upx ;
 			background-size:50upx 50upx;
 			line-height: 60upx;
@@ -375,32 +439,49 @@
 		}
 	
 	.icenter{
-		width:80%;
+		width:90%;
 		margin: 0 auto;
 		margin-top: 60upx;
 	}
-	.icenter > view{
+	.icenter > .line{
+		height: 65upx;
+		background-color: #fff;
+		display: block;
+		width:100%;
+	}
+	.jt{
+		background:url(@/static/img/jt.png) 50% 22upx no-repeat;
+		-webkit-background-size:50upx 50upx ;
+		background-size:50upx 50upx;	
+		height: 80upx;
+		width:65%;
+	}
+	.line view{
 		float: left;
-		margin-bottom: 30upx;
+		margin-bottom: 20upx;
 	}
 	.icenter .input2{
-		width:20%;
+		width:30%;
 		line-height: 60upx;
 		height: 60upx;
 	}
 	.icenter .input-txt{		
-		width: 65%;
+		width: 55%;
 		border:1upx solid #ccc;
 		line-height: 55upx;
 		height: 55upx;
 		padding-left: 60upx;
 		border-radius: 25upx;
 	}
+	
 	.icenter > view.searchinput{
 		background: url(/static/img/search.png) no-repeat 5upx 10upx;
 		-webkit-background-size: 55upx 55upx;
 		background-size: 55upx 55upx;
 	}
 	
+	picker{
+		text-align: center;
+	}
 	
 </style>

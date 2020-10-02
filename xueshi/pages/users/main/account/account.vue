@@ -148,7 +148,13 @@
 									guid:ret.guid,
 									time:ret.time,
 									identity:ret.identity,
-									is_brithday:ret.is_brithday, //是否显示生日功能
+									is_brithday:parseInt(ret.is_brithday), //是否显示生日功能
+									is_tw:parseInt(ret.is_tw),//体温
+									is_sign:parseInt(ret.is_sign),//签到
+									is_teacher:parseInt(ret.is_teacher),//老师
+									is_time:parseInt(ret.is_time),//放学时间
+									is_grade:parseInt(ret.is_grade),//班级			
+									
 									pay_status:ret.pay_status,
 									face:data.imgpath,
 									power:ret.power //权限

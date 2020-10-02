@@ -205,6 +205,11 @@
 				"navigationBarTitleText": "计划编辑"
 			}
 		},{
+			"path": "pages/company/site/display/show",
+			"style": {				
+				"navigationBarTitleText": "显示设置"
+			}
+		},{
 			"path": "pages/company/site/member/member",
 			"style": {				
 				"navigationBarTitleText": "员工管理"
@@ -223,6 +228,11 @@
 			"path": "pages/company/site/help/helpshow",
 			"style": {				
 				"navigationBarTitleText": "详情"
+			}
+		},{
+			"path": "pages/company/site/tiaoke/tiaoke",
+			"style": {
+				"navigationBarTitleText": "调课"
 			}
 		},
 		

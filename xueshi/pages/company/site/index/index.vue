@@ -52,10 +52,11 @@
 					{"image":"classs.png","text":"班级管理(托班)","url":"../classs/classs"},
 					{"image":"students.png","text":"学生管理","url":"../students/students"},
 					{"image":"plan.png","text":"上课安排","url":"../companyplan/companyplan"},
+					{"image":"tiaoke.png","text":"调课管理","url":"../tiaoke/tiaoke"},
 					
 				],
 				dataList2:[
-					
+					{"image":"display.png","text":"显示设置","url":"../display/show"},
 					{"image":"staff.png","text":"员工管理","url":"../member/member"},
 					/* {"image":"power.png","text":"权限管理","url":""}, */
 					{"image":"help.png","text":"帮助文档","url":"../help/help"},

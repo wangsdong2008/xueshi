@@ -8,7 +8,7 @@
 			</view>
 			<view class="login_account">密码</view>
 			<view class="login_account_input">
-				<input class="register-input register-input-password" type="password" displayable v-model="password" placeholder="请输入密码" />
+				<input class="register-input register-input-password" type="password" displayable v-model="password" placeholder="请输入密码" @confirm="bindLogin" />
 			</view>
 			<view class="login_account_input">
 				<view class="remeber">
@@ -173,6 +173,11 @@
 				        				time:data.time,
 				        				identity:data.user_identity,
 				        				is_brithday:data.is_brithday, //是否显示生日功能
+										is_tw:data.is_tw,//体温
+										is_sign:data.is_sign,//签到
+										is_teacher:data.is_teacher,//老师
+										is_time:data.is_time,//放学时间
+										is_grade:data.is_grade,//班级
 										pay_status:data.pay_status,
 										face:data.face,
 										power:data.power //权限
