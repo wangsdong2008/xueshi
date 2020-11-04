@@ -70,7 +70,7 @@
 					{"image":"password.png","text":"修改密码","url":"../account/modifypassword"},
 					{"image":"mobile5.png","text":"更换手机","url":"../account/modifymobile"},					
 					{image:'message.png',text:'我的消息(0)',url:"../message/messagelist"},
-					{image:'xf.png',text:'续费',url:"../pay/pay"},
+					{image:'xf.png',text:'会员续费',url:"../pay/pay"},
 				],
 				headermsg:'系统设置,System settings',
 				footer: 'familysite',

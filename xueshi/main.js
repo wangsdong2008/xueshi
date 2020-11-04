@@ -29,23 +29,29 @@ Vue.prototype.errorinfo = 0 ; //是否显示错误
 
 
 Vue.prototype.payAccount = {
-	"alipaylist":{
-		"app_id":"2016041201288514",
+	/* "alipaylist":{
+		"app_id":"2021001130636164",
 		"biz_content":"会员续费",
-		"method":"alipay.trade.app.pay",
-		"charset":"utf-8",
-		"notify_url":"http://crm.yigugu.cn/alipay.trade.page.pay-PHP-UTF-8/return_url.php",
-		"product_code":"QUICK_MSECURITY_PAY",
-		"sign_type":"RSA2"
+		"charset":"gbk",		
+		"method":"alipay.trade.app.pay",		
+		"notify_url":"http://www.yuwenjiaoyu.net/index/notify/notify",
+		
+		"product_code":"FACE_TO_FACE_PAYMENT",
+		"sign_type":"RSA2",
+		"subject":"会员续费",
+		"timestamp":'2020-10-12 09:09:08',
+		"version":"1.0",
+		"sign":'YYyeHxmpbPSEBce1ixU7gg==',
+		"auth_code":""		
 	},
 	"wxlist":{
-		"app_id":"12345678"
-	}
+		"app_id":""
+	} */
 }; //支付帐号
 
 
-Vue.prototype.biglogo = "/static/img/indeximg.png";
-Vue.prototype.logo = "/static/img/logo.png";
+Vue.prototype.biglogo = "";// /static/img/indeximg.png
+Vue.prototype.logo = ""; ///static/img/logo.png
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
@@ -54,6 +60,11 @@ Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
 Vue.prototype.GeneralUrl = Vue.prototype.WebUrl + "index/general/"; //通用地址
 Vue.prototype.ParentUrl = Vue.prototype.WebUrl + "index/parents/";   //家长地址
 Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "index/company/"; //公司地址
+
+Vue.prototype.AlipayUrl = Vue.prototype.WebUrl + "index/ywalipay/"; //支付宝支付地址
+Vue.prototype.WxpayUrl = Vue.prototype.WebUrl + "index/ywwxpay/"; //微信支付地址
+
+
 
 Vue.prototype.getTestUrl = Vue.prototype.GeneralUrl + "gettest" //测试页面
 
@@ -75,7 +86,12 @@ Vue.prototype.ModifyUserInfoUrl = Vue.prototype.GeneralUrl + "modifyuserinfo" //
 Vue.prototype.ModifyParentfaceUrl = Vue.prototype.GeneralUrl + "modifyparentface" //修改家长头像
 Vue.prototype.MessagelistUrl = Vue.prototype.GeneralUrl + "getmessagelist" //某人短信列表
 Vue.prototype.MessageshowUrl = Vue.prototype.GeneralUrl + "messageshow" //某人短信详情
-//Vue.prototype.AlipayUrl = Vue.prototype.GeneralUrl + "alipay" //支付,待完成
+
+//在线支付地址
+Vue.prototype.AlipayUrl = Vue.prototype.AlipayUrl + "alipay" //支付宝支付
+Vue.prototype.WxpayUrl = Vue.prototype.wxpayUrl + "wxpay" //微信支付
+
+
 Vue.prototype.ArticleListUrl = Vue.prototype.GeneralUrl + "getarticlelist" //获取文章信息
 Vue.prototype.helpshowUrl = Vue.prototype.GeneralUrl + "getarticleshow" //获取帮助信息
 
@@ -187,6 +203,11 @@ Vue.prototype.GetCurrentMemberlistUrl = Vue.prototype.CompanyUrl + "getcurrentme
 Vue.prototype.GetAllMemberlistUrl = Vue.prototype.CompanyUrl + "getallmemberlist" //获取所有员工
 Vue.prototype.GetAllSubCompanyMemberlistUrl = Vue.prototype.CompanyUrl + "getsubcompanymemberlist" //根据comid来获取子公司所有员工
 Vue.prototype.GetAllSubCompanyMemberStatisticsUrl = Vue.prototype.CompanyUrl + "getsubcompanymemberstatistics" //员工统计数据
+
+Vue.prototype.GetAllMemberGroupUrl = Vue.prototype.CompanyUrl + "getmembergrouplist" //获取员工接人组
+Vue.prototype.GetMemberGroupInfoUrl = Vue.prototype.CompanyUrl + "getmembergroupinfo" //获取某个员工接人组信息
+Vue.prototype.AddMemberGroupUrl = Vue.prototype.CompanyUrl + "addmembergroupinfo" //添加员工接人组
+Vue.prototype.DelMemberGroupUrl = Vue.prototype.CompanyUrl + "delmembergroupinfo" //删除员工接人组
 
 
 Vue.prototype.GetTwtatisticsUrl = Vue.prototype.CompanyUrl + "gettwtatistics" //某学生的体温数据查询
@@ -353,7 +374,8 @@ Vue.prototype.checkLogin = function(identity){
 									time:time,
 									identity:ret.user_identity,
 									is_brithday:data.is_brithday,
-									pay_status:data.pay_status
+									pay_status:data.pay_status,
+									manageid:data.manageid
 								}
 							});					
 						}else{

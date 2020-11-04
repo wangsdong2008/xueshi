@@ -220,6 +220,16 @@
 				"navigationBarTitleText": "员工编辑"
 			}
 		},{
+			"path": "pages/company/site/group/group",
+			"style": {				
+				"navigationBarTitleText": "接人组管理"
+			}
+		},{
+			"path": "pages/company/site/group/groupedit",
+			"style": {				
+				"navigationBarTitleText": "接人组编辑"
+			}
+		},{
 			"path": "pages/company/site/help/help",
 			"style": {				
 				"navigationBarTitleText": "帮助文档"

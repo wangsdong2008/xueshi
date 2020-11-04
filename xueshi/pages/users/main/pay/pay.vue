@@ -41,13 +41,13 @@
 						<li class="utitle">支付方式</li>
 						<li class="li40">
 							<label class="uni-list-cell uni-list-cell-pd" >							
-							<view class="radio_text wxpaycss"><radio class="radios" value="1" checked />微信</view>
+							<view class="radio_text wxpaycss"><radio class="radios" value="1" :checked='payid == 1' />微信</view>
 							</label>
 							<view class="clear"></view>
 						</li>
 						<li class="li40">
 							<label class="uni-list-cell uni-list-cell-pd" >							
-							<view class="radio_text alipaycss"><radio class="radios" value="2" />支付宝</view>
+							<view class="radio_text alipaycss"><radio class="radios" value="2" :checked='payid == 2'/>支付宝</view>
 							</label>
 							<view class="clear"></view>
 						</li>
@@ -213,7 +213,7 @@
 						name: '支付宝'
 					}
 				],
-				payid:1,
+				payid:2,
 				headermsg:'会员中心,Member Center',
 				footer:'',
 			}
@@ -223,122 +223,103 @@
 				_self.payid = evt.detail.value;
 			},
 			bindpay(){
-				let alipay = _self.payAccount.alipaylist;
-				let payid = parseInt(_self.payid);
-				let nums = parseInt(_self.num);	
-				let cguid = _self.dataList[nums].c_guid;
+				//let alipay = _self.payAccount.alipaylist;
+				let payid = parseInt(_self.payid);				
 				let ret = _self.getUserInfo();
 				if(!ret){
 					return;
 				}
-				uni.req	
-				var url = '';
 				switch(payid){
 					case 1:{ //微信支付
-						//url = '../pay/wxpay';
-						
-					/* appid: 应用ID,
-							noncestr: 随机字符串,
-							package: 'Sign=WXPay', // 固定值，以微信支付文档为主
-							partnerid: 商户号,
-							prepayid: 预支付交易会话ID,
-							timestamp: 时间戳,
-							sign: 签名 ,// 根据签名算法生成签名 */
-						//
-						let obj = {							
-							appid: 'wx0411fa6a39d61297',
-							noncestr: '5JigiIJicbq8hQI2',
-							package: 'Sign=WXPay',
-							partnerid: '1230636401',
-							prepayid: 'wx21204902147233e222e12d451613768000',
-							timestamp: 1582257316,
-							sign: '0E5C9B9B1C8D7497A234CCC3C721AB1F'
-						};
-						// 第一种写法，传对象
-						//let orderInfo = obj;
-						// 第二种写法，传对象字符串
-						let orderInfo = JSON.stringify(obj);
-						
-						uni.requestPayment({
-							provider: 'wxpay',
-							orderInfo: orderInfo, // 订单数据							
-							success: function (res) {
-								// 支付成功的回调中 创建绘本馆成功
-								uni.showToast({
-									title: '微信支付成功',
-									icon: 'success',
-									duration: 1500
-								});
-							},
-							fail: function (err) {
-								// 支付失败的回调中 用户未付款
-								uni.showToast({
-									title: '支付取消',
-									duration: 1500,
-									image: '/static/png/error_icon.png'
-								});
-							}
-						});
-						// 
+						this.WxPay();
 						break;
 					}
 					case 2:{//支付宝支付						
-						let d = new Date();
-						let order_sn = '';
-						let currentday =  '';
-						let price = 0;
-						
-						_self.sendRequest({
-						    url : _self.getMemberCostUrl,
-						    method : _self.Method,
-						    data : {
-								"guid": ret.guid,
-								"token":ret.token,
-								"cguid":cguid,
-								"status":1,
-								"t":Math.random()
-							},
-						    hideLoading : false,
-						    success:function (res) {
-								let data = res;
-								price = res.membercostlist.c_price;
-								order_sn = res.membercostlist.order_sn;
-								currentday = res.membercostlist.currentday;
-								var orderInfo = 'app_id='+alipay.app_id+'&biz_content='+alipay.biz_content+'&charset='+alipay.charset+'&method='+alipay.method+'&notify_url='+alipay.notify_url+'&out_trade_no='+order_sn+'&product_code='+alipay.product_code+'&sign_type='+alipay.sign_type+'&subject=mysql&timestamp='+currentday+'&total_amount='+price+'&version=1.0&sign=';
-								uni.requestPayment({
-									provider: 'alipay',
-									orderInfo: orderInfo, // 订单数据
-									success: function (res) {
-										if (res.resultCode == 6001) {
-											uni.showToast({
-												title: '支付取消',
-												icon: 'none',
-												duration: 1500
-											});
-										} else {
-											uni.showToast({
-												title: '支付宝支付成功',
-												icon: 'success',
-												duration: 1500
-											});
-										}
-									},
-									fail: function (err) {
-										// 支付失败的回调中 用户未付款
-										uni.showToast({
-											title: '支付取消',
-											duration: 1500,
-											icon: 'none'
-										});
-									}
-								});	
-								
-						    }
-						},"1","");
+						this.AliPay();
 						 //根据response中的结果继续业务逻辑处理
 						break;
 					}
 				}				
+			},						
+				//微信支付
+				WxPay: async function(e) {
+					let url = 'http://192.168.1.104/index/wxpay/index';
+					//首先是向后台发起请求，生成订单或者读取已有订单，然后由后端发起统一支付，向微信预生成支付订单，然后再拉起微信APP支付并返回。
+					this.$http.request({
+						url: url,
+						method: 'get',
+						params: {
+							uid: this.uid,//自己定义参数
+							orderid:this.orderid//自己定义参数
+						},
+					}).then(res=>{
+						uni.requestPayment({
+						    provider: 'wxpay',
+						    orderInfo: res.data, //支付宝订单数据
+						    success: function (res) {
+						        if (res.errMsg == 'requestPayment:ok') {
+						            uni.redirectTo({//支付成功转到支付成功提示页面  
+						               url: '/pages/paySuccess'
+						            })  
+						        }else{  
+						            console.log('fail:' + JSON.stringify(res));
+						        } 
+						    },
+						    fail: function (err) {
+						       
+						    }
+						});
+					}).catch(err=>{
+						console.log(res);
+					})
+					
+				},
+				//支付宝支付
+				AliPay: async function(e) {
+					let url = _self.AlipayUrl;
+					let ret = _self.getUserInfo();
+					if(!ret){
+						return;
+					}
+					let nums = parseInt(_self.num);
+					let cguid = _self.dataList[nums].c_guid;
+					let data = {
+						token:ret.token,
+						guid:ret.guid,
+						cguid:cguid
+					};
+					console.log("1111111");
+					console.log(url);
+					_self.sendRequest({
+						url : url,
+						method : "get",
+						data : {"token":data.token,"guid":data.guid,"id":data.cguid,"t":Math.random()},
+						hideLoading : false,
+						success:function (res) {	
+							debugger;
+							let orderinfo = res;						
+							uni.requestPayment({
+								provider: 'alipay',
+								orderInfo: orderinfo, //支付宝订单数据
+								success: function (res) {
+									debugger;
+									console.log("333333");
+									console.log(res);
+									if (res.errMsg == 'requestPayment:ok') {
+										uni.redirectTo({//支付成功转到支付成功提示页面  
+										   url: '/pages/paySuccess'
+										})  
+									}else{  
+									   console.log('fail:' + JSON.stringify(res));
+									} 
+								},
+								fail: function (err) {
+									console.log('fail:' + JSON.stringify(err));
+								}
+							});
+						}
+					},"1","");
+					
 			},
 			even(index){
 				_self.num = index;

@@ -32,13 +32,13 @@
 					text: '我的',
 					imgNormal:'/static/img/user.png',
 					imgClick:'/static/img/userHL.png'
-				},{
+				},/* {
 					nav: 'findsite',
 					url: 'parents/find/find/index',
 					text: '发现',
 					imgNormal:'/static/img/find.png',
 					imgClick:'/static/img/findHL.png'
-				},
+				}, */
 				{
 					nav: 'familysite',
 					url: 'users/main/index/main',
@@ -92,13 +92,12 @@
 				//splice 删除数据要从大到小删除
 				switch(userlevel){
 					case 1:{//家长	
-						_this.tabBar.splice(6, 1);
 						_this.tabBar.splice(5, 1);
 						_this.tabBar.splice(4, 1);
+						_this.tabBar.splice(3, 1);
 						break;
 					}
 					case 2:{//机构
-						_this.tabBar.splice(3, 1);
 						_this.tabBar.splice(2, 1);
 						_this.tabBar.splice(1, 1);
 						_this.tabBar.splice(0, 1);

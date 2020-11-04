@@ -3,12 +3,11 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
 			<view class="title">
-				一周生日榜
+				一月内生日榜
 			</view>		
-				<view class="studentlist">
-					
+				<view class="studentlist">					
 					<ul>
-						<li  class="list-title list" v-for="(item,index) in dataList" :index="index" :key="item.com_id">{{item.com_name}}
+						<li  class="list-title list fz35" v-for="(item,index) in dataList" :index="index" :key="item.com_id">{{item.com_name}}
 							<ul>
 								<li :class="{
 									'fz35':true,
@@ -122,6 +121,8 @@
 	
 	.list{
 		padding-left: 50upx;
+		line-height: 55upx;
+		margin-bottom: 30upx;
 	}
 	
 	.list-title{
