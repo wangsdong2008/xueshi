@@ -256,7 +256,11 @@
 				footer:'',
 			}
 		},
-		methods:{
+		methods:{			
+			onNavigationBarButtonTap(e) {
+				_self.navigateTo("bill");
+				
+			},	
 			payChange: function(evt) {
 				var pid = evt.detail.value;
 				_self.payid = pid;				

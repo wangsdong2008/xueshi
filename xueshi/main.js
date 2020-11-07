@@ -51,7 +51,7 @@ Vue.prototype.payAccount = {
 
 
 Vue.prototype.biglogo = "";// /static/img/indeximg.png
-Vue.prototype.logo = ""; ///static/img/logo.png
+Vue.prototype.logo = "/static/img/logo.png"; //
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
@@ -61,9 +61,14 @@ Vue.prototype.GeneralUrl = Vue.prototype.WebUrl + "index/general/"; //通用地�
 Vue.prototype.ParentUrl = Vue.prototype.WebUrl + "index/parents/";   //家长地址
 Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "index/company/"; //公司地址
 
+
+//在线支付地址
+/* Vue.prototype.AlipayUrl = Vue.prototype.AlipayUrl + "alipay" //支付宝支付
+Vue.prototype.WxpayUrl = Vue.prototype.wxpayUrl + "wxpay" //微信支付 */
 Vue.prototype.AlipayUrl = Vue.prototype.WebUrl + "index/ywalipay/"; //支付宝支付地址
 Vue.prototype.WxpayUrl = Vue.prototype.WebUrl + "index/ywwxpay/"; //微信支付地址
 Vue.prototype.DiscountayUrl = Vue.prototype.WebUrl + "index/discountpay/discountpay"; //优惠券支付
+
 
 
 Vue.prototype.getTestUrl = Vue.prototype.GeneralUrl + "gettest" //测试页面
@@ -87,16 +92,14 @@ Vue.prototype.ModifyParentfaceUrl = Vue.prototype.GeneralUrl + "modifyparentface
 Vue.prototype.MessagelistUrl = Vue.prototype.GeneralUrl + "getmessagelist" //某人短信列表
 Vue.prototype.MessageshowUrl = Vue.prototype.GeneralUrl + "messageshow" //某人短信详情
 
-//在线支付地址
-Vue.prototype.AlipayUrl = Vue.prototype.AlipayUrl + "alipay" //支付宝支付
-Vue.prototype.WxpayUrl = Vue.prototype.wxpayUrl + "wxpay" //微信支付
-
 
 Vue.prototype.ArticleListUrl = Vue.prototype.GeneralUrl + "getarticlelist" //获取文章信息
 Vue.prototype.helpshowUrl = Vue.prototype.GeneralUrl + "getarticleshow" //获取帮助信息
 
 Vue.prototype.ChangeUserFaceUrl = Vue.prototype.GeneralUrl + "changeface" //更换头像
 Vue.prototype.SaveDisplaySiteUrl = Vue.prototype.GeneralUrl + "savedisplaysite" //显示设置
+
+Vue.prototype.BilllistUrl = Vue.prototype.GeneralUrl + "getbilllist"; //续费记录
 
 //家长相关
 Vue.prototype.DayClassUrl = Vue.prototype.ParentUrl + "dayclass" //当天课程

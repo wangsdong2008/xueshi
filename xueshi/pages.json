@@ -473,12 +473,26 @@
 		},{
 			"path": "pages/users/main/pay/pay",
 			"style": {				
-				"navigationBarTitleText": "续费" 
+				"navigationBarTitleText": "续费",
+				"titleNView": {
+					"buttons": [
+						{
+							"text": "...",							
+							"fontSize": "22px",
+							"width":"30px"
+						}
+					]
+				}
 			}
 		},{
 			"path": "pages/users/main/pay/paySuccess",
 			"style": {				
 				"navigationBarTitleText": "续费成功" 
+			}
+		},{
+			"path": "pages/users/main/pay/bill",
+			"style": {				
+				"navigationBarTitleText": "续费记录" 
 			}
 		}
 		
