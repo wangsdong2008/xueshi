@@ -475,6 +475,11 @@
 			"style": {				
 				"navigationBarTitleText": "续费" 
 			}
+		},{
+			"path": "pages/users/main/pay/paySuccess",
+			"style": {				
+				"navigationBarTitleText": "续费成功" 
+			}
 		}
 		
 		//会员区结束

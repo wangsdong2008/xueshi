@@ -14,8 +14,8 @@
 				</ul>
 			</view>
 		</view>
-		<view class="line"></view>
-		<view class="content">	
+		<view class="line" v-if="payid < 3"></view>	
+		<view class="content" v-if="payid < 3">	
 			<view class="main-body write lists">
 				<ul>
 					<li class="utitle fz35">续费</li>
@@ -37,7 +37,7 @@
 		<view class="content">
 			<view class="main-body write lists">
 				<radio-group @change="payChange">
-					<ul>
+					<ul class="paylists">
 						<li class="utitle">支付方式</li>
 						<li class="li40">
 							<label class="uni-list-cell uni-list-cell-pd" >							
@@ -51,13 +51,25 @@
 							</label>
 							<view class="clear"></view>
 						</li>
+						<li v-if="_self.user_identity == 1" :class="{
+												'li40':true,
+												'plists':true,
+												'Discount':(payid == 3)
+							}">
+							<label class="uni-list-cell uni-list-cell-pd" >							
+								<view class="radio_text Discountcss"><radio class="radios" value="3" :checked='payid == 3'/>优惠券</view>
+							</label>							
+							<view class="dc" v-if="payid == 3"><m-input class="m-input" autofocus="autofocus" ref="dn" type="text" v-model="discountname" placeholder="请输入优惠券"></m-input></view>
+							<view class="clear"></view>
+						</li>
+						<view class="clear"></view>
 					</ul>
 				</radio-group>	
-				<view class="clear"></view>
-				<view class="btn-row">
-					<button type="primary" class="btn" @tap="bindpay">去支付</button>
-				</view>	
+				<view class="clear"></view>				
 			</view>
+			<view class="btn-row">
+				<button type="primary" class="btn" @tap="bindpay">去支付</button>
+			</view>	
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
@@ -94,18 +106,23 @@
 		-webkit-background-size:50upx 50upx ;
 		background-size:50upx 50upx;		
 	}
+	.Discountcss{
+		background:url(@/static/img/Discount.png) 80upx 14upx no-repeat;
+		-webkit-background-size:50upx 50upx ;
+		background-size:50upx 50upx;
+	}	
 	.lists{
 		/* border:1upx solid #eaeaea; */
 		width:100%;
 		margin: 0 auto;
-		margin-top: 20upx;
+		/* margin-top: 20upx; */
 	}
 	
 	.utitle{
 		color: green;
 		border-bottom: 1upx solid #eee;
 		margin-bottom: 20upx;
-		margin-top: 60upx;
+		margin-top: 10upx;
 		padding-bottom:10upx;
 		overflow: hidden;
 	}
@@ -136,11 +153,29 @@
 	.li40{
 		height: 65upx;
 		line-height: 65upx;	
-		border:1upx solid #eee;		
+		border:1upx solid #999;		
 		padding: 20upx;
 		border-radius: 50upx;
-		margin-bottom: 30upx;
-		
+		margin-bottom: 30upx;		
+	}
+	
+	.Discount{
+		height: 170upx;
+	}
+	
+	.dc{		
+		width:80%;
+		margin: 0 auto;
+		margin-top: 80upx;
+	}
+	
+	.m-input{
+		border: 1upx solid #ccc;
+		line-height: 65upx;
+		height: 65upx;		
+		margin: 0 auto;
+		border-radius: 20upx;
+		padding-left: 30upx;
 	}
 	
 	.radio_text{
@@ -162,8 +197,10 @@
 		margin-top: 0upx;
 		margin-left: 20upx;
 	}
-	
-	
+	.plists{
+		margin-bottom: 50upx;
+	}
+
 </style>
 
 <script>
@@ -201,6 +238,7 @@
 				childface:'',
 				user_identity:0,
 				num:0,
+				discountname:'',
 				payitems: [
 					{
 						imgurl:'/static/img/weixin.png',
@@ -220,7 +258,8 @@
 		},
 		methods:{
 			payChange: function(evt) {
-				_self.payid = evt.detail.value;
+				var pid = evt.detail.value;
+				_self.payid = pid;				
 			},
 			bindpay(){
 				//let alipay = _self.payAccount.alipaylist;
@@ -239,8 +278,62 @@
 						 //根据response中的结果继续业务逻辑处理
 						break;
 					}
+					case 3:{ //优惠券
+						this.Discount();
+						break;
+					}
 				}				
-			},						
+			},	
+				//优惠券
+				Discount:function(e){
+					var discount_name = _self.discountname;
+					let ret = _self.getUserInfo();
+					if(!ret){
+						return;
+					}									
+					let data = {
+						token:ret.token,
+						guid:ret.guid,
+						cguid:discount_name
+					};
+					_self.sendRequest({
+						url : _self.DiscountayUrl,
+						method : _self.Method,
+						data : {"token":data.token,"guid":data.guid,"id":data.cguid,"t":Math.random()},
+						hideLoading :false,
+						success:function (res) {
+							debugger;
+							let data = res;
+							status = parseInt(data.status);
+							var str = '';
+							switch(status*1){
+								case 1:{
+									str = '您不可以使用此优惠券';
+									break;
+								}
+								case 2:{
+									str = '优惠券为空';
+									break;
+								}
+								case 3:{
+									str = '续费成功';
+									_self.navigateTo('pay');
+									break;
+								}
+								case 4:{
+									str = '优惠券不存在';
+									break;
+								}							
+							}
+							uni.showToast({
+							    icon: 'none',
+							    title: str,
+								duration:2000
+							}); 							
+						}
+					},"1","");
+					
+				},
 				//微信支付
 				WxPay: async function(e) {
 					let url = 'http://192.168.1.104/index/wxpay/index';
@@ -288,16 +381,13 @@
 						guid:ret.guid,
 						cguid:cguid
 					};
-					console.log("1111111");
-					console.log(url);
 					_self.sendRequest({
 						url : url,
-						method : "get",
+						method : _self.Method,
 						data : {"token":data.token,"guid":data.guid,"id":data.cguid,"t":Math.random()},
 						hideLoading : false,
 						success:function (res) {	
-							debugger;
-							let orderinfo = res;						
+							let orderinfo = res;
 							uni.requestPayment({
 								provider: 'alipay',
 								orderInfo: orderinfo, //支付宝订单数据
@@ -307,7 +397,7 @@
 									console.log(res);
 									if (res.errMsg == 'requestPayment:ok') {
 										uni.redirectTo({//支付成功转到支付成功提示页面  
-										   url: '/pages/paySuccess'
+										   url: './paySuccess'
 										})  
 									}else{  
 									   console.log('fail:' + JSON.stringify(res));
@@ -368,6 +458,7 @@
 				    guid: ret.guid,
 				    token: ret.token
 				};
+				_self.user_identity = ret.identity;
 				_self.getData(data);
 			},
 			getData(data){
