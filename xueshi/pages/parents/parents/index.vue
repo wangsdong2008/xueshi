@@ -33,6 +33,7 @@
 									'fz30':true,
 									'class_status0':(item2.class_status == '0'),
 									'class_status1':(item2.class_status == '1'),
+									'class_status2':(item2.class_status == '2'),
 									'class_status3':(item2.class_status == '3')
 									}" v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id">
 									{{item2.p_time+' ' + '【' + item2.c_name + '】'}}
@@ -43,6 +44,7 @@
 						</view>	
 					</view>				
 			</view>
+			<view><button type="default" @click="pclick()">点击</button></view>
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
@@ -67,6 +69,7 @@
 				headermsg:'今日提醒,Remind today',
 				footer: 'family',
 				currenttime:'',
+				ztime:30,
 				extra1:{
 					color: '#F00',size: '15',type: 'spinner'
 				}
@@ -81,18 +84,81 @@
 			var str = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate()+ " " + "星期" + "日一二三四五六".charAt(new Date().getDay());
 			_self.currenttime = str;
 			_self.getData();
+		},			
+		created: function() {
+			 _self.currentTime();  
+			 
+			//this.getCurrentTime();	
+		   // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
+		   clearInterval(this.timer);					
+		    this.timer = null
+		    this.setTimer();
 		},
-		created() {
-		    _self.currentTime();    
-	    },		
+		destroyed: function () {
+		    // 每次离开当前界面时，清除定时器
+		   clearInterval(this.timer)
+		    this.timer = null;
+		}, 
 		methods: {
+			setTimer() {
+			    if(_self.timer == null) {
+			        _self.timer = setInterval( () => {
+			            //console.log('开始定时...每过一秒执行一次')
+						//this.getCurrentTime();
+						_self.pclick();
+			        }, 1000);
+			    }
+			},
+			pclick(){
+				for(let index in _self.dataList) {
+					let courselists = _self.dataList[index].courselist;
+					for(let i = 0;i<courselists.length;i++){
+						let e = courselists[i].p_time;
+						let n = i;
+						let ttime = courselists[i].p_pertime;
+						_self.timeadd(e,index,n,ttime);
+					}
+					
+				}				
+			},
+			timeadd(dstr,index,num,ttime){
+				var date2 = new Date();    //当前时间
+				var m = ((date2.getMonth()+1)==13)?1:(date2.getMonth()+1);				
+				var date1 = date2.getFullYear()+"/"+m+"/"+date2.getDate()+" " +dstr+":00"; //上课时间				
+				var date3 = Math.floor((new Date(date1).getTime() + ttime*60*1000)- date2.getTime())/1000/60;	
+				date3 = date3*1;
+				var t = _self.ztime + ttime;		
+				t = t*1;
+					
+				if(date3 > t){
+					_self.dataList[index].courselist[num].class_status = 3; //没有开始
+				}else{
+					if(date3<=t && date3>_self.ztime){
+						_self.dataList[index].courselist[num].class_status = 1; //准备中
+						//console.log(date3.toFixed(0)+"======"+t+"-----"+date2.getSeconds()+"\r\n");
+						//播放提示语音
+						/* if(date3.toFixed(0) == t && date2.getSeconds() == 1){
+							_self.ScanAudio();
+						} */
+						
+					}else{
+						if(date3<=_self.ztime &&date3>0){
+							_self.dataList[index].courselist[num].class_status = 2;	//正在进行中						
+						}else{
+							_self.dataList[index].courselist[num].class_status = 0; //已过期
+						}
+					}
+				}
+			},
+		
+			/* 
 			 // 销毁定时器
 			beforeDestroy: function() {
 			    if (_self.getDate) {
 			        console.log("销毁定时器")
 			        clearInterval(_self.getDate); // 在Vue实例销毁前，清除时间定时器
 			    }
-			},
+			}, */
 			currentTime(){
 			    setInterval(_self.getTime,10*60*1000);
 			},
@@ -172,7 +238,7 @@
 </script>
 
 <style>	
-.classlist{
+	.classlist{
 		margin-bottom: 40upx;
 		border-radius: 25upx;		
 		padding: 4upx 0px 30upx 0upx;
@@ -211,14 +277,18 @@
 	}
 	
 	.class_status0{
-		color:#333;		
+		color:#ccc;		
 	}
 	.class_status1{
-		color:#66ccff;
+		color:#ff0;
+	}
+	.class_status2{
+		color:#f00;
 	}
 	.class_status3{
-		color:#ccc;
-	}
+		color:#000;
+	}	
+	
 	.gglist{
 		background:url(/static/img/gonggao.png) 0upx 0upx no-repeat;
 		-webkit-background-size: 45upx 45upx;

@@ -384,7 +384,6 @@
 								break;
 							}
 							case 3:{
-								//debugger;
 								var data = res.weeklist;
 								for (var i = 0; i < data.length; i++) {
 									var item = data[i];
@@ -392,6 +391,7 @@
 									if(n < 0) n = 6;
 									_self.week_dataList[n].shower = true;
 									_self.week_dataList[n].p_time = item.p_time;
+									_self.p_pertime = item.p_pertime.toString();
 								}
 								break;
 							}												
