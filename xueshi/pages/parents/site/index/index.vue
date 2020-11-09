@@ -56,11 +56,13 @@
 					{"image":"userHL.png","text":"孩子管理","url":"../child/child"},
 					{"image":"plan.png","text":"上课安排","url":"../plan/plan"},
 					{"image":"tiaoke.png","text":"调课管理","url":"../tiaoke/tiaoke"},
-					{"image":"qingjia.png","text":"请假管理","url":"../qingjia/qingjia"}
+					{"image":"qingjia.png","text":"请假管理","url":"../qingjia/qingjia"},
+					{"image":"etj.png","text":"上课统计","url":"../tongji/tongji"},
 				],
 				dataList2:[
+					{"image":"gx.png","text":"个性设置","url":"../system/setup"},
 					{"image":"baoming.png","text":"我的报名","url":"../enlist/enlist"},
-					{"image":"etj.png","text":"上课统计","url":"../tongji/tongji"},
+					
 					{"image":"help.png","text":"帮助文档","url":"../help/help"},
 				],	
 				headermsg:'会员中心,Member Center',

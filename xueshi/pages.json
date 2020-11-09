@@ -409,6 +409,11 @@
 			"style": {
 				"navigationBarTitleText": "统计结果"
 			}
+		},{
+			"path": "pages/parents/site/system/setup",
+			"style": {				
+				"navigationBarTitleText": "个性设置"
+			}
 		},
 		
 		//家长区结束

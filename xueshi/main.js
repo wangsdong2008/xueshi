@@ -127,6 +127,9 @@ Vue.prototype.CompanyInfoUrl = Vue.prototype.ParentUrl + "companyinfo" //公司�
 Vue.prototype.GetChildStatisticsUrl = Vue.prototype.ParentUrl + "getchildstatistics" //孩子上课统计(按年)
 
 
+Vue.prototype.SaveRemindUrl = Vue.prototype.ParentUrl + "saveremindsiteup" //个性设置
+
+
 //公司相关
 //当天要接的孩子
 Vue.prototype.GetCurrentStudents = Vue.prototype.CompanyUrl + "getcurrentstudents" //要接送的学生
@@ -220,6 +223,16 @@ Vue.prototype.GetAllStudentsByComidCatidUrl = Vue.prototype.CompanyUrl + "getstu
 Vue.prototype.SetCompanyTiaokeUrl = Vue.prototype.CompanyUrl + "setcompanytiaoke"  //通过com_id，catid获取所有学生
 
 //常用函数
+Vue.prototype.ScanAudio = function(str){
+	var music = null;
+	music = uni.createInnerAudioContext(); //创建播放器对象
+	music.autoplay = "policy";
+	//music.src= url; //选择播放的音频  
+	music.src= "/static/music/"+str+".mp3"; //选择播放的音频   
+	music.play(); //执行播放        
+}
+
+
 //获取年份
 Vue.prototype.GetStudyYear = function () {	
 	var startdate = new Date(this.STUDYTIME);
@@ -870,7 +883,7 @@ Vue.prototype.navTo = function (item,index) {
 Vue.prototype.ScanAudio = function(mp3_name){
 	var music = null;
 	music = uni.createInnerAudioContext(); //创建播放器对象
-	music.src= "../../../static/music/"+mp3_name+".mp3"; //选择播放的音频
+	music.src= "/static/music/"+mp3_name+".mp3"; //选择播放的音频
 	music.play(); //执行播放
 }
 

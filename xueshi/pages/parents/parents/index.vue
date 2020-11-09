@@ -44,7 +44,7 @@
 						</view>	
 					</view>				
 			</view>
-			<view><button type="default" @click="pclick()">点击</button></view>
+			<!-- <view><button type="default" @click="pclick2()">点击</button></view> -->
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
@@ -69,7 +69,9 @@
 				headermsg:'今日提醒,Remind today',
 				footer: 'family',
 				currenttime:'',
-				ztime:30,
+				remind_time:0,
+				remind_status:0,
+				remind_music:'',
 				extra1:{
 					color: '#F00',size: '15',type: 'spinner'
 				}
@@ -90,7 +92,7 @@
 			 
 			//this.getCurrentTime();	
 		   // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
-		   clearInterval(this.timer);					
+		    clearInterval(this.timer);					
 		    this.timer = null
 		    this.setTimer();
 		},
@@ -120,29 +122,31 @@
 					}
 					
 				}				
-			},
+			},			
 			timeadd(dstr,index,num,ttime){
 				var date2 = new Date();    //当前时间
 				var m = ((date2.getMonth()+1)==13)?1:(date2.getMonth()+1);				
 				var date1 = date2.getFullYear()+"/"+m+"/"+date2.getDate()+" " +dstr+":00"; //上课时间				
 				var date3 = Math.floor((new Date(date1).getTime() + ttime*60*1000)- date2.getTime())/1000/60;	
 				date3 = date3*1;
-				var t = _self.ztime + ttime;		
+				var t = _self.remind_time + ttime;		
 				t = t*1;
 					
 				if(date3 > t){
 					_self.dataList[index].courselist[num].class_status = 3; //没有开始
 				}else{
-					if(date3<=t && date3>_self.ztime){
+					if(date3<=t && date3>_self.remind_time){
+						//debugger;
 						_self.dataList[index].courselist[num].class_status = 1; //准备中
-						//console.log(date3.toFixed(0)+"======"+t+"-----"+date2.getSeconds()+"\r\n");
-						//播放提示语音
-						/* if(date3.toFixed(0) == t && date2.getSeconds() == 1){
-							_self.ScanAudio();
-						} */
+						//播放提示语音					
+						if(_self.remind_status == 1){
+							if(date3.toFixed(0) == t && date2.getSeconds() == 1){
+								_self.ScanAudio(_self.remind_music);
+							} 
+						}						
 						
 					}else{
-						if(date3<=_self.ztime &&date3>0){
+						if(date3<=_self.remind_time &&date3>0){
 							_self.dataList[index].courselist[num].class_status = 2;	//正在进行中						
 						}else{
 							_self.dataList[index].courselist[num].class_status = 0; //已过期
@@ -151,14 +155,7 @@
 				}
 			},
 		
-			/* 
-			 // 销毁定时器
-			beforeDestroy: function() {
-			    if (_self.getDate) {
-			        console.log("销毁定时器")
-			        clearInterval(_self.getDate); // 在Vue实例销毁前，清除时间定时器
-			    }
-			}, */
+			
 			currentTime(){
 			    setInterval(_self.getTime,10*60*1000);
 			},
@@ -183,6 +180,9 @@
 					    }
 					});
 				}else{
+					_self.remind_time = ret.remind_time;
+					_self.remind_status = ret.remind_status;
+					_self.remind_music = ret.remind_music;
 					_self.sendRequest({
 						url : _self.DayClassUrl,
 					    method : _self.Method,

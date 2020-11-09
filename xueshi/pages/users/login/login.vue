@@ -179,6 +179,11 @@
 										is_time:data.is_time,//放学时间
 										is_grade:data.is_grade,//班级
 										pay_status:data.pay_status,
+										
+										remind_time:data.remind_time,//提醒提前时间
+										remind_status:data.remind_status,//提示音开关
+										remind_music:data.remind_music,//提示音
+										
 										face:data.face,
 										power:data.power //权限
 				        			}
