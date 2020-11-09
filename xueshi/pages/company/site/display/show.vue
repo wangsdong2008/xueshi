@@ -223,7 +223,12 @@
 					"is_sign":_self.is_sign,//签到
 					"is_teacher":_self.is_teacher,//老师
 					"is_time":_self.is_time,//放学时间
-					"is_grade":_self.is_grade,//班级		
+					"is_grade":_self.is_grade,//班级	
+						
+					"remind_time":_self.remind_time,//提醒提前时间
+					"remind_status":_self.remind_status,//提示音开关
+					"remind_music":_self.remind_music,//提示音
+					
 					"t":Math.random()
 				};
 				
@@ -254,13 +259,18 @@
 								is_time:_self.is_time,//放学时间
 								is_grade:_self.is_grade,//班级
 								pay_status:ret.pay_status,
+								
+								remind_time:ret.remind_time,//提醒提前时间
+								remind_status:ret.remind_status,//提示音开关
+								remind_music:ret.remind_music,//提示音
+								
 								face:data.imgpath,
 								power:ret.power //权限
 							}
 							
 							uni.removeStorageSync(_self.USERS_KEY);
 							//存储数组前，将数组转为字符串
-							//uni.setStorageSync(_self.USERS_KEY,JSON.stringify(d2));
+							
 							uni.setStorage({
 							    key:_self.USERS_KEY,          //key String 本地缓存中的指定key
 							    data: d2,               //data Any 需要存储的内容，只支持原生类型、及能够通过 JSON.stringify 序列化的对象
@@ -291,6 +301,10 @@
 					is_time:parseInt(_self.is_time),//放学时间
 					is_grade:parseInt(_self.is_grade),//班级										
 					pay_status:ret.pay_status,
+					remind_time:_self.remind_time,//提醒提前时间
+					remind_status:_self.remind_status,//提示音开关
+					remind_music:_self.remind_music,//提示音
+					
 					face:ret.face,
 					power:ret.power //权限
 				}

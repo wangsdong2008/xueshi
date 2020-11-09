@@ -153,7 +153,11 @@
 									is_sign:parseInt(ret.is_sign),//签到
 									is_teacher:parseInt(ret.is_teacher),//老师
 									is_time:parseInt(ret.is_time),//放学时间
-									is_grade:parseInt(ret.is_grade),//班级			
+									is_grade:parseInt(ret.is_grade),//班级	
+											
+									remind_time:ret.remind_time,//提醒提前时间
+									remind_status:ret.remind_status,//提示音开关
+									remind_music:ret.remind_music,//提示音
 									
 									pay_status:ret.pay_status,
 									face:data.imgpath,
