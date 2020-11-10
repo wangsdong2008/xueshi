@@ -1,31 +1,34 @@
 <template>
-	<div class="main_content">
+	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<div class="content">
-			<div class="title">
+		<view class="content">
+			<view class="title">
 				我的报名
-			</div>
-			<div>
-				<div class="searchlist">
-					<div class="icenter">
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">			
+			<view>
+				<view class="searchlist">
+					<view class="icenter">
 						<ul>
 							<li class="bm" v-for="(item,index) in dataList" :index="index" :key="item.e_id">{{'【'+item.cat_name+'】-'+item.com_name}}
-								<div class="statuslist">
+								<view class="statuslist">
 									<span v-if="item.v_status == '0'">审核中</span>
 									<span v-if="item.v_status == '1'">未通过</span>
 									<span v-if="item.v_status == '2'">课程安排中</span>
 									<span v-if="item.v_status == '3'" @tap="showenlist(item.e_id)">查看课程</span>
-								</div>
+								</view>
 							</li>
 						</ul>						
-					</div>
-				</div>
-			</div>
-			<div class="footer">
+					</view>
+				</view>
+			</view>
+			<view class="footer">
 				<footerNav :msg="footer"></footerNav>
-			</div>
-		</div>
-	</div>
+			</view>
+		</view>
+	</view>
 </template>
 
 <script>

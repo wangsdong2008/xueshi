@@ -1,19 +1,30 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
+		
 		<view class="content">
 			<view class="title">
 				课程详情
-			</view>			
+			</view>	
+		</view>
+		
+		<view class="line"></view>
+		<view class="content">					
 			<view class="searchlist">
 				<view class="course_title">{{cat_name}}</view>
 				<view class="icenter course_content" v-html="cat_content">	</view>
-				<view class="icenter course_jg fz30" @tap="bindcompany">所属机构：{{company}}</view>
+				<view class="icenter course_jg fz30" @tap="bindcompany">所属机构：{{company}}</view>				
+			</view>
+		</view>	
+			
+		<view class="line"></view>
+		<view class="content btn2">					
+			<view class="searchlist">
 				<view class="btn-row icenter">
 					<button type="primary" class="primary btn" @tap="bindmodify">{{btntxt}}</button>
 				</view>
 			</view>
-		</view>		
+		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
 		</view>
@@ -124,6 +135,9 @@
 	
 </script>
 <style>	
+	.btn2{
+		margin-top: 40upx;
+	}
 	.content .title{
 		background:url(@/static/img/detail.png) 10upx 22upx no-repeat;
 		-webkit-background-size:50upx 50upx ;
@@ -166,6 +180,8 @@
 		background:url(/static/img/company.png) no-repeat 10upx 0upx;
 		background-size: 60upx 60upx;
 		text-decoration: underline; 
+		margin-top: 30upx;
+		margin-bottom: 30upx;
 	}
 	
 	

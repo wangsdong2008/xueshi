@@ -1,23 +1,31 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
+		
 		<view class="content">
 			<view class="title">
-				搜索：{{course_name}}
+				搜索课程：{{course_name}}
 			</view>	
+		</view>
 		
+		<view class="line"></view>
+		<view class="content">			
 			<view class="searchlist">
 				<view class="icenter">
 					<ul class="courses">
 						<li class="" v-for="(item,index) in dataList" :index="index" :key="item.cat_id" @tap="showcourse(item.userid,item.com_id,item.cat_id)" >
-						<view class="fz35 cname">{{item.cat_name}}</view>
-						<view class="courseaddress fz30">{{'【'+item.com_name + '】 ' + item.com_address + ' 距离' + (item.distance*1000).toFixed(2) + '米'}}</view>
+							<view class="fz35 cname">{{item.cat_name}}</view>
+							<view class="courseaddress fz30">{{'【'+item.com_name + '】 ' + item.com_address + ' 距离' + (item.distance*1000).toFixed(2) + '米'}}</view>						
 						</li>
+						<view class="clear"></view>
 					</ul>
+					
 				</view>
 			</view>
-			
-		</view>		
+				
+		</view>	
+		
+		
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
 		</view>
@@ -137,7 +145,7 @@
 		border: 1upx solid #999;
 		border-radius: 25upx;
 		margin-bottom: 30upx;
-		padding: 20upx 20upx 50upx 20upx;
+		padding: 20upx 20upx 20upx 20upx;
 	}	
 	
 	.content .title{

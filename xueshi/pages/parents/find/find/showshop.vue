@@ -4,18 +4,23 @@
 		<view class="content">
 			<view class="title">
 				机构详情
-			</view>				
+			</view>	
+		</view>
 		
+		<view class="line"></view>
+		<view class="content">		
 				<view class="searchlist">
 					<view class="com_title">{{com_name}}</view>
 					<view class="icenter com_tel">{{com_tel}}</view>
 					<view class="icenter com_address">地址：{{com_address}}</view>
 				</view>
-				<view class="blackdiv"></view>
+		</view>
+		
+		<view class="line"></view>
+		<view class="content">			
 				<view class="searchlist">
 				<view class="courseList">所有课程</view>
-				<view class="courselists">	
-								
+				<view class="courselists">									
 					<uni-grid :column="3" :show-border="false" @change="even">
 					   <uni-grid-item v-for="(item, index) in dataList" :index="index" :key="index">
 					          <view class="grid-item-box" ><image src="/static/img/course.png" class="identify-head" mode="aspectFill" ></image>
