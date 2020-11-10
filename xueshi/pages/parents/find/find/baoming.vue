@@ -5,11 +5,15 @@
 			<view class="title">
 				在线报名
 			</view>	
+		</view>
+		
+		<view class="line"></view>
+		<view class="content">			
 				<view class="register_account_input">
 					<view class="uni-list-cell-left fz30">
 						课程
 					</view>
-					<view class="cell-right fz30 clearborder">{{course_name}}</view>
+					<view class="cell-right fz40 clearborder">{{course_name}}</view>
 				</view>
 				
 				<view class="register_account_input">	
@@ -39,11 +43,15 @@
 					</view>
 				</view>
 			
-			
+		</view>
+		
+		<view class="line"></view>
+		<view class="content">
 			<view class="btn-row">
 			    <button type="primary" class="primary btn" @tap="bindmodify">{{btntxt}}</button>
 			</view>
 		</view>
+		
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
 		</view>
@@ -327,7 +335,8 @@
 	}
 	.clearborder{
 		border:0upx;
-		text-align: left;
+		text-align: center;
+		font-weight: bold;
 	}
 	
 </style> 

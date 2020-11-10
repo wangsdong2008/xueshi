@@ -317,7 +317,7 @@
 		},{
 			"path": "pages/parents/find/find/searchresult",
 			"style": {
-				"navigationBarTitleText": "发现附近的机构"
+				"navigationBarTitleText": "搜索机构"
 			}
 		},{
 			"path": "pages/parents/find/find/showcourse",
@@ -337,7 +337,38 @@
 		},{
 			"path": "pages/parents/site/index/index",
 			"style": {
-				"navigationBarTitleText": "会员中心"
+				"navigationBarTitleText": "会员中心",
+				"navigationBarBackgroundColor": "#66ccff",
+					"app-plus": {
+					    "titleNView": {
+							"autoBackButton":"false",
+					        "buttons": [
+								{
+								    "text": "北京",
+								    "fontSize":"16",
+								    "float": "left",
+								    "color":"#fff",
+									"right":"50upx",
+									"width":"130upx"
+								},
+					            {
+					                "text": "搜索", 
+					                "fontSize":"16",
+					                "float": "right",
+					                "color":"#fff",
+									"right":"50upx",
+									"width":"80upx"
+					            }
+					        ],
+					        "searchInput":{
+					            "align": "left",
+					            "placeholder": "请输入课程名",
+					            "borderRadius":"50upx",
+					            "backgroundColor": "#fff"								
+					        }
+					    }					
+					} 
+				
 			}		
 		},{
 			"path": "pages/parents/site/course/course",
