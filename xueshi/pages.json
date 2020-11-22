@@ -1,20 +1,29 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-			
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages			
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},{//家长首页
+			"path": "pages/parents/parents/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"app-plus": {
+					"titleNView": {
+						"autoBackButton":"false"
+					}
+				}//隐藏顶部导航栏			
+			}
+		},		
 		{
 			"path": "pages/users/login/login",
 			"style": {				
 				"navigationBarTitleText": "登录"
 			}
 		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		},	
 		//公司开始
-		{
+		{//公司首页
 			"path": "pages/company/company/index/index",
 			"style": {				
 				"navigationBarTitleText": "首页"
@@ -295,16 +304,6 @@
 		
 		//家长区开始
 		{
-			"path": "pages/parents/parents/index",
-			"style": {
-				"navigationBarTitleText": "今日提醒",
-				"app-plus": {
-					"titleNView": {
-						"autoBackButton":"false"
-					}
-				}//隐藏顶部导航栏			
-			}
-		},{
 			"path": "pages/users/main/face/face",
 			"style": {
 				"navigationBarTitleText": "更换头像"
@@ -490,6 +489,11 @@
 						"autoBackButton":"false"
 					}
 				}
+			}
+		},{
+			"path": "pages/users/main/account/mobile",
+			"style": {				
+				"navigationBarTitleText": "手机号码"
 			}
 		},{
 			"path": "pages/users/main/account/modifymobile",

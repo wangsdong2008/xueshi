@@ -9,6 +9,8 @@ Vue.prototype.$store = store
 
 //当前版本号
 Vue.prototype.soft_name = '学时';
+Vue.prototype.company_name = '上海育文教育科技有限公司';
+Vue.prototype.co_name = '育文';
 Vue.prototype.version = '1.0';
 
 //缓存标识
@@ -22,8 +24,8 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
 Vue.prototype.Method = "post"; //请求方式
 
-Vue.prototype.WebUrl = "http://192.168.1.104/";
-Vue.prototype.Method = "get"; //请求方式
+/* Vue.prototype.WebUrl = "http://192.168.0.102/";
+Vue.prototype.Method = "get"; //请求方式 */
 
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
@@ -65,7 +67,7 @@ Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "index/company/"; //公司地�
 //在线支付地址
 /* Vue.prototype.AlipayUrl = Vue.prototype.AlipayUrl + "alipay" //支付宝支付
 Vue.prototype.WxpayUrl = Vue.prototype.wxpayUrl + "wxpay" //微信支付 */
-Vue.prototype.AlipayUrl = Vue.prototype.WebUrl + "index/ywalipay/"; //支付宝支付地址
+Vue.prototype.AlipayUrl = Vue.prototype.WebUrl + "index/ywalipay/alipay"; //支付宝支付地址
 Vue.prototype.WxpayUrl = Vue.prototype.WebUrl + "index/ywwxpay/"; //微信支付地址
 Vue.prototype.DiscountayUrl = Vue.prototype.WebUrl + "index/discountpay/discountpay"; //优惠券支付
 
@@ -820,13 +822,13 @@ Vue.prototype.sendsms2 = function(datainfo){
 					let str = '';
 					switch(parseInt(datainfo.status)){
 						case 1:{
-							str = '此号码已经存在，不需要重新注册';
+							str = '此号码已经存在,无法注册';
 							break;
 						}
 						case 2:{
 							str = '此号码不存在，无法取回密码';
 							break;
-						}
+						}						
 					}					
 					uni.showToast({
 						title: str,
@@ -853,7 +855,17 @@ Vue.prototype.sendsms2 = function(datainfo){
 					});
 					_self.gonext(); //跳回到下一页 
 					break;
-				}				
+				}
+				case 5:{					
+					uni.showToast({
+						title: '此号码已被使用，无法更换',
+						mask: true,
+						icon:"none",
+						duration: 1500
+					});
+					break;
+				}
+				
 				default:{
 					uni.showToast({
 						title: '发送失败',

@@ -6,10 +6,9 @@
 		<view class="content">
 			<view>
 				<ul>
-					<li class="lists fz35" v-for="(item,index) in dataList" :key="index" @tap="bindclick(index,1)">{{item.text}}</li>
+					<li class="lists fz35" v-for="(item,index) in dataList" :key="index" @tap="bindclick(index,1)">{{item.text}} <view class="p">{{item.detail}}</view></li>
 				</ul>
 			</view>
-			{{version}}
 		</view>
 		<view class="line"></view>
 		<view class="content">
@@ -37,13 +36,14 @@
 		onLoad(){
 			_self = this;
 			_self.checkLogin(0);
+			_self.dataList[0].detail = _self.version;
 		},
 		data(){
 			return{
 				dataList:[
-					{"text":"版本更新","url":""},
+					{"text":"版本更新","url":"","detail":''},
 					{"text":"功能介绍","url":"./gn"},
-					{"text":"隐私保护指引","url":"./ysbh"},
+					{"text":"隐私保护指引","url":"./ys"},
 					{"text":"反馈","url":""}
 				],
 				headermsg:'学时,Xueshi',
@@ -94,5 +94,14 @@
 		height: 45upx;
 		width: 45upx;     
 		margin-right: 20upx;
+	}
+	.lists{
+		position: relative;
+	}
+	.p{
+		position: absolute;
+		right: 50upx;
+		top:30upx;
+		color:#aaa;
 	}
 </style>

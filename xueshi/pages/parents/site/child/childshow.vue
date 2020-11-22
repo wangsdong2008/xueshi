@@ -187,13 +187,13 @@
 						uni.showModal({
 						    title: str,
 						    content: '请选择返回的页面',
-							cancelText:'留在本页',
+							cancelText:'添加课程',
 							confirmText:'返回前页',
 						    success: function (res) {
 						        if (res.confirm) {
 									_self.navigateTo('child');
 						        } else if (res.cancel) {
-						            _self.navigateTo('childshow?id='+_self.child_id);
+						            _self.navigateTo('../course/course');
 						        }
 						    }
 						});

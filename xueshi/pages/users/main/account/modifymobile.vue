@@ -3,7 +3,7 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
 			<view class="title">
-				更换手机2
+				更换手机
 			</view>	
 		</view>
 		<view class="line"></view>
@@ -16,10 +16,12 @@
 					<li class="li30">
 						<m-input class="m-input" type="text" v-model="new_mobile" placeholder="请输入新手机"></m-input>
 					</li>
-					<li class="li30">
+					<li class="li30 v2">
 						<m-input class="m-input inputs" type="text" v-model="code" placeholder="请输入验证码"></m-input>
 						<button class="fz30 yzm" @tap="bindcode">获取验证码</button>
+						<view class="clear"></view>
 					</li>
+					<view class="clear"></view>
 				</ul>
 				<button type="primary" class="btn" @tap="bindsavemobile">更换</button>
 			</view>
@@ -38,11 +40,6 @@
 		height: 60upx;
 		padding: 15upx 0upx 15upx 70upx;
 	}
-	.inputs {
-		float: left;
-		width: 50%;
-		margin-right: 20upx;		
-	}	
 	
 	.li30{
 		padding: 20upx 20upx;
@@ -61,7 +58,21 @@
 		height: 60upx;
 		padding-left: 30upx;
 	}	
-	
+	.v2{
+		position: relative;
+	}
+	.yzm{
+		position: absolute;
+		right: 10upx;
+	}
+	.inputs {
+		float: left;
+		width:200upx;
+		margin-right: 20upx;
+	}	
+	.lists{
+		padding-top: 20upx;
+	}
 	
 </style>
 
@@ -124,7 +135,7 @@
 					    "token": ret.token,
 					    "mobile": _self.new_mobile,
 						"smsid":ret.smsid,
-						"status":2
+						"status":3
 					};
 					_self.sendsms2(data);
 				}

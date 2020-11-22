@@ -5,7 +5,7 @@
 			<view class="title">
 				修改密码
 			</view>	
-</view>
+		</view>
 		<view class="line"></view>
 		<view class="content">			
 			<view class="main-body write lists">
@@ -19,6 +19,7 @@
 					<li class="li30">					
 						<m-input class="m-input" type="password" v-model="again_password" placeholder="请输入确认密码"></m-input>					
 					</li>
+					<view class="clear"></view>
 				</ul>
 				<button type="primary" class="btn" @tap="bindsaveuserinfo">修改</button>
 			</view>

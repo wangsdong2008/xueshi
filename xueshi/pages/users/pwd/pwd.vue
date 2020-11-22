@@ -4,8 +4,7 @@
 		<view class="content">
 			<view class="title">
 				取回密码
-			</view>	
-		
+			</view>			
 				<view class="icenter">	
 					<view class="register_account_input fz30">				
 						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="mobile" placeholder="填写注册的手机号码"></m-input>

@@ -39,12 +39,12 @@
 				<radio-group @change="payChange">
 					<ul class="paylists">
 						<li class="utitle">支付方式</li>
-						<li class="li40">
+						<!-- <li class="li40">
 							<label class="uni-list-cell uni-list-cell-pd" >							
 							<view class="radio_text wxpaycss"><radio class="radios" value="1" :checked='payid == 1' />微信</view>
 							</label>
 							<view class="clear"></view>
-						</li>
+						</li> -->
 						<li class="li40">
 							<label class="uni-list-cell uni-list-cell-pd" >							
 							<view class="radio_text alipaycss"><radio class="radios" value="2" :checked='payid == 2'/>支付宝</view>
@@ -396,12 +396,9 @@
 								provider: 'alipay',
 								orderInfo: orderinfo, //支付宝订单数据
 								success: function (res) {
-									debugger;
-									console.log("333333");
-									console.log(res);
 									if (res.errMsg == 'requestPayment:ok') {
 										uni.redirectTo({//支付成功转到支付成功提示页面  
-										   url: './paySuccess'
+										   url: './pay'
 										})  
 									}else{  
 									   console.log('fail:' + JSON.stringify(res));

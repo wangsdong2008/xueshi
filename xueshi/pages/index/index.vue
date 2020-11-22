@@ -1,15 +1,6 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
-		<view class="register">
-			<navigator url="../users/reg/reg">注册新用户</navigator>
-		</view>
-		<view>
-			<navigator url="../company/company/index/index">点击进入</navigator>
-		</view>
+		
 	</view>
 </template>
 
@@ -23,6 +14,7 @@
 		},
 		onLoad() {
 			_self = this;
+			this.checkLogin(0);
 			_self.show();
 		},
 		onReady(){
@@ -38,8 +30,8 @@
 				let ret = _self.getUserInfo();
 				if(!ret){
 					return false;
-				}else{
-					var identity = ret.identity;
+				}else{					
+					var identity = ret.identity;					
 					var url = "";
 					switch(identity){
 						case 1:{ //家长

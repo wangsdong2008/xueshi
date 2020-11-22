@@ -67,11 +67,10 @@
 				],
 				dataList:[
 					{"image":"power.png","text":"个人资料","url":"../account/account"},
+					{"image":"mobile5.png","text":"手机号码","url":"../account/mobile"},	
 					{"image":"password.png","text":"修改密码","url":"../account/modifypassword"},
-					{"image":"mobile5.png","text":"更换手机","url":"../account/modifymobile"},					
 					{image:'message.png',text:'我的消息(0)',url:"../message/messagelist"},
 					{image:'xf.png',text:'会员续费',url:"../pay/pay"},
-					{image:'gx.png',text:'个性设置',url:"../system/setup"},
 				],
 				headermsg:'系统设置,System settings',
 				footer: 'familysite',
