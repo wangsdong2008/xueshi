@@ -231,12 +231,12 @@
 		},{
 			"path": "pages/company/site/group/group",
 			"style": {				
-				"navigationBarTitleText": "接人组管理"
+				"navigationBarTitleText": "开课设置"
 			}
 		},{
 			"path": "pages/company/site/group/groupedit",
 			"style": {				
-				"navigationBarTitleText": "接人组编辑"
+				"navigationBarTitleText": "开课设置"
 			}
 		},{
 			"path": "pages/company/site/help/help",

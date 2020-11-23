@@ -3,7 +3,7 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
 			<view class="title">
-				全部接人组
+				老师开班
 			</view>	
 		</view>
 		<view class="line"></view>
@@ -14,7 +14,7 @@
 						<ul v-for="(item,index) in dataList" :index="index" :key="item.com_id">
 							<li class="list-title list"> {{item.com_name}}
 								<ul v-for="(item2,index2) in item.grouplist" :index="index2" :key="item2.ug_id">
-									<li class="list-title2"> {{'【'+item2.ug_name+'】'}}	<view class="edits" @tap="groupedit(item2.ug_id)">编辑</view></li>
+									<li class="list-title2"> {{'【'+item2.groupname+'】'}}	<view class="edits" @tap="groupedit(item2.groupid)">编辑</view></li>
 								</ul>							
 							</li>
 						</ul>
@@ -23,7 +23,7 @@
 					
 				</view>
 				<view class="btn-row">
-					<button type="primary" class="btn" @tap="groupadd">添加组</button>
+					<button type="primary" class="btn" @tap="groupadd">添加老师开班</button>
 				</view>
 			
 		</view>
@@ -55,7 +55,7 @@
 		data(){
 			return{
 				dataList:[],				
-				headermsg:'组管理,Group Manage',
+				headermsg:'开课设置,New Course ',
 				footer:''
 			}
 		},
@@ -122,7 +122,7 @@
 			},
 			getData(data){
 				_self.sendRequest({
-				        url : _self.GetAllMemberGroupUrl,
+				        url : _self.GetTeacherGroupUrl,
 				        method : _self.Method,
 				        data : {
 							"guid": data.guid,
@@ -179,7 +179,7 @@
 	}
 	.list-title2{		
 		font-weight: normal;
-		background: url(/static/img/jieren.png) no-repeat;
+		background: url(/static/img/sk.png) no-repeat;
 		-webkit-background-size: 45upx 45upx;
 		background-size: 45upx 45upx;
 		margin-top: 20upx;
@@ -204,7 +204,7 @@
 		display: inline;
 	}
 	.content .title{
-	  		background:url(@/static/img/jieren.png) 10upx 25upx no-repeat;
+	  		background:url(@/static/img/sk.png) 10upx 25upx no-repeat;
 	  		-webkit-background-size:50upx 50upx ;
 	  		background-size:50upx 50upx;
 	  		line-height: 60upx;

@@ -24,8 +24,8 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
 Vue.prototype.Method = "post"; //请求方式
 
-/* Vue.prototype.WebUrl = "http://192.168.0.102/";
-Vue.prototype.Method = "get"; //请求方式 */
+Vue.prototype.WebUrl = "http://192.168.0.102/";
+Vue.prototype.Method = "get"; //请求方式
 
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
@@ -216,6 +216,13 @@ Vue.prototype.GetAllMemberGroupUrl = Vue.prototype.CompanyUrl + "getmembergroupl
 Vue.prototype.GetMemberGroupInfoUrl = Vue.prototype.CompanyUrl + "getmembergroupinfo" //获取某个员工接人组信息
 Vue.prototype.AddMemberGroupUrl = Vue.prototype.CompanyUrl + "addmembergroupinfo" //添加员工接人组
 Vue.prototype.DelMemberGroupUrl = Vue.prototype.CompanyUrl + "delmembergroupinfo" //删除员工接人组
+
+
+Vue.prototype.GetTeacherGroupUrl = Vue.prototype.CompanyUrl + "getteachergrouplist" //获取老师开班设置
+Vue.prototype.GetTeacherGroupInfoUrl = Vue.prototype.CompanyUrl + "getteachergroupinfo" //获取某个老师开班设置
+Vue.prototype.AddTeacherGroupUrl = Vue.prototype.CompanyUrl + "addteachergroupinfo" //添加老师开班设置
+Vue.prototype.DelTeacherGroupUrl = Vue.prototype.CompanyUrl + "delteachergroupinfo" //删除老师开班设置
+
 
 
 Vue.prototype.GetTwtatisticsUrl = Vue.prototype.CompanyUrl + "gettwtatistics" //某学生的体温数据查询

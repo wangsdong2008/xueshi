@@ -58,7 +58,7 @@
 				dataList2:[
 					{"image":"display.png","text":"显示设置","url":"../display/show"},
 					{"image":"staff.png","text":"员工管理","url":"../member/member"},
-					{"image":"jieren.png","text":"接人组管理","url":"../group/group"},
+					{"image":"sk.png","text":"开课设置","url":"../group/group"},
 					/* {"image":"power.png","text":"权限管理","url":""}, */
 					{"image":"help.png","text":"帮助文档","url":"../help/help"},
 					

@@ -2,12 +2,12 @@
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
-			<view class="title">
-				接人组
+			<view class="title fz40">
+				老师开班设置
 			</view>		
 				<view class="icenter bg">	
-					<view class="namescss fz35">
-						<m-input class="m-input" type="text" clearable focus v-model="ug_name" placeholder="填写公司名"></m-input>
+					<view class="namescss">
+						<m-input class="m-input fz35" type="text" clearable focus v-model="groupname" placeholder="班名"></m-input>
 					</view>
 					<view class="clear"></view>			
 								
@@ -27,15 +27,17 @@
 					
 					<view :class="{
 						'register_account_input':true,
-						 'checkboxlist':(_self.studentsnum > 0)
+						 'checkboxlist':(_self.studentsnum*1 > 0)
 						}">
-						<view class="studentslist" v-if="_self.studentsnum == 0">==请选择学生==</view>
-						<view v-if="_self.studentsnum > 0">
+						<view class="studentslist" v-if="_self.studentsnum*1 == 0">==请选择学生==</view>
+						<view v-if="_self.studentsnum*1 > 0">
 							<checkbox-group @change="checkboxChange">
 								<label class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in students_dataList" :index="index" :key="index">
-									<checkbox class="checkbox" :value="item.uid.toString()" /><text>{{item.uname}}</text>
+									<checkbox class="checkbox" :value="item.uid.toString()" :checked="item.shower"/><text>{{item.uname}}</text>
 								</label>
-							</checkbox-group>					
+							</checkbox-group>							
+							
+							
 						</view>
 					</view>
 					
@@ -47,6 +49,82 @@
 		</view>
 	</view>
 </template>
+<style>	
+	.namescss{
+		line-height: 80upx;
+		height: 80upx;
+		border: 1upx solid #ccc;
+		border-radius: 50upx;
+			
+	}
+	.m-input{
+		line-height: 80upx;
+		height: 80upx;
+		width:auto;
+		padding-left:50upx;
+	}
+	.content .title{
+			background:url(@/static/img/sk.png) 10upx 22upx no-repeat;
+			-webkit-background-size:50upx 50upx ;
+			background-size:50upx 50upx;
+			line-height: 60upx;
+			height: 60upx;
+			padding: 15upx 0upx 15upx 70upx;
+		}
+	
+	.icenter{
+		width:90%;
+		margin: 0 auto;
+		margin-top: 60upx;
+	}
+	.icenter > view{
+		/* float: left; */
+		margin-bottom: 30upx;
+	}
+	.icenter .input2{
+		width:20%;
+		line-height: 60upx;
+		height: 60upx;
+	}
+	.checkboxlist{
+		font-size: 30upx;
+		text-align: left;
+		height: 400upx;
+		overflow-y: auto;
+		padding: 20upx;
+		border: 1upx solid #ccc;
+		margin:20upx 0;
+		border-radius:25upx;
+	}
+	.checkboxlist label{
+		margin-right: 15upx;
+		width:180upx;
+		margin-bottom: 20upx;
+		height: 40upx;
+		line-height: 40upx;
+		display: block;
+	} 
+	
+	.icenter .input-txt,.studentslist{		
+		border:1upx solid #ccc;
+		line-height: 80upx;
+		height: 80upx;
+		border-radius: 50upx;
+		padding-left: 60upx;
+		border-radius: 50upx;
+	}
+	.icenter > view.searchinput{		
+		line-height: 80upx;
+		height: 80upx;
+		border-radius: 50upx;
+	}
+	picker{
+		line-height: 80upx;
+		height: 80upx;
+	}
+	
+	
+</style>
 
 <script>
 	import service from '@/service.js';
@@ -64,8 +142,8 @@
 		},
 		data(){
 			return{
-				ug_id:0,
-				ug_name:'',
+				groupid:0,
+				groupname:'',
 				
 				index:0,
 				dindex:0,
@@ -105,12 +183,12 @@
 		onLoad(options){
 			_self = this;
 			_self.checkLogin(2);	
-			_self.ug_id = options['id']==undefined?0:options['id']; 
-			if(_self.ug_id == 0){
-				_self.headermsg = '组编辑,Group Add';
+			_self.groupid = options['id']==undefined?0:options['id']; 
+			if(_self.groupid == 0){
+				_self.headermsg = '老师开班设置,New Course';
 				_self.btn_txt = "添加";
 			}else{
-				_self.headermsg = '组编辑,Group Edit';
+				_self.headermsg = '老师开班设置,New Course Edit';
 				_self.btn_txt = "修改";
 			}			
 		},
@@ -137,19 +215,18 @@
 				    token: ret.token
 				};
 				_self.getData(data);
-			},
+			},			
 			bindclick(){
 				var com_id = _self.com_id;				
 				var cat_id = _self.category_id;
 				var sid = _self.studentsid_list;
-				var ugname = _self.ug_name;				
-				debugger;
+				var ugname = _self.groupname;	
 				
 				if(com_id*1 > 0 && sid !='' && cat_id*1 > 0 && ugname != '' ){
 					//根据comid,catid获取学生
 					let ret = _self.getUserInfo();
 					_self.sendRequest({
-					    url : _self.AddMemberGroupUrl,
+					    url : _self.AddTeacherGroupUrl,
 					    method : _self.Method,
 					    data : {
 							"guid": ret.guid,
@@ -157,8 +234,8 @@
 							"comid":_self.com_id,
 							"catid":cat_id,
 							"sid":sid,
-							"ugname":_self.ug_name,
-							"ugid":_self.ug_id,
+							"ugname":_self.groupname,
+							"ugid":_self.groupid,
 							"t":Math.random()
 						},
 					    hideLoading : false,
@@ -176,7 +253,7 @@
 									        if (res.confirm) {
 												_self.navigateTo('group');
 									        } else if (res.cancel) {
-									            _self.navigateTo('groupedit?id='+_self.ug_id);
+									            _self.navigateTo('groupedit?id='+_self.groupid);
 									        }
 									    }
 									});
@@ -198,20 +275,20 @@
 				let idlist2 = [];				
 				
 				_self.sendRequest({
-				    url : _self.GetMemberGroupInfoUrl,
+				    url : _self.GetTeacherGroupInfoUrl,
 				    method : _self.Method,
 				    data : {
 						"guid": data.guid,
 						"token":data.token,
-						"id":_self.ug_id,
+						"id":_self.groupid,
 						"t":Math.random()
 					},
 				    hideLoading : false,
 				    success: (res) => {
-							if(_self.ug_id > 0){
+							if(_self.groupid > 0){
 								//组信息
 								var data = res.groupinfo;
-								_self.ug_name = data.ug_name;
+								_self.groupname = data.groupname;
 								_self.com_id = data.com_id;
 								_self.sid = data.studentlist;
 								_self.cat_id = data.cat_id;
@@ -236,14 +313,14 @@
 									index = num;
 								}
 								statuslist.push(item.wt_status);
-								
 							}
 							_self.cList = list;
 							_self.cIDList = idlist;
-							_self.cStatuslist = statuslist;							
-							//默认值
-							_self.cindex = index;
-							
+							_self.cStatuslist = statuslist;	
+							if(_self.groupid > 0){
+								//设置默认值
+								_self.cindex = index;								
+							}
 							
 							//获取分类
 							data = res.categorylist;
@@ -251,31 +328,46 @@
 							idlist = [];
 							list.push("==请选择课程==");
 							idlist.push(0);
-							num = 0;
-							index = 0;
-							for(var i = 0;i<data.length;i++){
-								num ++;
-								var item = data[i];
-								list.push(item.cat_name);
-								idlist.push(item.cat_id);
-								if(item.cat_id*1 == _self.cat_id*1){
-									index = num;
-								}
+							if(_self.groupid > 0){	
+								num = 0;
+								index = 0;			
+								for(var i = 0;i < data.length; i++){
+									num ++;
+									var item = data[i];									
+									list.push(item.cat_name);
+									idlist.push(item.cat_id);
+									if(item.cat_id*1 == _self.cat_id*1){
+										index = num;
+										_self.category_id = item.cat_id;
+									}
+								}			
+								//默认值
+								_self.category_index = index;					
 							}
-							debugger;
 							_self.category_dataList = list;
-							_self.category_dataIDList = idlist;
-							//默认值
-							_self.category_index = index;
+							_self.category_dataIDList = idlist;	
 							
 							
+							
+							//学生
+							data = res.studentslist;
 							list = [];
 							idlist = [];
-							list.push("==请选择学生==");
-							idlist.push(0);
+							if(_self.groupid > 0){									
+								_self.studentsnum = data.length*1; //学生数量，为复选框准备的								
+								for (var i = 0; i < data.length; i++) {
+									var item = data[i];									
+									list.push(item);
+								}								
+								
+							}else{
+								list.push("==请选择学生==");
+								idlist.push(0);									
+							}
 							_self.students_dataList = list;
 							_self.students_dataIDList = idlist;
-							if(_self.uid == 0)	_self.students_index = 0;
+							_self.students_index = index;
+							
 							
 				    	}
 				},"1","");
@@ -323,8 +415,7 @@
 								}
 								
 								_self.students_dataList = list;
-								_self.students_dataIDList = idlist;
-								//debugger;								
+								_self.students_dataIDList = idlist;							
 								
 								_self.students_index = 0;
 							}							
@@ -387,72 +478,3 @@
 	
 </script>
 
-<style>	
-	.namescss{
-		line-height: 60upx;
-		height: 60upx;
-		border-bottom: 1upx solid #ccc;
-	}
-	.m-input{
-		line-height: 60upx;
-		height: 60upx;
-	}
-	.content .title{
-			background:url(@/static/img/jieren.png) 10upx 22upx no-repeat;
-			-webkit-background-size:50upx 50upx ;
-			background-size:50upx 50upx;
-			line-height: 60upx;
-			height: 60upx;
-			padding: 15upx 0upx 15upx 70upx;
-		}
-	
-	.icenter{
-		width:90%;
-		margin: 0 auto;
-		margin-top: 60upx;
-	}
-	.icenter > view{
-		/* float: left; */
-		margin-bottom: 30upx;
-	}
-	.icenter .input2{
-		width:20%;
-		line-height: 60upx;
-		height: 60upx;
-	}
-	.checkboxlist{
-		font-size: 30upx;
-		text-align: left;
-		height: 400upx;
-		overflow-y: auto;
-		padding: 20upx;
-		border: 1upx solid #ccc;
-		margin:20upx 0;
-		border-radius: 25upx;
-		width:100%;
-	}
-	.checkboxlist label{
-		margin-right: 15upx;
-		width:180upx;
-		margin-bottom: 20upx;
-		height: 40upx;
-		line-height: 40upx;
-		display: block;
-	} 
-	
-	.icenter .input-txt,.studentslist{
-		width: 95%;
-		border:1upx solid #ccc;
-		line-height: 55upx;
-		height: 55upx;
-		padding-left: 60upx;
-		border-radius: 25upx;
-	}
-	.icenter > view.searchinput{
-		background: url(/static/img/search.png) no-repeat 5upx 10upx;
-		-webkit-background-size: 55upx 55upx;
-		background-size: 55upx 55upx;
-	}
-	
-	
-</style>
