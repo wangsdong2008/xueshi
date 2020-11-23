@@ -342,7 +342,7 @@
 									}
 								}			
 								//默认值
-								_self.category_index = index;					
+								//_self.category_index = index;					
 							}
 							_self.category_dataList = list;
 							_self.category_dataIDList = idlist;	
@@ -358,9 +358,10 @@
 								for (var i = 0; i < data.length; i++) {
 									var item = data[i];									
 									list.push(item);
+									idlist.push(item.uid);
 								}								
 								
-							}else{
+							}else{								
 								list.push("==请选择学生==");
 								idlist.push(0);									
 							}
@@ -400,20 +401,36 @@
 							if(parseInt(res.status) == 3){
 								var data = res.studentslist;
 								let uid = 0;
-								let list = [];
-								let idlist = [];
-								//if(_self.students_dataList.length == 1 && _self.students_dataList[0] == '==请选择学生==') _self.students_dataList = [];//追加学生
-								_self.students_dataList = [];
-								_self.students_dataIDList = [];
-								_self.studentsnum = data.length;
-								for (var i = 0; i < data.length; i++) {
-									var item = data[i];									
-									list.push(item);
-									//_self.$set(_self.students_dataList,_self.students_dataList.length,item); //追加学生
-									idlist.push(item.uid.toString());
-									//_self.$set(_self.students_dataIDList,_self.students_dataIDList.length,item.uid.toString());//追加学生id
+								let list,idlist;
+								if(_self.students_dataList == "==请选择学生=="){
+									list = [];
+									idlist = [];
+								}else{
+									list = _self.students_dataList;
+								    idlist = _self.students_dataIDList;
 								}
+								_self.students_dataList = [];
+								_self.students_dataIDList = [];							
 								
+								
+								for (var i = 0; i < data.length; i++) {	
+									let flag = false;
+									var item2 = data[i];				
+									for(let j=0 ; j < idlist.length;j++){										
+										let v = idlist[j];
+										console.log(v+"===="+item2.uid);
+										if(v*1 == item2.uid*1){
+											flag = true;//重复的学生不显示在里面
+											break;
+										}
+									}
+									if(flag==false){ //重复的学生不显示在里面
+										list.push(item2);
+										idlist.push(item2.uid.toString());
+									}
+								}									
+								
+								_self.studentsnum = data.length;
 								_self.students_dataList = list;
 								_self.students_dataIDList = idlist;							
 								
