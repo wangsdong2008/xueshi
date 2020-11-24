@@ -41,6 +41,7 @@
 	import mInput from '@/components/m-input.vue';
 	import headerNav from "@/components/header/company_header.vue"
 	import footerNav from "@/components/footer/footer_nav.vue"
+	import md5 from '@/static/js/md5.js';
 	var _self;
 	export default {
 	    components: {
@@ -132,7 +133,7 @@
 							"true_name": _self.true_name,
 							"comid":_self.com_id,
 							"mobile":_self.mobile,
-							"password":_self.password,
+							"password":md5(_self.password),
 							"t":Math.random()
 						},
 				        hideLoading : false,

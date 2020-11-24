@@ -18,7 +18,7 @@
 <script>
 	import service from '@/service.js';
 	import headerNav from "@/components/header/users_header.vue";
-	
+	import md5 from '@/static/js/md5.js';
 	var _self;
 	export default {
 		components: {
@@ -80,8 +80,8 @@
 				}
 				
 			    const data = {
-			        password: _self.password,
-					againpassword: _self.againpassword,
+			        password: md5(_self.password),
+					againpassword: md5(_self.againpassword),
 			        mobile: _self.mobile,
 					recommend:_self.recommend,
 					code:_self.code

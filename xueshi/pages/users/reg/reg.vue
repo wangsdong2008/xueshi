@@ -18,7 +18,7 @@
 <script>
 	import service from '@/service.js';
 	import headerNav from "@/components/header/users_header.vue";
-	
+	import md5 from '@/static/js/md5.js';
 	var _self;
 	export default {
 		components: {

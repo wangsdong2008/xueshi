@@ -31,8 +31,9 @@
 
 <script>
 	import service from '@/service.js';
-	import mInput from '@/components/m-input.vue'
+	import mInput from '@/components/m-input.vue';
 	import headerNav from "@/components/header/users_header.vue";
+	import md5 from '@/static/js/md5.js';
 	var _self;
 	import {
 	    mapState,
@@ -115,9 +116,10 @@
                  * 检测用户账号密码是否在已注册的用户列表中
                  * 实际开发中，使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
                  */
+				let md5pwd = md5(_self.password);
                 const data = {
                     username: _self.account,
-                    password: _self.password
+                    password: md5pwd
                 };
                 /* const validUser = service.getUsers().some(function (user) {
                     return data.account === user.account && data.password === user.password;

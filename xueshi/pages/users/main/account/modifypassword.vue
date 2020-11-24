@@ -69,7 +69,7 @@
 	import mInput from '@/components/m-input.vue'
 	import headerNav from "@/components/header/users_header.vue"
 	import footerNav from "@/components/footer/footer_nav.vue"
-	
+	import md5 from '@/static/js/md5.js';
 	var _self;
 	export default {
 	    components: {			
@@ -129,9 +129,9 @@
 				    data : {
 						"guid": ret.guid,
 						"token": ret.token,	
-						"old_password":_self.old_password,
-						"new_password":_self.new_password,
-						"again_password":_self.again_password,						
+						"old_password":md5(_self.old_password),
+						"new_password":md5(_self.new_password),
+						"again_password":md5(_self.again_password),						
 						"status":1,
 						"t":Math.random()
 					},

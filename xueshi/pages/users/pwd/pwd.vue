@@ -195,8 +195,8 @@
 				}
 				
                 const data = {
-                    password: _self.password,
-					againpassword: _self.againpassword,
+                    password: md5(_self.password),
+					againpassword: md5(_self.againpassword),
                     mobile: _self.mobile,
 					code:_self.code
                 }
