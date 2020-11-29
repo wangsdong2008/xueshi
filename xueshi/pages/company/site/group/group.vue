@@ -2,8 +2,8 @@
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
-			<view class="title">
-				老师开班
+			<view class="title fz40">
+				老师开课
 			</view>	
 		</view>
 		<view class="line"></view>
@@ -179,7 +179,7 @@
 	}
 	.list-title2{		
 		font-weight: normal;
-		background: url(/static/img/sk.png) no-repeat;
+		background: url(/static/img/course.png) no-repeat;
 		-webkit-background-size: 45upx 45upx;
 		background-size: 45upx 45upx;
 		margin-top: 20upx;
@@ -204,7 +204,7 @@
 		display: inline;
 	}
 	.content .title{
-	  		background:url(@/static/img/sk.png) 10upx 25upx no-repeat;
+	  		background:url(@/static/img/course.png) 10upx 25upx no-repeat;
 	  		-webkit-background-size:50upx 50upx ;
 	  		background-size:50upx 50upx;
 	  		line-height: 60upx;

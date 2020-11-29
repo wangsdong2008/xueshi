@@ -81,7 +81,7 @@
 				<view class="title">系统管理</view>
 				<view class="systempiclist">
 					<!-- 一般用法 -->
-					<uni-grid :column="4" :show-border="false"  :square="false">
+					<uni-grid :column="num" :show-border="false"  :square="false">
 						<uni-grid-item>
 							<image src="/static/img/stsearch.png" @tap="bindstudentssearch"></image>
 						</uni-grid-item>				    
@@ -144,7 +144,8 @@
 				index_3:-1,
 				title:'',
 				content:'',
-				title2:''
+				title2:'',
+				num:4 //系统管理中的列数，也就是功能数量
 			}
 		},
 		onLoad:function() {	
@@ -386,6 +387,7 @@
 											_self.dataList = list;
 										}																			
 										_self.isBrithday = res.isBrithday; 
+										//_self.num = _self.num - _self.isBrithday;
 									}
 									//公告内容
 									let list = [];

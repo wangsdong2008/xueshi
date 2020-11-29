@@ -3,7 +3,7 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
 			<view class="title fz40">
-				老师开班设置
+				老师开课设置
 			</view>		
 				<view class="icenter bg">	
 					<view class="namescss">
@@ -64,7 +64,7 @@
 		padding-left:50upx;
 	}
 	.content .title{
-			background:url(@/static/img/sk.png) 10upx 22upx no-repeat;
+			background:url(@/static/img/course.png) 10upx 22upx no-repeat;
 			-webkit-background-size:50upx 50upx ;
 			background-size:50upx 50upx;
 			line-height: 60upx;

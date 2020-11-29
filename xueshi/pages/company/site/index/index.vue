@@ -51,15 +51,15 @@
 					{"image":"grade.png","text":"年级管理(托班)","url":"../grade/grade"},
 					{"image":"classs.png","text":"班级管理(托班)","url":"../classs/classs"},
 					{"image":"students.png","text":"学生管理","url":"../students/students"},
-					{"image":"plan.png","text":"上课安排","url":"../companyplan/companyplan"},
+					{"image":"plan.png","text":"学生上课安排","url":"../companyplan/companyplan"},
 					{"image":"tiaoke.png","text":"调课管理","url":"../tiaoke/tiaoke"},
 					
 				],
 				dataList2:[
 					{"image":"display.png","text":"显示设置","url":"../display/show"},
 					{"image":"staff.png","text":"员工管理","url":"../member/member"},
-					{"image":"sk.png","text":"开课设置","url":"../group/group"},
-					/* {"image":"power.png","text":"权限管理","url":""}, */
+					{"image":"course.png","text":"开课设置","url":"../group/group"},
+					{"image":"sk.png","text":"员工上课安排","url":"../teacherplan/teacherplan"},
 					{"image":"help.png","text":"帮助文档","url":"../help/help"},
 					
 				],	

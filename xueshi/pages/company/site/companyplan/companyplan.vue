@@ -22,7 +22,7 @@
 				</uni-collapse>
 			</view>
 			<view class="btn-row">
-				<button type="primary" class="btn" @tap="companyplanaddone">单人添加</button>
+				<!-- <button type="primary" class="btn" @tap="companyplanaddone">单人添加</button> -->
 				<button type="primary" class="btn" @tap="companyplanadd">批量添加</button>
 			</view>	
 		</view>

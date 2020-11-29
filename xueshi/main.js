@@ -222,6 +222,15 @@ Vue.prototype.GetTeacherGroupUrl = Vue.prototype.CompanyUrl + "getteachergroupli
 Vue.prototype.GetTeacherGroupInfoUrl = Vue.prototype.CompanyUrl + "getteachergroupinfo" //获取某个老师开班设置
 Vue.prototype.AddTeacherGroupUrl = Vue.prototype.CompanyUrl + "addteachergroupinfo" //添加老师开班设置
 Vue.prototype.DelTeacherGroupUrl = Vue.prototype.CompanyUrl + "delteachergroupinfo" //删除老师开班设置
+Vue.prototype.GetAllSubCompanyTeachergroupByComidUrl = Vue.prototype.CompanyUrl + "getcompanyteachergroup" //获取某个公司下开课设置
+
+
+Vue.prototype.GetCompanyTeacherplanUrl = Vue.prototype.CompanyUrl + "getcompanyteacherplanlist" //获取某个老师的计划
+Vue.prototype.GetCompanyTeacherplanInfoUrl = Vue.prototype.CompanyUrl + "getcompanyteacherplaninfo" //获取某个老师一周课程的计划详情
+Vue.prototype.DelCompanyTeacherplanInfoUrl = Vue.prototype.CompanyUrl + "delcompanyteacherplaninfo" //删除某个老师某门课的计划
+Vue.prototype.UpdateCompanyTeacherplanInfoUrl = Vue.prototype.CompanyUrl + "updatecompanyteacherplaninfo" //修改某个老师某门课的计划的时间
+Vue.prototype.GetCompanyTeacherOneplanInfoUrl = Vue.prototype.CompanyUrl + "getcompanyteacheroneplaninfo" //获取某个老师某门课的计划详情
+Vue.prototype.AddCompanyTeacherplanInfoUrl = Vue.prototype.CompanyUrl + "addcompanyteacherplaninfo" //添加某个老师某门课的计划
 
 
 

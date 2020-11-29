@@ -229,6 +229,21 @@
 				"navigationBarTitleText": "员工编辑"
 			}
 		},{
+			"path": "pages/company/site/teacherplan/teacherplan",
+			"style": {				
+				"navigationBarTitleText": "员工上课安排"
+			}
+		},{
+			"path": "pages/company/site/teacherplan/teacherplandetail",
+			"style": {				
+				"navigationBarTitleText": "员工上课详情"
+			}
+		},{
+			"path": "pages/company/site/teacherplan/teacherplanadd",
+			"style": {				
+				"navigationBarTitleText": "员工新安排"
+			}
+		},{
 			"path": "pages/company/site/group/group",
 			"style": {				
 				"navigationBarTitleText": "开课设置"
