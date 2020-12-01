@@ -10,12 +10,12 @@
 		<view class="content">		
 				<view class="icenter">				
 				
-				<view class="register_account_input">
+				<view class="searchinput input-txt">
 					<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
 						<view class="uni-input fz30">{{cList[cindex]}}</view>
 					</picker>
 				</view>
-				<view class="register_account_input">
+				<view class="searchinput input-txt">
 					<picker @change="categoryPickerChange($event)" :value="category_index" :range="category_dataList">
 						<view class="uni-input fz30">{{category_dataList[category_index]}}</view>
 					</picker>
@@ -47,7 +47,7 @@
 									'hidden':!item2.shower
 									}">周{{item2.weektext}}
 									</view>
-									<picker mode="time" :value="item2.utime" start="00:01" end="23:59"  @change="bindTimeChange($event,item2.weekid)" :class="{
+									<picker mode="time" :value="item2.utime" start="00:01" end="23:59"  @change="bindTimeChange($event,index2)" :class="{
 										'awidth':true,
 											'hidden':!item2.shower
 										}">
@@ -68,8 +68,8 @@
 									'hidden':!item2.shower
 									}">周{{item2.weektext}}
 									</view>
-									<picker @change="bindClassRoomChange($event,item2.weekid)" :value="item2.classroom_index" :range="classroom_dataList"  :class="{
-										'awidth':true,
+									<picker @change="bindClassRoomChange($event,index2)" :value="item2.classroom_index" :range="classroom_dataList"  :class="{
+											'awidth':true,
 											'hidden':!item2.shower
 										}">
 										<view class="uni-input">{{classroom_dataList[item2.classroom_index]}}</view>
@@ -141,8 +141,24 @@
 		border-radius: 25upx;		
 		margin-top: 20upx;
 	}		
-	picker,.studentslist{
-		font-size: 30upx;
+	.icenter .input-txt,.studentslist{
+		border:1upx solid #ccc;
+		line-height: 80upx;
+		height: 80upx;
+		border-radius: 50upx;
+		padding-left: 60upx;
+		border-radius: 50upx;
+	}
+	.icenter > view.searchinput{		
+		line-height: 80upx;
+		height: 80upx;
+		border-radius: 50upx;
+		margin-bottom: 20upx;
+		margin-top: 30upx;
+	}
+	picker{
+		line-height: 80upx;
+		height: 80upx;
 	}
 	.awidth{
 		margin-left: 10upx;
@@ -313,11 +329,7 @@
 				studentsid_list:'', //所有学生id
 				studentsweek_list:'1',//所选周几
 				studentsutime_list:'15:00',//所选周几的接孩子时间
-				studentsuaddress_list:'',//所选周几的接孩子地点
-				studentsgivetime_list:'',//所选周几的送孩子时间
-				studentsgiveaddress_list:'',//所选周几的送孩子地点
-				studentsbacktime_list:'',//所选周几的送孩子时间
-				studentsfanstatus_list:'0',//是否吃饭
+				
 				
 				category_id:0,
 				category_index:0,
@@ -344,6 +356,13 @@
 		},
 		methods:{			
 			bindmodify(){
+				if(_self.teacher_id == ''){
+					uni.showToast({
+					    icon: 'none',
+					    title: '请选择员工'
+					});
+					return;
+				}
 				if(parseInt(_self.com_id) == 0){
 					uni.showToast({
 					    icon: 'none',
@@ -357,16 +376,8 @@
 					    title: '请选择课程'
 					});
 					return;
-				}
-				if(_self.uname == '')
-				{
-					uni.showToast({
-					    icon: 'none',
-					    title: '请填写学生姓名'
-					});
-					return;
-				}				
-					    
+				}			
+				
 				var arr0 = _self.studentsweek_list.split(",");
 				var arr1 = _self.studentsutime_list.split(",");
 				if(arr0.length != arr1.length){
@@ -377,34 +388,24 @@
 					return;
 				}
 				//提交数据
-				let ret = _self.getUserInfo();				
-				_self.sendRequest({
-				    url : _self.UpdateCompanyplanInfoUrl,
-				    method : _self.Method,
-				    data : {
-						"token":ret.token,
+				let ret = _self.getUserInfo();		
+				let data = {"token":ret.token,
 						"guid":ret.guid,
 						"com_id":_self.com_id,
-						"uid":_self.uid,
+						"uid":_self.teacher_id,
 						"uname":_self.uname,
-						"cat_id":_self.category_id,
-						"school_id":_self.school_id,
-						"grade_id":_self.grade_id,
-						"class_id":_self.class_id,
-						"sex":_self.sex,
-						"studentsidlist":_self.studentsid_list,
+						"cat_id":_self.category_id,						
 						"studentsweeklist":_self.studentsweek_list,
 						"studentsutimelist":_self.studentsutime_list,
-						"studentsuaddresslist":_self.studentsuaddress_list,
-						"studentsgivetimelist":_self.studentsgivetime_list,
-						"studentsgiveaddresslist":_self.studentsgiveaddress_list,
-						"studentsbacktimelist":_self.studentsbacktime_list,
 						"studentsclassroomlist":_self.studentsclassroom_list,
-						"studentsfanstatuslist":_self.studentsfanstatus_list,
-					},
-				    hideLoading : true,
+						};
+						debugger;
+				_self.sendRequest({
+				    url : _self.AddCompanyTeacherplanInfoUrl,
+				    method : _self.Method,
+				    data : data,
+				    hideLoading : false,
 				    success:function (res) {
-						//debugger;
 						if(res){
 							let status = res.status;
 							let str = '';
@@ -414,7 +415,7 @@
 									break;
 								}
 								case 1:{
-									str = '请选择学生';
+									str = '请选择员工';
 									break;
 								}
 								case 2:{
@@ -422,7 +423,7 @@
 									break;
 								}
 								case 3:{
-									if(_self.uid == 0){
+									
 										_self.dataList = [];
 										_self.com_id = 0;
 										_self.cindex = 0;
@@ -434,11 +435,7 @@
 										_self.studentsid_list = ''; //所有学生id
 										_self.studentsweek_list = '1';//所选周几
 										_self.studentsutime_list = '15:00';//所选周几的接孩子时间
-										_self.studentsuaddress_list = '';//所选周几的接孩子地点
-										_self.studentsgivetime_list = '';//所选周几的送孩子时间
-										_self.studentsgiveaddress_list = '';//所选周几的送孩子地点
-										_self.studentsbacktime_list = '';//所选周几的送孩子时间
-										_self.studentsclassroom_list = '';//所选教室
+										
 										
 										_self.category_id = 0;
 										_self.category_index = 0;
@@ -452,12 +449,9 @@
 										_self.week_id = 0;
 										_self.week_index = 0;				
 										_self.week_dataList = [];
-										_self.week_dataIDList = [];									
-										
-										str = '添加成功';
-									}else{
-										str = '修改成功';
-									}
+										_self.week_dataIDList = [];	
+									
+									str = '保存成功';
 									
 									break;
 								}							
@@ -470,9 +464,9 @@
 								confirmText:'返回前页',
 								success: function (res) {
 									if (res.confirm) {
-										_self.navigateTo('companyplan');
+										_self.navigateTo('teacherdetail?id='+_self.teacher_id);
 									} else if (res.cancel) {
-										_self.navigateTo('companyplanedit?id='+_self.uid+"&cat_id="+_self.cat_id);
+										_self.navigateTo('teacherplanadd?teacher_id='+_self.teacher_id);
 									}
 								}
 							});
@@ -480,124 +474,20 @@
 				    }
 				},"1","");
 			},
-			ClassPickerChange:function(e){
-				console.log('班级picker发送选择改变，携带值为', e.target.value+"===="+_self.class_dataList[e.target.value] + _self.class_dataIDList[e.target.value]);
-				_self.class_id = _self.class_dataIDList[e.target.value];
-				_self.class_index = e.target.value;
-			},
-			GradePickerChange:function(e){
-				console.log('年级picker发送选择改变，携带值为', e.target.value+"===="+_self.grade_dataList[e.target.value] + _self.grade_dataIDList[e.target.value]);
-				let grade_id = _self.grade_dataIDList[e.target.value];
-				_self.grade_id = grade_id;
-				_self.grade_index = e.target.value;
-			},
-			SchoolPickerChange:function(e){
-				console.log('学校picker发送选择改变，携带值为', e.target.value+"===="+_self.school_dataList[e.target.value] + _self.school_dataIDList[e.target.value]);
-				var school_id = _self.school_dataIDList[e.target.value];
-				_self.school_id = school_id;
-				_self.school_index = e.target.value;
-				
-				let ret = _self.getUserInfo();
-				this.sendRequest({
-				    url : this.GetAllGradeUrl,
-				    method : _self.Method,
-				    data : {
-						"guid": ret.guid,
-						"token":ret.token,
-						"id":_self.school_id,
-						"t":Math.random()
-					},
-				    hideLoading : true,
-				    success: (res) => {	
-				    	if(res){
-							var gradelist = res.gradelist;
-							let list = [];
-							let idlist = [];
-							list.push("==请选择年级==");
-							idlist.push(0);
-							for (var i = 0; i < gradelist.length; i++) {
-								var item = gradelist[i];
-								list.push(item.grade_name);
-								idlist.push(item.grade_id);
-							}								
-							_self.grade_dataList = list;
-							_self.grade_dataIDList = idlist;
-							_self.grade_index = 0;
-							
-							//重新选择学校后，清空班级
-							list = [];
-							idlist = [];
-							list.push("==请选择班级==");
-							idlist.push(0);
-							var classlist = res.classlist;
-							for (var i = 0; i < classlist.length; i++) {
-								var item = classlist[i];
-								list.push(item.class_name);
-								idlist.push(item.class_id);
-							}								
-							_self.class_dataList = list;
-							_self.class_dataIDList = idlist;
-							_self.class_index = 0;
-							
-						}
-					},
-				});
-			},
-			radiofanChange:function(e,num){
-				num = parseInt(num);
-				if(num == 0) num = 7;
-				_self.week_dataList[num-1].fan_status = e.target.value;
-				_self.getWeekList();
-			},
-			bindClassRoomChange:function(e,num){
-				//debugger;
-				num = parseInt(num);
-				if(num == 0) num = 7;
-				_self.week_dataList[num-1].classroom_index = e.target.value;
-				_self.getWeekList();
-			},
-			bindbackTimeChange: function(e,num) {
-				num = parseInt(num);
-				if(num == 0) num = 7;
-				_self.week_dataList[num-1].backtime = e.target.value;
-				_self.getWeekList();
-			},
-			bindgiveTimeChange: function(e,num) {
-				num = parseInt(num);
-				if(num == 0) num = 7;
-				_self.week_dataList[num-1].givetime = e.target.value;
-				_self.getWeekList();
-			},
-			bindgiveaddress:function(e,num){
-				num = parseInt(num);
-				if(num == 0) num = 7;
-				_self.week_dataList[num-1].giveaddress = e.target.value;
-				_self.getWeekList();
-			},
-			bindaddress:function(e,num){
-				//debugger;
-				num = parseInt(num);
-				if(num == 0) num = 7;
-				_self.week_dataList[num-1].uaddress = e.target.value;
-				_self.getWeekList();
-				
-			},
 			bindTimeChange: function(e,num) {
 				num = parseInt(num);
 				if(num == 0) num = 7;
-				_self.week_dataList[num-1].utime = e.target.value;
-				
-				/* let list = [];
-				let data = _self.week_dataList;
-				for(var i = 0;i<data.length;i++){
-					if(data[i].shower){
-						list.push(data[i].utime);
-					}
-				}
-				_self.studentsutime_list = list.toString(); */
+				_self.week_dataList[num].utime = e.target.value;				
+				_self.getWeekList();
+			},
+			bindClassRoomChange:function(e,num){		
+				num = parseInt(num);
+				let index = e.target.value;
+				_self.week_dataList[num].classroom_index = index;
 				_self.getWeekList();
 			},
 			getWeekList:function(){
+				//debugger;
 				var items = _self.week_dataList;
 				let list_utime = [];
 				let list = [];
@@ -612,22 +502,14 @@
 					if(item.shower){
 						list.push(item.weekid);
 						list_utime.push(item.utime);
-						list_uaddress.push(item.uaddress);
-						list_givetime.push(item.givetime);
-						list_giveaddress.push(item.giveaddress);
-						list_backtime.push(item.backtime);
+						
 						list_classroom.push(_self.classroom_dataIDList[item.classroom_index]);
-						list_fan_status.push(item.fan_status);
 				    }
 				}
 				_self.studentsweek_list = list.toString();
 				_self.studentsutime_list = list_utime.toString();
-				_self.studentsuaddress_list = list_uaddress.toString();
-				_self.studentsgivetime_list = list_givetime.toString();
-				_self.studentsgiveaddress_list = list_giveaddress.toString();
-				_self.studentsbacktime_list = list_backtime.toString();
-				_self.studentsclassroom_list = list_classroom.toString();
-				_self.studentsfanstatus_list = list_fan_status.toString();
+				_self.studentsclassroom_list = list_classroom.toString();				
+				
 				
 			},
 			weekcheckboxChange:function(e){
@@ -654,12 +536,6 @@
 			        }
 			    }
 				_self.studentsid_list = list.toString();
-			},
-			categoryPickerChange:function(e){
-				console.log('学校picker发送选择改变，携带值为', e.target.value+"===="+_self.category_dataList[e.target.value] + _self.category_dataIDList[e.target.value]);
-				var category_id = _self.category_dataIDList[e.target.value];
-				_self.category_id = category_id;
-				_self.category_index = e.target.value;
 			},
 			pickerCompanyChange:function(e){
 				console.log('公司picker发送选择改变，携带值为', e.target.value+"===="+_self.cList[e.target.value] + _self.cIDList[e.target.value]);
@@ -689,7 +565,7 @@
 								let idlist = [];
 								list.push("==请选择课程==");
 								idlist.push(0);
-								debugger;
+								//debugger;
 								for (var i = 0; i < data.length; i++) {
 									var item = data[i];									
 									list.push(item.groupname);
@@ -697,29 +573,74 @@
 								}
 								_self.category_dataList = list;
 								_self.category_dataIDList = idlist;
-								_self.category_index = 0;
-								
-							
-								
+								_self.category_index = 0;								
 									
 								
-								/* //所有教室
+								//所有教室								
 								data = res.classroomlist;
 								list = [];
 								list.push("=请选择教室==");
 								idlist = [];
 								idlist.push(0);
 								for (var i = 0; i < data.length; i++) {
-									var item = data[i];									
+									var item = data[i];
 									list.push(item.classroom_name);
 									idlist.push(item.classroom_id);
 								}
 								_self.classroom_dataList = list;
-								_self.classroom_dataIDList = idlist; */
+								_self.classroom_dataIDList = idlist;
 							}							
 						}
 					}
 				});				
+				
+			},
+			
+			categoryPickerChange:function(e){
+				console.log('学校picker发送选择改变，携带值为', e.target.value+"===="+_self.category_dataList[e.target.value] + _self.category_dataIDList[e.target.value]);
+				var category_id = _self.category_dataIDList[e.target.value];
+				_self.category_id = category_id;
+				_self.category_index = e.target.value;
+				//debugger;
+				
+				//获取下属分类
+				let ret = _self.getUserInfo();
+				_self.sendRequest({
+				    url : _self.SelectCompanyTeacherplanCategorylistUrl,
+				    method : _self.Method,
+				    data : {
+						"guid": ret.guid,
+						"token":ret.token,
+						"com_id":_self.com_id,
+						"uid":_self.teacher_id,
+						"cat_id":_self.category_id,
+						"status":_self.status,
+						"t":Math.random()
+					},
+				    hideLoading : true,
+				    success: (res) => {	
+				    	if(res){
+							//debugger;
+							if(parseInt(res.status) == 3){
+								var data = res.weeklist;
+								for(let i = 0;i<data.length;i++){
+									let j = 0;
+									let d = data[i];
+									if(d.week_id*1 == 0) j = 6;else j = d.week_id*1 - 1;
+									_self.week_dataList[j].shower = true;
+									_self.week_dataList[j].utime = d.gtime;									
+									
+									let jj = _self.classroom_dataIDList.findIndex(i => i == d.classroom_id);									
+									_self.week_dataList[j].classroom_index = jj;									
+								}
+								
+							}							
+						}
+					}
+				});				
+				
+				
+				
 				
 			},
 			
@@ -737,13 +658,13 @@
 				
 				
 				_self.week_dataList = [
-					{"weektext":'一',"weekid":'1',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:01','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-					{"weektext":'二',"weekid":'2',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:02','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-					{"weektext":'三',"weekid":'3',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:03','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-					{"weektext":'四',"weekid":'4',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:04','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-					{"weektext":'五',"weekid":'5',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:05','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-					{"weektext":'六',"weekid":'6',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:06','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-					{"weektext":'日',"weekid":'0',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:07','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
+					{"weektext":'一',"weekid":'1',"shower":false,"utime":_self.ptime,"classroom_index":0},
+					{"weektext":'二',"weekid":'2',"shower":false,"utime":_self.ptime,"classroom_index":0},
+					{"weektext":'三',"weekid":'3',"shower":false,"utime":_self.ptime,"classroom_index":0},
+					{"weektext":'四',"weekid":'4',"shower":false,"utime":_self.ptime,"classroom_index":0},
+					{"weektext":'五',"weekid":'5',"shower":false,"utime":_self.ptime,"classroom_index":0},
+					{"weektext":'六',"weekid":'6',"shower":false,"utime":_self.ptime,"classroom_index":0},
+					{"weektext":'日',"weekid":'0',"shower":false,"utime":_self.ptime,"classroom_index":0},
 				];
 				
 				
@@ -783,157 +704,20 @@
 							_self.cStatuslist = statuslist;
 							if(_self.teacher_id == 0) _self.cindex = 0; 
 							
-					//	debugger;
+						//debugger;
 							
-						/*	if(_self.uid == 0){
+							
 								list = [];
 								idlist = [];
 								list.push("==请选择课程==");
 								idlist.push(0);
 								_self.category_dataList = list;
 								_self.category_dataIDList = idlist;
-								if(_self.uid == 0)	_self.category_index = 0; 
-							}
+								_self.category_index = 0; 
 							
-							list = [];
-							idlist = [];
-							list.push("==请选择学校==");
-							idlist.push(0);
-							if(_self.uid > 0){
-								var data = res.schoollist;
-								for (var i = 0; i < data.length; i++) {
-									var item = data[i];									
-									list.push(item.school_name);
-									idlist.push(item.school_id);
-								}
-							}							
-							_self.school_dataList = list;
-							_self.school_dataIDList = idlist;
-							_self.school_index = 0;	
 							
-							//填入空的年级下拉框
-							list = [];
-							idlist = [];
-							list.push("==请选择年级==");
-							idlist.push(0);
-							if(_self.uid > 0){
-								if(res.gradelist != null){
-									var gradelist = res.gradelist;
-									for (var i = 0; i < gradelist.length; i++) {
-										var item = gradelist[i];
-										list.push(item.grade_name);
-										idlist.push(item.grade_id);
-									}
-								}
-							}							
-							_self.grade_dataList = list;
-							_self.grade_dataIDList = idlist;
-							if(_self.uid == 0)	_self.grade_index = 0;
+												
 							
-							//填入空的班级下拉框
-							list = [];
-							idlist = [];
-							list.push("==请选择班级==");
-							idlist.push(0);
-							if(_self.uid > 0){
-								if(res.classlist != null){
-									var classlist = res.classlist;
-									for (var i = 0; i < classlist.length; i++) {
-										var item = classlist[i];
-										list.push(item.class_name);
-										idlist.push(item.class_id);
-									}
-								}
-							}							
-							_self.class_dataList = list;
-							_self.class_dataIDList = idlist;
-							if(_self.uid == 0)	_self.class_index = 0;
-							
-				    	    if(res){
-								var data = res.companyplaninfo; 
-				    			if(parseInt(res.status) == 3){
-									
-									_self.sex = data.planinfo[0].sex;
-									_self.uname = data.planinfo[0].uname;
-									_self.com_id = data.planinfo[0].com_id;
-									let j = _self.cIDList.findIndex(i => i == _self.com_id);
-									_self.cindex = j;
-									
-									//所在学校
-									_self.school_id = data.planinfo[0].school_id;
-									j = _self.school_dataIDList.findIndex(i => i == _self.school_id);
-									_self.school_index = j;
-									
-									//所在年级
-									_self.grade_id = data.planinfo[0].grade_id;
-									j = _self.grade_dataIDList.findIndex(i => i == _self.grade_id);
-									_self.grade_index = j;
-									
-									//所在班级
-									_self.class_id = data.planinfo[0].class_id;
-									j = _self.class_dataIDList.findIndex(i => i == _self.class_id);
-									_self.class_index = j;
-									
-									//所有教室
-									let classroom_data = res.classroomlist;
-									list = [];
-									list.push("=请选择教室==");
-									idlist = [];
-									idlist.push(0);
-									for (var i = 0; i < classroom_data.length; i++) {
-										var item = classroom_data[i];									
-										list.push(item.classroom_name);
-										idlist.push(item.classroom_id);
-									}
-									_self.classroom_dataList = list;
-									_self.classroom_dataIDList = idlist;
-									
-									//所有课程
-									var categorylist = res.categorylist;
-									list = [];
-									idlist = [];
-									list.push("==请选择课程==");
-									idlist.push(0);
-									for (var i = 0; i < categorylist.length; i++) {
-										var item = categorylist[i];
-										list.push(item.cat_name);
-										idlist.push(item.cat_id);
-									}								
-									_self.category_dataList = list;
-									_self.category_dataIDList = idlist;	
-									if(_self.uid == 0)	_self.category_index = 0; 
-									_self.category_id = data.planinfo[0].cat_id;
-									j = _self.category_dataIDList.findIndex(i => i == _self.cat_id);
-									_self.category_index = j;
-									
-									
-									//一周安排
-									//debugger;
-									var weeklist = data.list;
-									for(var i = 0; i< weeklist.length; i++){
-										let week_id = parseInt(weeklist[i].week_id) - 1;
-										if(week_id == -1) week_id = 6;
-										_self.week_dataList[week_id].utime = weeklist[i].utime;
-										_self.week_dataList[week_id].uaddress = weeklist[i].uaddress;
-										_self.week_dataList[week_id].givetime = weeklist[i].givetime;
-										_self.week_dataList[week_id].giveaddress = weeklist[i].giveaddress;
-										_self.week_dataList[week_id].backtime = weeklist[i].backtime;
-										_self.week_dataList[week_id].fan_status = weeklist[i].fan_status;
-										_self.week_dataList[week_id].shower = true;
-										
-										
-										_self.classroom_id = weeklist[i].classroom_id;
-										j = _self.classroom_dataIDList.findIndex(i => i == _self.classroom_id);
-										_self.classroom_index = j;
-										_self.week_dataList[week_id].classroom_index = j;
-										
-										_self.getWeekList();										
-									}
-									
-				    			}
-								
-				    	    }
-				        */	
 					}
 				    
 				},"1","");				

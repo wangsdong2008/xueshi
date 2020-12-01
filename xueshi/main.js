@@ -231,7 +231,7 @@ Vue.prototype.DelCompanyTeacherplanInfoUrl = Vue.prototype.CompanyUrl + "delcomp
 Vue.prototype.UpdateCompanyTeacherplanInfoUrl = Vue.prototype.CompanyUrl + "updatecompanyteacherplaninfo" //修改某个老师某门课的计划的时间
 Vue.prototype.GetCompanyTeacherOneplanInfoUrl = Vue.prototype.CompanyUrl + "getcompanyteacheroneplaninfo" //获取某个老师某门课的计划详情
 Vue.prototype.AddCompanyTeacherplanInfoUrl = Vue.prototype.CompanyUrl + "addcompanyteacherplaninfo" //添加某个老师某门课的计划
-
+Vue.prototype.SelectCompanyTeacherplanCategorylistUrl = Vue.prototype.CompanyUrl + "getcompanyteacherplacategorynweeklist" //查询某个老师某门课一周的计划
 
 
 Vue.prototype.GetTwtatisticsUrl = Vue.prototype.CompanyUrl + "gettwtatistics" //某学生的体温数据查询
