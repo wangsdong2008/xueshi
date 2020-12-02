@@ -62,6 +62,7 @@
 		height: 80upx;
 		width:auto;
 		padding-left:50upx;
+		text-indent: 40upx;
 	}
 	.content .title{
 			background:url(@/static/img/course.png) 10upx 22upx no-repeat;
@@ -418,7 +419,7 @@
 									var item2 = data[i];				
 									for(let j=0 ; j < idlist.length;j++){										
 										let v = idlist[j];
-										console.log(v+"===="+item2.uid);
+										//console.log(v+"===="+item2.uid);
 										if(v*1 == item2.uid*1){
 											flag = true;//重复的学生不显示在里面
 											break;

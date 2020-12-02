@@ -26,9 +26,7 @@
 					   
 					</uni-collapse>
 				</view>
-				<view class="btn-row">
-					<button type="primary" class="btn" @tap="memberadd">添加员工</button>
-				</view>
+				
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>

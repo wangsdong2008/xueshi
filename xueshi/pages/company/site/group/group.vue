@@ -10,7 +10,7 @@
 		<view class="content">	
 				<view class="icenter">					
 					<view class="studentlist">
-						<checkbox-group  @change="checkboxChange"> 
+						<checkbox-group> 
 						<ul v-for="(item,index) in dataList" :index="index" :key="item.com_id">
 							<li class="list-title list"> {{item.com_name}}
 								<ul v-for="(item2,index2) in item.grouplist" :index="index2" :key="item2.ug_id">
