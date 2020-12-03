@@ -15,7 +15,7 @@
 						<ul>
 							<li class="t2"  v-for="(item2,index2) in item.list" :index="index2" :key="item2.id" >
 								<view class="fz35">{{item2.gtime +'【'+item2.groupname+'】'}}</view>
-								<view class="statuslist fz30"><span @tap="teacherplanedit(index,index2,item2.teacher_id,item2.pid,item2.groupname,item2.gtime)">修改</span><span @tap="teacherplandel(item2.teacher_id,item2.pid)">删除</span></view>
+								<view class="statuslist fz30"><span @tap="teacherplanedit(index,index2,_self.teacher_id,item2.pid,item2.groupname,item2.gtime)">修改</span><span @tap="teacherplandel(_self.teacher_id,item2.pid)">删除</span></view>
 							</li>
 						</ul>
 					</uni-collapse-item>
@@ -127,10 +127,10 @@
 					       
 					    },"1","");
 			},
-			teacherplanedit(index,index2,id,pid,pname,gtime){				
-				//_self.navigateTo('teacherplanedit?id='+id+"&pid="+pid);
+			//teacherplanedit(index,index2,item2.teacher_id,item2.pid,item2.groupname,item2.gtime)
+			teacherplanedit(index,index2,id,pid,pname,gtime){
 				_self.pid = pid;
-				_self.teacher_id =id;
+				_self.teacher_id = id;
 				_self.title = pname;
 				_self.gtime = gtime;
 				_self.index = index;
