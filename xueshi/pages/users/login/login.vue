@@ -70,26 +70,29 @@
 				let ret = _self.getUserInfo();
 				if(!ret){
 					return false;
-				}else{
+				}else{					
 					var identity = ret.identity;
 					var url = "";
 					switch(identity){
 						case 1:{ //家长
 							url = "/pages/parents/parents/index";
-							uni.reLaunch({
-								url:url
-							})
 							break;
 						}
 						case 2:{ //机构
-							url = "/pages/company/company/index/index";
-							uni.reLaunch({
-								url:url
-							})
+							url = "/pages/company/company/index/index";							
 							break;
-						}
-						
+						}  
+						case 3:{//员工
+							url = "/pages/teacher/teacher/index/index";
+							break;
+						}						
 					}
+					
+					//跳转
+					uni.reLaunch({
+						url:url
+					})
+					
 				}
 			},
 			bindLogin() {
@@ -200,8 +203,8 @@
 				        					url = 'company/company/index/index';
 				        					break;
 				        				}
-				        				case 3:{
-				        					url = 'teacher/teacher/index';
+				        				case 3:{				        					
+				        					url = "teacher/teacher/index/index";				        						
 				        					break;
 				        				}
 				        			}

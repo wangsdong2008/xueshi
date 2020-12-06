@@ -62,6 +62,7 @@ Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
 Vue.prototype.GeneralUrl = Vue.prototype.WebUrl + "index/general/"; //通用地址
 Vue.prototype.ParentUrl = Vue.prototype.WebUrl + "index/parents/";   //家长地址
 Vue.prototype.CompanyUrl = Vue.prototype.WebUrl + "index/company/"; //公司地址
+Vue.prototype.CompanyTeacherUrl = Vue.prototype.WebUrl + "index/teacher/"; //公司地址
 
 
 //在线支付地址
@@ -131,6 +132,10 @@ Vue.prototype.GetChildStatisticsUrl = Vue.prototype.ParentUrl + "getchildstatist
 
 Vue.prototype.SaveRemindUrl = Vue.prototype.ParentUrl + "saveremindsiteup" //个性设置
 
+
+//老师相关
+//老师当天要接的孩子
+Vue.prototype.GetTeacherCurrentStudents = Vue.prototype.CompanyTeacherUrl + "getcurrentstudents" //要接送的学生
 
 //公司相关
 //当天要接的孩子

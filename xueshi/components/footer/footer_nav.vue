@@ -65,6 +65,20 @@
 					text: '设置',
 					imgNormal:'/static/img/familysite.png',
 					imgClick:'/static/img/familysiteHL.png'
+				},
+				//老师
+				{
+					nav: 'index',
+					url: 'teacher/teacher/index/index',
+					text: '首页',
+					imgNormal:'/static/img/home.png',
+					imgClick:'/static/img/homeHL.png'
+				},{
+					nav: 'familysite',
+					url: 'users/main/index/main',
+					text: '设置',
+					imgNormal:'/static/img/familysite.png',
+					imgClick:'/static/img/familysiteHL.png'
 				}
 				
 				
@@ -91,19 +105,31 @@
 				
 				//splice 删除数据要从大到小删除
 				switch(userlevel){
-					case 1:{//家长	
+					case 1:{//家长
+						_this.tabBar.splice(7, 1);
+						_this.tabBar.splice(6, 1);
 						_this.tabBar.splice(5, 1);
 						_this.tabBar.splice(4, 1);
 						_this.tabBar.splice(3, 1);
 						break;
 					}
 					case 2:{//机构
+						_this.tabBar.splice(7, 1);
+						_this.tabBar.splice(6, 1);
 						_this.tabBar.splice(2, 1);
 						_this.tabBar.splice(1, 1);
 						_this.tabBar.splice(0, 1);
 						break;
 					}
-					
+					case 3:{//老师
+						_this.tabBar.splice(5, 1);
+						_this.tabBar.splice(4, 1);
+						_this.tabBar.splice(3, 1);
+						_this.tabBar.splice(2, 1);
+						_this.tabBar.splice(1, 1);
+						_this.tabBar.splice(0, 1);
+						break;
+					}
 				}
 			}
 		}

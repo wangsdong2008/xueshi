@@ -424,9 +424,9 @@
 								confirmText:'返回前页',
 								success: function (res) {
 									if (res.confirm) {
-										_self.navigateTo('teacherdetail?id='+_self.teacher_id);
+										_self.navigateTo('teacherplanadd?teacher_id='+_self.teacher_id)										
 									} else if (res.cancel) {
-										_self.navigateTo('teacherplanadd?teacher_id='+_self.teacher_id);
+										_self.navigateTo('teacherdetail?id='+_self.teacher_id);
 									}
 								}
 							});
@@ -612,11 +612,11 @@
 												let j = 0;
 												let d = data[i];
 												if(d.week_id*1 == 0) j = 6;else j = d.week_id*1 - 1;
-												_self.week_dataList[j].shower = true;
-												_self.week_dataList[j].utime = d.gtime;									
+																				
 												
 												let jj = _self.classroom_dataIDList.findIndex(i => i == d.classroom_id);									
-												_self.week_dataList[j].classroom_index = jj;									
+												_self.classroom_index = jj;	
+												
 											}
 											
 										}							

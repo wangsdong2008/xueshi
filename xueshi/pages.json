@@ -22,6 +22,14 @@
 				"navigationBarTitleText": "登录"
 			}
 		},
+		//员工开始
+		{//员工首页
+			"path": "pages/teacher/teacher/index/index",
+			"style": {				
+				"navigationBarTitleText": "首页"
+			}
+		},
+		
 		//公司开始
 		{//公司首页
 			"path": "pages/company/company/index/index",

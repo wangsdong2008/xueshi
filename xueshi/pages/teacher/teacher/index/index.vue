@@ -1,19 +1,14 @@
 <template>
 	<view class="content">
 		<view>
-			<view class="icenter">
-				<view class="gglist" v-if="gonggaonum>0">
-					<ul>
-						<li class="ggitem fz25" v-for="(item3,ggindex) in gonggaoList" :index="ggindex" :key="item3.article_id" @tap="showgg(item3.guid)">{{item3.article_title}}</li>
-					</ul>
-				</view>
+			<view class="icenter">				
 				<view class="title">今日上课 </view>
 				<view class="studentlist">
 					<ul v-for="(item,index) in dataList" :index="index" :key="item.com_id">
 						<li v-if="parseInt(item.category_num) > 0" class="list-title list">
 						{{item.com_name}}
-							<ul v-if="parseInt(item2.students_num) > 0" v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.cat_id">							
-								<li class="list-title2 list">{{item2.cat_name}}
+							<ul v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.groupid">							
+								<li class="list-title2 list">{{item2.groupname}}
 									<ul>
 										<li v-for="(item3,index3) in item2.studentslist" :index="index3" :key="item3.uid" :class="{
 											'studentsclass':true,
@@ -53,50 +48,6 @@
 				</uni-popup>
 				
 			</view>		
-		</view>
-		<view>
-			<view class="icenter">
-				<view class="title">日常管理</view>
-				<view class="piclist">
-					<!-- 一般用法 -->
-					<uni-grid :column="3" :show-border="false"  :square="false">
-						<uni-grid-item>	
-							<image src="/static/img/usign.png" @tap="bindsksign"></image>
-							<text class="text" @tap="bindsksign">上课签到</text>
-						</uni-grid-item>				    
-						<uni-grid-item>
-							<image src="/static/img/fsign.png" @tap="bindcfsign"></image>
-							<text class="text" @tap="bindcfsign">吃饭签到</text>
-						</uni-grid-item>					
-						<uni-grid-item>
-							<image src="/static/img/esign.png" mode="2" @tap="bindygsign"></image>
-							<text class="text" @tap="bindygsign">员工签到</text>
-						</uni-grid-item>					
-					</uni-grid>
-				</view>
-			</view>
-		</view>
-		<view>
-			<view class="icenter">
-				<view class="title">系统管理</view>
-				<view class="systempiclist">
-					<!-- 一般用法 -->
-					<uni-grid :column="num" :show-border="false"  :square="false">
-						<uni-grid-item>
-							<image src="/static/img/stsearch.png" @tap="bindstudentssearch"></image>
-						</uni-grid-item>				    
-						<uni-grid-item>
-							<image src="/static/img/tj_index.png" @tap="bindstatistics"></image>
-						</uni-grid-item>					
-						<uni-grid-item v-if="is_brithday === 1">
-							<image :src="'/static/img/brithday'+isBrithday+'.png'" @tap="bindbrithday" ></image>
-						</uni-grid-item>
-						<uni-grid-item>
-							<image src="/static/img/system.png" @tap="bindsystem" ></image>
-						</uni-grid-item>
-					</uni-grid>
-				</view>
-			</view>
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
@@ -150,13 +101,13 @@
 		},
 		onLoad:function() {	
 			_self = this;
-			_self.checkLogin(2);
+			_self.checkLogin(3);
 		},
 		onReady(){
 			_self.show();
 		},
 		methods: {
-			bindsign(com_id,cat_id,uid,index,index2,index3){
+			/* bindsign(com_id,cat_id,uid,index,index2,index3){
 				let selectid = com_id+'-'+cat_id+'-'+uid;
 				
 				let that = _self;
@@ -203,9 +154,37 @@
 					}
 				});					
 			},
-			showgg:function(guid){
-				_self.navigateTo('../../gonggao/showgonggao?id='+guid);
+			bindtw(sname,sid,cat_id,comid,index,index2,index3){
+				_self.sid = sid;
+				_self.cat_id = cat_id;
+				_self.com_id = comid;
+				_self.index_1 = index;
+				_self.index_2 = index2;
+				_self.index_3 = index3;
+				_self.title2 = '记录【'+sname+'】的体温',
+				_self.$refs.dialogInput.open();
 			},
+			bindsystem(){
+				_self.navigateTo('/pages/users/main/index/main');
+			},
+			bindsksign(){//上课签到
+				_self.navigateTo('../sign/sksign');
+			},
+			bindcfsign(){ //吃饭签到
+				_self.navigateTo('../sign/cfsign');
+			},
+			bindygsign(){ //员工签到
+				_self.navigateTo('../sign/ygsign');
+			},
+			bindstudentssearch(){ //学生查询
+				_self.navigateTo('../search/studentssearch');
+			},
+			bindstatistics(){ //统计
+				_self.navigateTo('../statistics/statistics');
+			},
+			bindbrithday(){ //生日提醒
+				_self.navigateTo('../brithday/birthday')
+			}, */
 			/**
 			 * popup 状态发生变化触发
 			 * @param {Object} e
@@ -256,79 +235,6 @@
 				
 				_self.$refs.dialogInput2.open();
 			},
-			/**
-			 * 输入对话框的确定事件
-			 */
-			dialogInputConfirm(done, val) {
-				console.log(val);
-				if(val.trim() == ''){
-					return false;
-				}
-				let ret = uni.getStorageSync(_self.USERS_KEY);
-				if(!ret){
-					return false;
-				}
-				const data = {
-				    guid: ret.guid,
-				    token: ret.token,
-					"comid":_self.com_id,
-					"temperature":val,
-					"sid":_self.sid,
-					"catid":_self.cat_id,
-					"t":Math.random()
-				};
-				_self.sendRequest({
-					url : _self.SetStudentsTemperatureUrl,
-					method : _self.Method,
-					data : data,
-					hideLoading : false,
-					success:function (res) {
-						if(res){
-							var data = res.list;
-							if(parseInt(res.status) == 3){
-								_self.dataList[_self.index_1]['categorylist'][_self.index_2]['studentslist'][_self.index_3]['tw_time'] = 0;
-								_self.index_1 = -1;
-								_self.index_2 = -1;
-								_self.index_3 = -1;
-								done();
-							}
-						}
-					}
-				},"1","");
-				
-				
-			},
-			bindtw(sname,sid,cat_id,comid,index,index2,index3){
-				_self.sid = sid;
-				_self.cat_id = cat_id;
-				_self.com_id = comid;
-				_self.index_1 = index;
-				_self.index_2 = index2;
-				_self.index_3 = index3;
-				_self.title2 = '记录【'+sname+'】的体温',
-				_self.$refs.dialogInput.open();
-			},
-			bindsystem(){
-				_self.navigateTo('/pages/users/main/index/main');
-			},
-			bindsksign(){//上课签到
-				_self.navigateTo('../sign/sksign');
-			},
-			bindcfsign(){ //吃饭签到
-				_self.navigateTo('../sign/cfsign');
-			},
-			bindygsign(){ //员工签到
-				_self.navigateTo('../sign/ygsign');
-			},
-			bindstudentssearch(){ //学生查询
-				_self.navigateTo('../search/studentssearch');
-			},
-			bindstatistics(){ //统计
-				_self.navigateTo('../statistics/statistics');
-			},
-			bindbrithday(){ //生日提醒
-				_self.navigateTo('../brithday/birthday')
-			},
 			show(){
 				let ret = uni.getStorageSync(_self.USERS_KEY);				
 				if(!ret){
@@ -362,14 +268,13 @@
 					        }
 					    }
 					});
-				}else{				
+				}else{
 					_self.sendRequest({
-						url : _self.GetCurrentStudents,
+						url : _self.GetTeacherCurrentStudents,
 						method : _self.Method,
 						data : {
 							"guid": data.guid,
 							"token":data.token,
-							"catid":1,
 							"t":Math.random()
 						},
 						hideLoading : true,
@@ -385,19 +290,8 @@
 												list.push(item);
 											}
 											_self.dataList = list;
-										}																			
-										_self.isBrithday = res.isBrithday; 
-										//_self.num = _self.num - _self.isBrithday;
+										}
 									}
-									//公告内容
-									let list = [];
-									data = res.gonggaolist;
-									_self.gonggaonum = res.gonggaonum;
-									for (var i = 0; i < data.length; i++) {
-										var item = data[i];
-										list.push(item);								
-									}								
-									_self.gonggaoList = list;
 								}
 							}
 						}
