@@ -8,7 +8,7 @@
 						<li v-if="parseInt(item.category_num) > 0" class="list-title list">
 						{{item.com_name}}
 							<ul v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.groupid">							
-								<li class="list-title2 list">{{item2.groupname}}
+								<li class="list-title2 list">{{item2.groupname +'【'+ item2.sign_time +'】'}}
 									<ul>
 										<li v-for="(item3,index3) in item2.studentslist" :index="index3" :key="item3.uid" :class="{
 											'studentsclass':true,
@@ -27,9 +27,8 @@
 												<span v-if="item3.tw_time > 2" @tap="bindtw(item3.uname,item3.uid,item2.cat_id,item.com_id,index,index2,index3)">温</span>
 											</view>	
 											<view class="times fz30" v-if="(is_sign == 1) && (item3.sign_status == 0)">
-												<span @tap="bindsign(item3.com_id,item3.cat_id,item3.uid,index,index2,index3)">签</span>
+												<span @tap="bindsign(item3.com_id,item3.cat_id,item3.student_id,index,index2,index3)">签</span>
 											</view>
-											
 										</li>
 									</ul>
 									
@@ -107,9 +106,8 @@
 			_self.show();
 		},
 		methods: {
-			/* bindsign(com_id,cat_id,uid,index,index2,index3){
-				let selectid = com_id+'-'+cat_id+'-'+uid;
-				
+			 bindsign(com_id,cat_id,uid,index,index2,index3){
+				let selectid = com_id+'-'+cat_id+'-'+uid;				
 				let that = _self;
 				let ret = that.getUserInfo();
 				const data = {
@@ -154,7 +152,7 @@
 					}
 				});					
 			},
-			bindtw(sname,sid,cat_id,comid,index,index2,index3){
+			/*bindtw(sname,sid,cat_id,comid,index,index2,index3){
 				_self.sid = sid;
 				_self.cat_id = cat_id;
 				_self.com_id = comid;
