@@ -35,21 +35,21 @@
 					var url = "";
 					switch(identity){
 						case 1:{ //家长
-							url = "../parents/parents/index";
-							uni.reLaunch({
-								url:url
-							})
+							url = "../parents/parents/index";							
 							break;
 						}
 						case 2:{ //机构
 							url = "../company/company/index/index";
-							uni.reLaunch({
-								url:url
-							})
 							break;
 						}
-						
+						case 3:{				        					
+				        	url = "teacher/teacher/index/index";				        						
+				        	break;
+				        }
 					}
+					uni.reLaunch({
+						url:url
+					});
 				}
 				
 			}
