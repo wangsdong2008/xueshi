@@ -184,7 +184,7 @@
 				_self.title = "您确定要【" + statusname + "】\r\n"+_self.studentsname+'' + currday + '\r\n在'+_self.category_name+_self.title2+"签到吗？"; */
 				
 				
-				let currday = _self.d+'-' + ("00"+e.date).slice(-2);
+				let currday = _self.d+'-' + ("00"+e.date).slice(-2);				
 				_self.currentday = currday;
 				
 				uni.showActionSheet({
@@ -216,7 +216,8 @@
 				
 			},
 			changeMonth(e){
-				_self.d = e.year + "-" + ("0"+e.month).trimRight(2);
+				let currmonth = e.year + "-" + ("0"+e.month).slice(-2);
+				_self.d = currmonth;				
 				_self.show();
 			},
 			show(){
