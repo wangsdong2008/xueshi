@@ -117,34 +117,48 @@
 				        hideLoading : true,
 				        success: (res) => {
 							if(res){
-									if(parseInt(res.status) == 3){
-										switch(currstatus){
-											case 1:{ //签到
-												let item = {};
-												item['date'] = _self.currentday;
-												item['status'] = 1;
-												_self.selected.push(item);
-												break;
-											}
-											case 2:{ //请假
-												let item = {};
-												item['date'] = _self.currentday;
-												item['status'] = 2;
-												_self.selected.push(item);											
-												break;
-											}
-											case 0:{ //删除
-												let currday = _self.currentday;
-												for(let i = 0; i<_self.selected.length; i++ ){
-												let t = _self.selected[i].date;
-												if(_self.selected[i].date == currday){
-													_self.selected.splice(i, 1);
-													break;
-												}
-												break;
-											}
+								if(parseInt(res.status) == 3){
+									/*去掉已有的样式*/
+									let currday = _self.currentday;
+									for(let i = 0; i<_self.selected.length; i++ ){
+										let t = _self.selected[i].date;
+										if(_self.selected[i].date == currday)
+										{
+											_self.selected.splice(i, 1);
+											break;
 										}
-									}								
+									}
+									
+									
+									switch(currstatus){
+										case 1:{ //签到
+											let item = {};
+											item['date'] = _self.currentday;
+											item['status'] = 1;
+											_self.selected.push(item);
+											break;
+										}
+										case 2:{ //请假
+											
+											let item = {};
+											item['date'] = _self.currentday;
+											item['status'] = 2;
+											_self.selected.push(item);
+											break;
+										}
+										case 0:{ //删除
+											/* let currday = _self.currentday;
+											for(let i = 0; i<_self.selected.length; i++ ){
+													let t = _self.selected[i].date;
+													if(_self.selected[i].date == currday)
+													{
+														_self.selected.splice(i, 1);
+														break;
+													} 
+											}*/
+											break;
+									    }
+								    }								
 								}			    	
 							}
 				        }				        
