@@ -27,7 +27,7 @@
 			} */
 			show(){
 				//debugger;
-				let ret = _self.getUserInfo();
+				let ret = _self.getUserInfo();				
 				if(!ret){
 					return false;
 				}else{					
@@ -43,10 +43,11 @@
 							break;
 						}
 						case 3:{				        					
-				        	url = "teacher/teacher/index/index";				        						
+				        	url = "../teacher/teacher/index/index";				        						
 				        	break;
 				        }
 					}
+					console.log(url);
 					uni.reLaunch({
 						url:url
 					});
