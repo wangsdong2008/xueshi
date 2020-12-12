@@ -18,7 +18,7 @@
 							'cname':true,
 							'grey':(item.is_show == 0)
 						}">{{item.child_name}}</view>
-						<view class="statuslist fz35"><span @tap="showchild(item.child_id)">修改</span><span @tap="delchild(item.child_id)">删除</span></view>
+						<view class="statuslist fz35"><view class="editor" @tap="showchild(item.child_id)"></view><view class="delete" @tap="delchild(item.child_id)"></view></view>
 						<view class="clear"></view>
 					</li>
 				</ul>

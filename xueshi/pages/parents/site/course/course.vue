@@ -18,7 +18,12 @@
 						<ul class="detail">
 							<li class="organname fz35">{{item.organname}}</li>
 							<li class="organaddress fz35">地址：{{item.c_address}}</li>
-							<li class="organoprate fz35"><span @tap="showorgan(item.c_id)">修改</span><span @tap="delorgan(item.c_id)">删除</span></li>
+							<li class="organoprate fz35">
+								<view class="modify">
+									<view class="editor" @tap="showorgan(item.c_id)"></view>
+									<view class="delete" @tap="delorgan(item.c_id)"></view>
+								</view>
+							</li>
 						</ul>
 					</view>
 					</uni-collapse-item>
@@ -204,11 +209,22 @@
 	.organoprate{
 		text-align: right;
 		margin-right: 0upx;
+		position: relative;
 	}
 	.organoprate span{
 		margin-right: 20upx;
 	}
 	
+	.modify{
+		width: 180upx;
+	}
+	
+	.modify .editor,.modify .delete{
+		margin-top:10upx;
+		width:60upx;
+		height: 60upx;
+		float: left;
+	}
 	
 	.content .title{		
 		background:url(/static/img/category.png) 10upx 25upx no-repeat;

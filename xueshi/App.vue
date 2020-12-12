@@ -66,6 +66,7 @@
 		font-size: 35upx;
 		border-radius: 50upx;
 		margin-bottom: 30upx;
+		margin-top: 20upx;
 	}
 	
 	.footer{
@@ -205,4 +206,21 @@
 		-webkit-background-size: 40upx 40upx;
 		background-size: 40upx 40upx;		 
 	}
+	.editor,.delete{
+		background-size:35upx 35upx ;
+		width:50upx;
+		height:50upx;
+		float: left;
+		margin-top: 30upx;
+		margin-right: 20upx;
+	}
+	.editor{
+		background:url(@/static/img/editor.png) 10upx 0upx no-repeat;
+		-webkit-background-size:35upx 35upx;
+	}
+	.delete{
+		background:url(@/static/img/delete.png) 10upx 0upx no-repeat;
+		-webkit-background-size:30upx 30upx;
+	}	
+
 </style>

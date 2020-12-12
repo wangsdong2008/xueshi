@@ -13,7 +13,7 @@
 					<li :class="{
 						'lists':true,
 						'fz35':true,						
-					}" v-for="(item,index) in dataList" :key="index">{{item.addtime}} {{item.payid}} 续费 {{item.order_month}}个月</li>
+					}" v-for="(item,index) in dataList" :key="index">{{item.addtime}} {{item.payid}} 续费 {{item.order_month}}个月 {{item.pay_status}}</li>
 				</ul>
 				
 			</view>

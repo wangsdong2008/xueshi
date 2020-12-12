@@ -5,6 +5,9 @@
 			<view class="title">
 				课程编辑
 			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
 			<view>
 				<view class="register_account_input">				
 					<m-input class="m-input fz30" type="text" clearable focus v-model="c_name" placeholder="填写课程名"></m-input>
@@ -69,7 +72,7 @@
 		data(){
 			return{
 				c_id:0,
-				c_order:'',		
+				c_order:'1',		
 				headermsg:'',
 				c_name:'',
 				organname:'',
@@ -230,10 +233,7 @@
     }
 </script>
 
-<style>
-	.form view{
-		display: inline;
-	}
+<style>	
 	.content .title{
 		background:url(/static/img/category.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
@@ -281,15 +281,6 @@
 		padding: 0upx;
 	}
 	
-
-	.register_account_input{
-		padding-top: 20upx;
-		padding-bottom: 10px;
-		border-bottom: 1px solid #eeeeee;
-		line-height: 60upx;
-		height: 60upx;
-	}
-	
 	.register-input{		
 		width:90%;
 		line-height: 60upx;
@@ -309,6 +300,19 @@
 		width:53%;
 		float: left;
 		/* border:1px solid #ff0000; */
+	}
+	.register_account_input{
+		padding-top: 20upx;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #eeeeee;
+		line-height: 60upx;
+		height: 60upx;
+	}
+	.form{
+		border: 0;
+	}
+	.form view{
+		display: inline;		
 	}
 
 	

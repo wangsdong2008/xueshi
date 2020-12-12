@@ -76,7 +76,7 @@
 		data(){
 			return{
 				child_id:0,
-				child_order:'1',		
+				child_order:'',		
 				headermsg:'',
 				child_name:'',
 				btntxt:'',

@@ -37,7 +37,7 @@
 									}">
 									<li :show-arrow="false" v-for="(item3,index3) in item2.list" :index="index3" :key="item3.p_id">
 										<view class="courselistname">{{item3.c_name + '（'+item3.p_time +'）'}}</view>
-										<view class="modi" @click.stop="delplan(item3.p_id,index,index2,index3);doSomething($event)" >删除</view>
+										<view class="modi delete" @click.stop="delplan(item3.p_id,index,index2,index3);doSomething($event)"></view>
 										<view class="clear"></view>
 									</li>
 								</ul>
@@ -234,6 +234,7 @@
 		margin: 0;
 		padding-left: 40upx;
 		background-color: #fff;
+		width:85%;
 	}
 	.courselistname{
 		float: left;
@@ -241,8 +242,6 @@
 	}
 	.modi{
 		float: right;
-		margin-right: 20upx;
-		font-size: 30upx;
 	}
 	.clist{
 		background-color: #EAEAEA;
