@@ -131,11 +131,22 @@
 	    color:#fff;
 	    font-family:'微软雅黑';
 	    font-size:60upx;
-	    padding-top:150upx;
+	    padding-top:120upx;
 	}	
 	.login_title_txt span{
 	    font-size: 48upx;
-	}	
+	}
+	.logo{
+		width:320upx;
+		height: 320upx;
+		position:absolute;
+		bottom: 25upx;
+		right:40upx;
+		/* animation:mymove 2s infinite;
+		-webkit-animation:mymove 2s infinite; */ /*Safari and Chrome*/
+		animation-iteration-count:1;
+		-webkit-animation-iteration-count:1;
+	}
 	
 	.fb{
 		font-weight: bold;

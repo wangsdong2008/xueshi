@@ -51,7 +51,7 @@
 							</label>
 							<view class="clear"></view>
 						</li>
-						<li v-if="_self.user_identity == 1" :class="{
+						<li v-if="(_self.user_identity == 1 )||(_self.user_identity == 3)" :class="{
 												'li40':true,
 												'plists':true,
 												'Discount':(payid == 3)

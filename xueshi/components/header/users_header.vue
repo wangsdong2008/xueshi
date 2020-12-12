@@ -1,6 +1,6 @@
 <template>
 	<view class="header-title">		
-		<view class="login_center login_title_txt">{{name}}<br /><span>{{en_name}}</span></view>
+		<view class="login_center login_title_txt">{{name}}<br /></view>
 		<view class="logo" :style="'background:url('+logo+') 0upx 0upx no-repeat;-webkit-background-size: 320upx 320upx;background-size: 320upx 320upx;'"> </view>
 	</view>	
 </template>
@@ -51,22 +51,7 @@
 	.login_title_txt{
 		z-index: 100;
 		position: relative;
-	}
-	.logo{
-		/* background:url(../../static/img/logo.png) 0upx 0upx no-repeat; 
-		-webkit-background-size: 320upx 320upx;
-		background-size: 320upx 320upx;*/
-		width:320upx;
-		height: 320upx;
-		position:absolute;
-		top:90upx;
-		left:400upx;
-		/* animation:mymove 2s infinite;
-		-webkit-animation:mymove 2s infinite; */ /*Safari and Chrome*/
-		animation-iteration-count:1;
-		-webkit-animation-iteration-count:1;
-		
-	}
+	}	
 	@keyframes mymove
 	{
 		from {left:0upx;}

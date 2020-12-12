@@ -10,7 +10,7 @@
 		<view class="content">
 		    <view>
 				<view class="register_account_input">				
-					<m-input class="m-input" type="text" clearable focus v-model="child_name" placeholder="填写孩子名"></m-input>
+					<m-input class="m-input" type="text" clearable focus v-model="child_name" placeholder="填写孩子昵称"></m-input>
 				</view>
 				<view class="register_account_input">				
 					<radio-group @change="sexChange">
@@ -76,7 +76,7 @@
 		data(){
 			return{
 				child_id:0,
-				child_order:'',		
+				child_order:'1',		
 				headermsg:'',
 				child_name:'',
 				btntxt:'',

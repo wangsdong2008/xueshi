@@ -1,6 +1,6 @@
 <template>
 	<view class="header-title">
-	    <view class="login_center login_title_txt">{{name}}<br /><span>{{en_name}}</span></view>
+	    <view class="login_center login_title_txt">{{name}}<br /></view>
 		<view class="logo" :style="'background:url('+logo+') 0upx 0upx no-repeat;-webkit-background-size: 320upx 320upx;background-size: 320upx 320upx;'"></view>
 	</view>	
 </template>
