@@ -1,55 +1,58 @@
 <template>
-	<div class="main_content">
+	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<div class="content">
-			<div class="title">
+		<view class="content">
+			<view class="title">
 				请假管理
-			</div>
-			<div>				
-				<div class="register_account_input clear">
-					<div class="uni-list-cell-left fz30">选择孩子：</div>
-					<div class="searchinput input-txt">
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+			<view>				
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">选择孩子：</view>
+					<view class="searchinput input-txt">
 						<picker focus @change="ChildPickerChange($event)" :value="child_index" :range="child_dataList">
-							<div class="uni-input fz30">{{child_dataList[child_index]}}</div>
+							<view class="uni-input fz30">{{child_dataList[child_index]}}</view>
 						</picker>
-					</div>
-				</div>
+					</view>
+				</view>
 				
-				<div class="register_account_input clear">
-					<div class="uni-list-cell-left fz30">选择日期：</div>
-					<div class="searchinput input-txt">
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">选择日期：</view>
+					<view class="searchinput input-txt">
 						<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
-							<div class="uni-input fz30">{{date}}</div>
+							<view class="uni-input fz30">{{date}}</view>
 						</picker>
-					</div>
-				</div>
+					</view>
+				</view>
 				
-				<div class="register_account_input clear">
-					<div class="uni-list-cell-left fz30">选择课程：</div>
-					<div class="searchinput input-txt">
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">选择课程：</view>
+					<view class="searchinput input-txt">
 						<picker @change="CoursePickerChange($event)" :value="course_index" :range="course_dataList">
-							<div class="uni-input fz30">{{course_dataList[course_index]}}</div>
+							<view class="uni-input fz30">{{course_dataList[course_index]}}</view>
 						</picker>
-					</div>
-				</div>
+					</view>
+				</view>
 				
-				<div class="register_account_input clear">
-					<div class="uni-list-cell-left fz30">请假原因：</div>
-					<div class="searchinput input-txt">
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">请假原因：</view>
+					<view class="searchinput input-txt">
 						<m-input class="m-textarea" type="text" clearable focus v-model="reason" placeholder="请假原因"></m-input>
-					</div>
-				</div>
+					</view>
+				</view>
 				
 				
-				<div class="btn-row">
+				<view class="btn-row">
 					<button type="primary" class="primary btn" @tap="bindmodify">{{btntxt}}</button>
-				</div>
-			</div>
-		</div>
-		<div class="footer">
+				</view>
+			</view>
+		</view>
+		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 <script>
 	import service from '@/service.js';
@@ -367,7 +370,7 @@
 		
 	
 		
-		.register_account_input div{
+		.register_account_input view{
 			float: left;
 		}
 		
@@ -387,7 +390,7 @@
 			width:25%;
 		}
 		
-		picker div{
+		picker view{
 			border: 1px solid #ccc;
 			width:450upx;
 			text-align: center;

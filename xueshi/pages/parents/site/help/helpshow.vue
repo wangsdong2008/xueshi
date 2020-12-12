@@ -1,23 +1,26 @@
 <template>
-	<div class="main_content">
+	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<div class="content">
-			<div class="title">
+		<view class="content">
+			<view class="title">
 				帮助文档
-			</div>
-			<div>		
-				<div class="main-body write lists">
-					<div class="titles ll fz30">{{article_title}}</div>
-					<div class="hcontents ll fz30" v-html="article_content"></div>
-					<div class="times ll fz30">{{article_time}}</div>
-				</div>
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+			<view>		
+				<view class="main-body write lists">
+					<view class="titles ll fz30">{{article_title}}</view>
+					<view class="hcontents ll fz30" v-html="article_content"></view>
+					<view class="times ll fz30">{{article_time}}</view>
+				</view>
 				
-			</div>
-		</div>		
-		<div class="footer">
+			</view>
+		</view>		
+		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 
 <script>

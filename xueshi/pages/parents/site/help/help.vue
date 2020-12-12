@@ -1,25 +1,28 @@
 <template>
-	<div class="main_content">
+	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>		
-		<div class="content">
-			<div class="title">
+		<view class="content">
+			<view class="title">
 				帮助文档
-			</div>
-			<div>	
+			</view>
+		</view>
+		<view class="line"></view>
+		<view class="content">
+			<view>	
 				<ul>
 					<li class="ulist" v-for="(item,index) in dataList" :title="item.article_title"  @tap="bindclick(item.guid)" :index="index" :key="item.help_id">{{item.article_title}}</li>
 				</ul>
-				<div>
+				<view>
 					<uni-pagination class="pagination" @change="handlePage" :show-icon="true" :total="total" :current="page" :pageSize="pagesize" />
-				</div>
+				</view>
 				
-			</div>
+			</view>
 			
-		</div>
-		<div class="footer">
+		</view>
+		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
-		</div>
-	</div>
+		</view>
+	</view>
 </template>
 
 <script>

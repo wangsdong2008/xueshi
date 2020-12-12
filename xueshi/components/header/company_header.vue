@@ -12,18 +12,7 @@
 		z-index: 100;
 		position: relative;
 	}
-	.logo{
-		width:320upx;
-		height: 320upx;
-		position:absolute;
-		top:90upx;
-		left:400upx;
-		/* animation:mymove 2s infinite;
-		-webkit-animation:mymove 2s infinite; */ /*Safari and Chrome*/
-		animation-iteration-count:1;
-		-webkit-animation-iteration-count:1;
-		
-	}
+	
 	@keyframes mymove
 	{
 		from {left:0upx;}
