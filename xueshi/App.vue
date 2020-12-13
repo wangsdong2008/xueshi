@@ -211,16 +211,38 @@
 		width:50upx;
 		height:50upx;
 		float: left;
-		margin-top: 30upx;
-		margin-right: 20upx;
+		margin-top: 20upx;
+		margin-right: 10upx;
 	}
 	.editor{
 		background:url(@/static/img/editor.png) 10upx 0upx no-repeat;
-		-webkit-background-size:35upx 35upx;
+		-webkit-background-size:30upx 30upx;
 	}
 	.delete{
 		background:url(@/static/img/delete.png) 10upx 0upx no-repeat;
 		-webkit-background-size:30upx 30upx;
 	}	
+	//列表样式
+	ul.css_detail li{
+		line-height: 90upx;
+		margin-bottom: 20upx;
+		
+	}
+	//名称样式
+	.css_tname{
+		padding-left: 60upx;
+	}
+	//公司图标
+	.css_company{
+		background:url(@/static/img/company.png) 0upx 0upx no-repeat;
+		-webkit-background-size:40upx 40upx ;
+		background-size:40upx 40upx;
+	}
+	//课程图标
+	.css_course{
+		background:url(@/static/img/course.png) 0upx 20upx no-repeat;
+		-webkit-background-size:40upx 40upx ;
+		background-size:40upx 40upx;
+	}
 
 </style>

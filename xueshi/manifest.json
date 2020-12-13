@@ -18,7 +18,8 @@
         },
         /* 模块配置 */
         "modules" : {
-            "Payment" : {}
+            "Payment" : {},
+            "Maps" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -35,7 +36,12 @@
                     "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.INTERNET\"/>",
-                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>"
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ]
             },
             /* ios打包配置 */
@@ -45,9 +51,15 @@
                 "ad" : {},
                 "payment" : {
                     "alipay" : {
-                        "__platform__" : [ "android" ]
+                        "__platform__" : [ "ios", "android" ]
                     },
                     "appleiap" : {}
+                },
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "28bd588d30533771ffe7f6e6325d3f10",
+                        "appkey_android" : "28bd588d30533771ffe7f6e6325d3f10"
+                    }
                 }
             },
             "icons" : {

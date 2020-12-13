@@ -9,10 +9,12 @@
 		</view>
 		<view class="line"></view>
 		<view class="content">
-			<ul>
+			<ul class="css_detail">
 				<li class="t2" v-for="(item,index) in dataList" :index="index" :key="item.com_id" >
-					<view>{{item.com_name}}</view>
-					<view class="statuslist"><span @tap="companyedit(item.com_id)">修改</span><span @tap="companydel(item.com_id)">删除</span></view>
+					<view class="css_company css_tname">{{item.com_name}}</view>
+					<view class="statuslist">
+						<view class="editor" @tap="companyedit(item.com_id)"></view><view class="delete" @tap="companydel(item.com_id)"></view>
+					</view>
 				</li>
 			</ul>			
 			<view class="btn-row">
@@ -147,7 +149,7 @@
 	
 </script>
 
-<style>
+<style>		
 	.t2{
 		line-height: 75upx;
 		border-bottom:1upx solid #ccc;

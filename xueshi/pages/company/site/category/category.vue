@@ -17,10 +17,12 @@
 													 'xblist':true
 													}">
 									<view :class="{
+										'css_course':true,
+										'css_tname':true,
 										'sname':true,
 										'shows':(item2.is_show == 0)
 										}">{{item2.cat_name}}</view>
-									<view class="statuslist fz30"><span @tap="categoryedit(item2.cat_id)">修改</span><span @tap="categorydel(item2.cat_id)">删除</span></view>
+									<view class="statuslist fz30"><view class="editor" @tap="categoryedit(item2.cat_id)"></view><view class="delete" @tap="categorydel(item2.cat_id)"></view></view>
 									<view class="clear"></view>
 								</li>
 							</ul>	
