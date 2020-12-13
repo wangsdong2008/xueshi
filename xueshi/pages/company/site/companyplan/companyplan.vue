@@ -15,7 +15,7 @@
 						<ul>
 							<li class="t2"  v-for="(item2,index2) in item.planlist" :index="index2" :key="item2.id" >
 								<view class="fz35">{{'【'+item2.cat_name+'】'+item2.uname}}</view>
-								<view class="statuslist fz30"><span @tap="companyplanedit(item2.uid,item2.cat_id)">修改</span><span @tap="companyplandel(item2.uid,item2.cat_id)">删除</span></view>
+								<view class="statuslist fz30"><view class="editor" @tap="companyplanedit(item2.uid,item2.cat_id)"></view><view class="delete" @tap="companyplandel(item2.uid,item2.cat_id)"></view></view>
 							</li>
 						</ul>
 					</uni-collapse-item>

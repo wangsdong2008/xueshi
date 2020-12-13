@@ -62,7 +62,7 @@
 		height: 80upx;
 		width:auto;
 		padding-left:50upx;
-		text-indent: 40upx;
+		/* text-indent: 40upx; */
 	}
 	.content .title{
 			background:url(@/static/img/course.png) 10upx 22upx no-repeat;

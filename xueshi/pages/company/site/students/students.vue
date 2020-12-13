@@ -30,7 +30,7 @@
 								'sname':true,
 								'shows':(item.is_show == 0)
 								}">{{item.uname}}</view>
-							<view class="statuslist fz30"><span @tap="studentsedit(item.uid)">修改</span><span @tap="studentsdel(item.uid)">删除</span></view>
+							<view class="statuslist fz30"><view class="editor" @tap="studentsedit(item.uid)"></view><view class="delete" @tap="studentsdel(item.uid)"></view></view>
 							<view class="clear"></view>
 						</li>
 					</ul>					

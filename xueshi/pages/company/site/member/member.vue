@@ -16,7 +16,10 @@
 							<ul>
 								<li class="t2" v-for="(item2,index2) in item.memberlist" :index="index2" :key="item2.id">
 									<view class="fz35">{{item2.true_name}}</view>
-									<view class="statuslist fz30"><span class="fz30" @tap="memberedit(item2.id)">修改</span><span class="fz30" @tap="memberdel(item2.id)">删除</span></view>
+									<view class="statuslist fz30">
+										<view class="editor" @tap="memberedit(item2.id)"></view>
+										<view class="delete" @tap="memberdel(item2.id)"></view>
+									</view>
 								</li>
 							</ul>
 							

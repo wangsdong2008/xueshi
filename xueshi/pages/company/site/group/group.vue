@@ -14,7 +14,13 @@
 						<ul v-for="(item,index) in dataList" :index="index" :key="item.com_id">
 							<li class="list-title list"> {{item.com_name}}
 								<ul v-for="(item2,index2) in item.grouplist" :index="index2" :key="item2.ug_id">
-									<li class="list-title2"> {{'【'+item2.groupname+'】'}}	<view class="edits" @tap="groupedit(item2.groupid)">编辑</view></li>
+									<li class="t2 css_course"> {{'【'+item2.groupname+'】'}}	
+										<view class="statuslist">
+											<view class="editor" @tap="groupedit(item2.groupid)"></view>
+											<view class="delete" @tap="groupdel(item2.groupid)"></view>
+										</view>
+										
+									</li>
 								</ul>							
 							</li>
 						</ul>
@@ -80,7 +86,7 @@
 			},
 			delData(data){
 				this.sendRequest({
-				        url : this.DelAllMemberGroupUrl,
+				        url : this.DelTeacherGroupUrl,
 				        method : _self.Method,
 				        data : {
 							"guid": data.guid,
@@ -94,13 +100,13 @@
 				        			if(parseInt(res.status) == 3){
 				        				_self.show();
 				        				uni.showToast({
-				        					title: '删除年级成功',
+				        					title: '删除课程成功',
 				        					icon: 'none',
 				        				});	
 				        			}
 				        			else{
 				        				uni.showToast({
-				        					title: '删除失败',
+				        					title: '删除课程失败',
 				        					icon: 'none',
 				        				});	
 				        			}
@@ -225,7 +231,7 @@
 	.statuslist{
 		position:absolute;
 		right: 30upx;
-		margin-top: 10upx;
+		margin-top: 0upx;
 	}
 	.statuslist span{
 		margin-right: 10upx;
