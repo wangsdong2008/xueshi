@@ -15,7 +15,9 @@
 						<ul>
 							<li class="t2"  v-for="(item2,index2) in item.list" :index="index2" :key="item2.id" >
 								<view class="fz35">{{item2.gtime +'【'+item2.groupname+'】'}}</view>
-								<view class="statuslist fz30"><span @tap="teacherplanedit(index,index2,_self.teacher_id,item2.pid,item2.groupname,item2.gtime)">修改</span><span @tap="teacherplandel(_self.teacher_id,item2.pid)">删除</span></view>
+								<view class="statuslist fz30">
+									<view class="editor" @tap="teacherplanedit(index,index2,_self.teacher_id,item2.pid,item2.groupname,item2.gtime)"></view><view class="delete" @tap="teacherplandel(_self.teacher_id,item2.pid)"></view>
+								</view>
 							</li>
 						</ul>
 					</uni-collapse-item>
