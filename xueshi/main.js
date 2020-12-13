@@ -138,6 +138,10 @@ Vue.prototype.SaveRemindUrl = Vue.prototype.ParentUrl + "saveremindsiteup" //个
 Vue.prototype.GetTeacherCurrentStudents = Vue.prototype.CompanyTeacherUrl + "getcurrentstudents" //要接送的学生
 
 //公司相关
+//优惠券
+Vue.prototype.GetAllDiscountsUrl = Vue.prototype.CompanyUrl + "getalldiscountlist" //获取优惠券列表
+Vue.prototype.CreateDiscountsUrl = Vue.prototype.CompanyUrl + "creatediscount" //生成优惠券列表
+
 //当天要接的孩子
 Vue.prototype.GetCurrentStudents = Vue.prototype.CompanyUrl + "getcurrentstudents" //要接送的学生
 Vue.prototype.GetCurrentCFStudents = Vue.prototype.CompanyUrl + "getcurrentcfstudents" //吃饭的学生

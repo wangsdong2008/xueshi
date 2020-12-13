@@ -55,11 +55,12 @@
 					{"image":"tiaoke.png","text":"调课管理","url":"../tiaoke/tiaoke"},
 					
 				],
-				dataList2:[
-					{"image":"display.png","text":"显示设置","url":"../display/show"},
+				dataList2:[					
 					{"image":"staff.png","text":"员工管理","url":"../member/member"},
 					{"image":"course.png","text":"开课设置","url":"../group/group"},
 					{"image":"sk.png","text":"员工上课安排","url":"../teacherplan/teacherplan"},
+					{"image":"Discount.png","text":"优惠券","url":"../discount/discount"},
+					{"image":"display.png","text":"显示设置","url":"../display/show"},
 					{"image":"help.png","text":"帮助文档","url":"../help/help"},
 					
 				],	

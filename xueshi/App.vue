@@ -244,5 +244,12 @@
 		-webkit-background-size:40upx 40upx ;
 		background-size:40upx 40upx;
 	}
+	//优惠券
+	.css_discount{
+		background:url(@/static/img/Discount.png) 0upx 20upx no-repeat;
+		-webkit-background-size:40upx 40upx ;
+		background-size:40upx 40upx;
+	}
+	
 
 </style>

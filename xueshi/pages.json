@@ -227,6 +227,11 @@
 				"navigationBarTitleText": "显示设置"
 			}
 		},{
+			"path": "pages/company/site/discount/discount",
+			"style": {				
+				"navigationBarTitleText": "优惠券管理"
+			}
+		},{
 			"path": "pages/company/site/member/member",
 			"style": {				
 				"navigationBarTitleText": "员工管理"
