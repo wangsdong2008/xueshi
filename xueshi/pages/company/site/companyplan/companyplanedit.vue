@@ -71,27 +71,6 @@
 						</view>	
 					</view>
 					<view class="week-list-time">
-						<view class="left_txt">上课时间:</view>
-						<view class="cell-right">
-							<!-- <input class="m-input t2" type="text" :value="_self.studentsutime_list" placeholder="所选接时间"></input> -->
-							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-								<view :class="{
-									'texts':true,
-									'hidden':!item2.shower
-									}">周{{item2.weektext}}
-									</view>
-									<picker mode="time" :value="item2.utime" start="00:01" end="23:59"  @change="bindTimeChange($event,item2.weekid)" :class="{
-										'awidth':true,
-											'hidden':!item2.shower
-										}">
-										<view class="uni-input">{{item2.utime}}</view>
-									</picker>	
-								</view>
-							<view class="clear"></view>
-							
-						</view>
-					</view>
-					<view class="week-list-time address">
 						<view class="left_txt">上课教室：</view>
 						<view class="cell-right">
 							<!-- <input class="m-input t2" type="text" :value="_self.studentsclassroom_list" placeholder="上课教室"></input> -->
@@ -109,6 +88,27 @@
 									</picker>
 								</view>
 							<view class="clear"></view>
+						</view>
+					</view>
+					<view class="week-list-time address">
+						<view class="left_txt">接的时间:</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsutime_list" placeholder="所选接时间"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+									}">周{{item2.weektext}}
+									</view>
+									<picker mode="time" :value="item2.utime" start="00:01" end="23:59"  @change="bindTimeChange($event,item2.weekid)" :class="{
+										'awidth':true,
+											'hidden':!item2.shower
+										}">
+										<view class="uni-input">{{item2.utime}}</view>
+									</picker>	
+								</view>
+							<view class="clear"></view>
+							
 						</view>
 					</view>
 					<view class="week-list-time address">
