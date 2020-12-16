@@ -22,6 +22,13 @@
 			</ul>
 		</view>
 		
+		<view class="line"></view>
+		<view class="content">
+				<ul>
+				<li class="lists fz35" v-for="(item3,index3) in dataList3" :key="index3" @tap="bindclick(index3,3)"><image :src="'/static/img/'+item3.image"></image>{{item3.text}}</li>		
+			</ul>
+		</view>
+		
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
 		</view>
@@ -60,6 +67,9 @@
 					{"image":"course.png","text":"开课设置","url":"../group/group"},
 					{"image":"sk.png","text":"员工上课安排","url":"../teacherplan/teacherplan"},
 					{"image":"Discount.png","text":"优惠券","url":"../discount/discount"},
+					
+				],
+				dataList3:[					
 					{"image":"display.png","text":"显示设置","url":"../display/show"},
 					{"image":"help.png","text":"帮助文档","url":"../help/help"},
 					
@@ -81,6 +91,10 @@
 					}
 					case 2:{
 						_self.navigateTo(_self.dataList2[num].url);
+						break;
+					}
+					case 3:{
+						_self.navigateTo(_self.dataList3[num].url);
 						break;
 					}
 				}			

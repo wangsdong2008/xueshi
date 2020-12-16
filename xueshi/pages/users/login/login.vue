@@ -183,6 +183,7 @@
 										is_teacher:data.is_teacher,//老师
 										is_time:data.is_time,//放学时间
 										is_grade:data.is_grade,//班级
+										is_name:data.is_name,//是否隐藏
 										pay_status:data.pay_status,
 										
 										remind_time:data.remind_time,//提醒提前时间

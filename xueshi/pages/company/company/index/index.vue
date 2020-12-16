@@ -23,7 +23,7 @@
 											 'green':(item3.sign_status == 1),
 											 'xblist':true,
 											 'fz30':true
-											}">{{item3.uname}}<span class="tname" v-if="(item3.teacher != '') && (is_teacher == 1)">({{item3.teacher+' '}})</span><span class="cname" v-if="is_grade == 1">{{item3.class_name+' '}}</span><span class="cname" v-if="is_time == 1">{{item3.utime+' '}}</span><span class="t1"><view class="t2 fz30"><span v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span></view> 
+											}">{{is_name*1 == 0?'*'+item3.uname.slice(-2):item3.uname}}<span class="tname" v-if="(item3.teacher != '') && (is_teacher == 1)">({{item3.teacher+' '}})</span><span class="cname" v-if="is_grade == 1">{{item3.class_name+' '}}</span><span class="cname" v-if="is_time == 1">{{item3.utime+' '}}</span><span class="t1"><view class="t2 fz30"><span v-if="item3.uaddress != ''" @tap="jie(item3.uname,item3.utime,item3.uaddress,1)">接</span></view> 
 <view class="t2 fz30"><span v-if="item3.giveaddress != ''" @tap="jie(item3.uname,item3.givetime,item3.giveaddress,2)">送</span></view> 
 <view class="t2 fz30"><span v-if="item3.backtime != '00:00'" @tap="jie(item3.uname,item3.backtime,item3.giveaddress,3)">回</span></view>
 
@@ -134,6 +134,7 @@
 				is_time:0,//时间
 				is_teacher:0, //老师
 				is_grade:0, //班级
+				is_name:0,
 				footer: 'index',
 				gonggaoList:[],
 				gonggaonum:0,
@@ -341,6 +342,7 @@
 				_self.is_time = parseInt(ret.is_time);
 				_self.is_teacher = parseInt(ret.is_teacher);
 				_self.is_grade = parseInt(ret.is_grade);
+				_self.is_name = parseInt(ret.is_name);
 				
 				const data = {
 				    guid: ret.guid,

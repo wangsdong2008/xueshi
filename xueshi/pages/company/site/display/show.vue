@@ -97,7 +97,19 @@
 						</view>
 					</view>
 				
-					
+					<view class="register_account_input form">
+						<view class="left_txt">姓氏</view>
+						<view class="cell-right">
+							<radio-group @change="nameChange">
+								<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in name_items" :key="item.value">
+								<view>
+									<radio class="radios" :value="item.value" :checked="parseInt(item.value) == is_name" />
+								</view>
+								<view class="radio_text fz30">{{item.name}}</view>
+								</label>							
+							</radio-group>
+						</view>
+					</view>
 					
 					
 					
@@ -199,6 +211,16 @@
 						name: '隐藏'
 					}
 				],
+				name_items:[
+					{
+						value: '1',
+						name: '显示'
+					},
+					{
+						value: '0',
+						name: '隐藏'
+					}
+				],
 				
 				is_brithday:0, //生日
 				is_tw:0,//体温
@@ -206,7 +228,7 @@
 				is_time:0,//时间
 				is_teacher:0, //老师
 				is_grade:0, //班级				
-				
+				is_name:0,
 				headermsg:'',
 				btntxt:'',
 				footer:''
@@ -224,7 +246,7 @@
 					"is_teacher":_self.is_teacher,//老师
 					"is_time":_self.is_time,//放学时间
 					"is_grade":_self.is_grade,//班级	
-						
+					"is_name":_self.is_name,//姓氏		
 					"remind_time":_self.remind_time,//提醒提前时间
 					"remind_status":_self.remind_status,//提示音开关
 					"remind_music":_self.remind_music,//提示音
@@ -232,7 +254,6 @@
 					"t":Math.random()
 				};
 				
-				//上传图片
 				_self.sendRequest({
 					url : _self.SaveDisplaySiteUrl,
 					method :_self.Method,
@@ -258,6 +279,7 @@
 								is_teacher:_self.is_teacher,//老师
 								is_time:_self.is_time,//放学时间
 								is_grade:_self.is_grade,//班级
+								is_name:_self.is_name,//是否隐藏姓氏
 								pay_status:ret.pay_status,
 								
 								remind_time:ret.remind_time,//提醒提前时间
@@ -267,7 +289,6 @@
 								face:data.imgpath,
 								power:ret.power //权限
 							}
-							
 							uni.removeStorageSync(_self.USERS_KEY);
 							//存储数组前，将数组转为字符串
 							
@@ -299,7 +320,8 @@
 					is_sign:parseInt(_self.is_sign),//签到
 					is_teacher:parseInt(_self.is_teacher),//老师
 					is_time:parseInt(_self.is_time),//放学时间
-					is_grade:parseInt(_self.is_grade),//班级										
+					is_grade:parseInt(_self.is_grade),//班级		
+					is_name:parseInt(_self.is_name),//姓氏	
 					pay_status:ret.pay_status,
 					remind_time:_self.remind_time,//提醒提前时间
 					remind_status:_self.remind_status,//提示音开关
@@ -330,6 +352,10 @@
 			gradeChange: function(evt) {
 				var current = evt.detail.value;
 				_self.is_grade = current;
+			},
+			nameChange:function(evt){
+				var current = evt.detail.value;
+				_self.is_name = current;
 			},
 			timeChange: function(evt) {
 				var current = evt.detail.value;
