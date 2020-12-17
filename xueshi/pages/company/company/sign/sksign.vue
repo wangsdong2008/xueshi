@@ -20,7 +20,7 @@
 												<view :class="{
 												 'boys0':(item3.sex==1),
 												 'grils0':(item3.sex==0)
-												 }">{{item3.uname}}
+												 }">{{is_name*1 == 0?'*'+item3.uname.slice(-2):item3.uname}}
 												</view>
 									</li>
 									</ul>
@@ -68,6 +68,7 @@
 				dataList_num:0,
 				selectid:'',
 				isCheckedAll: false,
+				is_name:0,
 				ulist:[],
 				headermsg:'上课签到,Class sign',
 			}
@@ -84,6 +85,8 @@
 				let ret = _self.getUserInfo();
 				if(!ret){
 					return false;
+				}else{
+					_self.is_name = ret.is_name;
 				}
 				if(parseInt(ret.pay_status) == 0){ //过期会员去续费
 					uni.showModal({

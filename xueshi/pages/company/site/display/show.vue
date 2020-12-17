@@ -228,7 +228,7 @@
 				is_time:0,//时间
 				is_teacher:0, //老师
 				is_grade:0, //班级				
-				is_name:0,
+				is_name:0,//姓氏
 				headermsg:'',
 				btntxt:'',
 				footer:''
@@ -390,6 +390,7 @@
 				_self.is_time = ret.is_time;
 				_self.is_teacher = ret.is_teacher;
 				_self.is_grade = ret.is_grade;
+				_self.is_name = ret.is_name;
 			}
 		
 		
