@@ -47,7 +47,8 @@ Vue.prototype.payAccount = {
 		"auth_code":""		
 	},
 	"wxlist":{
-		"app_id":""
+		"appid":"",
+		"AppSecret":''
 	} */
 }; //支付帐号
 

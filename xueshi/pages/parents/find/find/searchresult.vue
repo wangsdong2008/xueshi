@@ -49,7 +49,7 @@
 			_self.course_name = options['keyword'];
 			_self.longitude = options['longitude'];
 			_self.latitude = options['latitude'];	
-			_self.distance = options['distance'];
+			_self.distance = (options['distance']==undefined?2:options['distance']);
 		},
 		onReady(){
 			_self.show();
@@ -78,7 +78,7 @@
 					longitude:_self.longitude,
 					latitude:_self.latitude,
 					distance:_self.distance
-				};				
+				};			
 				_self.getData(data);
 			},
 			showcourse(userid,com_id,cat_id){

@@ -13,10 +13,10 @@
 					<m-input class="m-input fz30" type="text" clearable focus v-model="c_name" placeholder="填写课程名"></m-input>
 				</view>
 				<view class="register_account_input">				
-					<m-input class="m-input fz30" type="text" clearable focus v-model="organname" placeholder="填写机构名"></m-input>
+					<m-input class="m-input fz30" type="text" clearable v-model="organname" placeholder="填写机构名"></m-input>
 				</view>
 				<view class="register_account_input">				
-					<m-input class="m-input fz30" type="text" clearable focus v-model="c_address" placeholder="机构地点"></m-input>
+					<m-input class="m-input fz30" type="text" clearable v-model="c_address" placeholder="机构地点"></m-input>
 				</view>
 				<view class="register_account_input">
 					<m-input class="m-input fz30" type="text" clearable v-model="c_order" placeholder="填写顺序"></m-input>
@@ -176,13 +176,13 @@
 							uni.showModal({
 							    title: str,
 							    content: '请选择返回的页面',
-								cancelText:'留在本页',
+								cancelText:'设置上课安排',
 								confirmText:'返回前页',
 							    success: function (res) {
 							        if (res.confirm) {
 										_self.navigateTo('course');
 							        } else if (res.cancel) {
-							            _self.navigateTo('courseedit?id='+_self.c_id);
+										_self.navigateTo('../plan/plan');
 							        }
 							    }
 							});

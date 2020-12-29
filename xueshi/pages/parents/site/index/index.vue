@@ -1,25 +1,24 @@
 <template>
-	<view class="main_content">
-		
+	<view class="main_content">		
 		<headerNav :msg="headermsg"></headerNav>
 		
 		<view class="line"></view>
-		<view class="content">
-			
+		<view class="content">			
 			<view class="main-body write lists">
 				<ul>
 					<li class="lists fz35" v-for="(item,index) in dataList" :key="index" @tap="bindclick(index,1)"><image :src="'/static/img/'+item.image"></image>{{item.text}}</li>
 				</ul>
 			</view>	
 		</view>
+		
 		<view class="line"></view>
 		<view class="content">
 			<ul>
 				<li class="lists fz35" v-for="(item2,index2) in dataList2" :key="index2" @tap="bindclick(index2,2)"><image :src="'/static/img/'+item2.image"></image>{{item2.text}}</li>		
 			</ul>
 		</view>
-		<view class="line"></view>
 		
+		<view class="line"></view>		
 		
 	    <view class="footer">
 	    	<footerNav :msg="footer"></footerNav>
@@ -226,7 +225,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style >
 	.bottom{
 	}
 	.quit{
@@ -257,46 +256,28 @@
 		text-align: left;
 	}
 	
-	.header-title{
-		background:url(/static/img/login_title.png) #ffffff center 0 no-repeat;
-	    background-size:100% 100%;
-	    padding-bottom:20%;
-		position: relative;
-	}
-	
-	.login_title_txt{
-		padding-top: 55upx;
-		z-index: 100;
-		position: relative;
-	}
-	
-	.logo{
-		width:320upx;
-		height: 320upx;
-		position:absolute;
-		top:90upx;
-		left:400upx;
-	}
-	
-	.header-img{
-		width:150upx;
-		height: 150upx;
-		overflow: hidden;
-		border-radius: 90upx;	
-		border:1upx solid #fff;
-		background-color: #fff;
-		margin-top: 40upx;
-	}
-	
-	.login_center image{
-		width:150upx;
-		height: 150upx;
-		margin: 0 auto;
-	}
-	
-	ul li:last-child{
-		border-bottom: 0upx;
-	}
 
+	
+	
+
+
+
+	
+	ul.detail li{
+		line-height: 90upx;
+		padding-left: 70upx;
+		margin-bottom: 10upx;
+	}
+	.cname{
+		float: left;
+	}
+	.statuslist{
+		float: right;
+		right: 0upx;
+		top:0upx;
+	}
+	.statuslist span{
+		margin-right: 20upx;
+	}
 	
 </style>

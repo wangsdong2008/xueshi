@@ -306,7 +306,6 @@
 						data : {"token":data.token,"guid":data.guid,"id":data.cguid,"t":Math.random()},
 						hideLoading :false,
 						success:function (res) {
-							debugger;
 							let data = res;
 							status = parseInt(data.status);
 							var str = '';
@@ -471,7 +470,6 @@
 				    hideLoading : true,
 				    success:function (res) {
 						if(res){
-							//debugger;
 							let data = res;
 							if(data.status == 3){
 								let userinfo2 = data.userinfo;

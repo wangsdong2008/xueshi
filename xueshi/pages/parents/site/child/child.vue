@@ -18,7 +18,7 @@
 							'cname':true,
 							'grey':(item.is_show == 0)
 						}">{{item.child_name}}</view>
-						<view class="statuslist fz35"><view class="editor" @tap="showchild(item.child_id)"></view><view class="delete" @tap="delchild(item.child_id)"></view></view>
+						<view class="statuslist fz35"><view class="editor" @tap="showchild(item.child_id)"></view><view class="delete" @tap="delchild(item.child_id,item.sex)"></view></view>
 						<view class="clear"></view>
 					</li>
 				</ul>
@@ -69,7 +69,9 @@
 					url: './childshow',
 				});
 			},
-			delchild(id){
+			delchild(id,sex){
+				let sexs = (parseInt(sex)==1?'他':'她'); 
+				if(!confirm("删除孩子，"+sexs+"的上课安排也被删除，确定要删除此孩子吗？")) return false;
 				//debugger;
 				let ret = _self.getUserInfo();
 				if(!ret){

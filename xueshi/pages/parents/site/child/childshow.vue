@@ -119,7 +119,7 @@
 				if(!service.checkNull(_self.child_name)){
 					uni.showToast({
 					    icon: 'none',
-					    title: '孩子名不能为空'
+					    title: '孩子昵称不能为空'
 					});
 					return;
 				}
