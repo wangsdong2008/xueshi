@@ -24,8 +24,8 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 Vue.prototype.WebUrl = "http://api.yuwenjiaoyu.net/";
 Vue.prototype.Method = "post"; //请求方式
 
-/* Vue.prototype.WebUrl = "http://www.tp5.com/";
-Vue.prototype.Method = "get"; //请求方式 */
+Vue.prototype.WebUrl = "http://www.tp5.com/";
+Vue.prototype.Method = "get"; //请求方式
 
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 

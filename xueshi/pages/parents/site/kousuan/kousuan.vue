@@ -34,7 +34,7 @@
 				</view>
 				
 				<view class="register_account_input clear">
-					<view class="uni-list-cell-left fz30" id="fw1">加数1：</view>
+					<view class="uni-list-cell-left fz30" id="fw1">数1：</view>
 					<view class="searchinput input-txt">
 						<picker @change="Rrang1PickerChange($event)" :value="rang1_index" :range="rang1_dataList">
 							<view class="uni-input fz30">{{rang1_dataList[rang1_index]}}</view>
@@ -43,7 +43,7 @@
 				</view>
 				
 				<view class="register_account_input clear">
-					<view class="uni-list-cell-left fz30" id="fw2">加数2：</view>
+					<view class="uni-list-cell-left fz30" id="fw2">数2：</view>
 					<view class="searchinput input-txt">
 						<picker @change="Rrang2PickerChange($event)" :value="rang2_index" :range="rang2_dataList">
 							<view class="uni-input fz30">{{rang2_dataList[rang2_index]}}</view>

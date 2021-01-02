@@ -179,17 +179,21 @@
 <style>
 	.ks_list ul{
 		list-style-type: none;
-		margin-left: 30upx;
+		margin-left: 0upx;
 		padding: 0;
 		margin-bottom: 40upx;
+		width:700upx;
+		height: 900upx;
+		overflow: auto;
+		
 	}
 	.ks_list ul li{
 		height: 80upx;
 		line-height: 80upx;
 		/* border: 1upx solid #f00; */
-		width: 180upx;
+		width: 220upx;
 		margin-bottom: 30upx;
-		margin-right: 30upx;
+		margin-right: 10upx;
 		float: left;
 	}
 	
@@ -244,8 +248,7 @@
 		background-size: 40upx 40upx;
 		padding-left: 60upx;
 		line-height: 80upx;
-	}
-	
+	}	
 	ul.detail li{
 		line-height: 90upx;
 		padding-left: 70upx;
