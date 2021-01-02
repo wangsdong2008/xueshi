@@ -106,6 +106,9 @@ Vue.prototype.SaveDisplaySiteUrl = Vue.prototype.GeneralUrl + "savedisplaysite" 
 Vue.prototype.BilllistUrl = Vue.prototype.GeneralUrl + "getbilllist"; //续费记录
 
 //家长相关
+
+Vue.prototype.KousuanUrl = Vue.prototype.ParentUrl + "kousuan" //口算地址
+
 Vue.prototype.DayClassUrl = Vue.prototype.ParentUrl + "dayclass" //当天课程
 Vue.prototype.AllChildrenUrl = Vue.prototype.ParentUrl + "getallchildren" //全部孩子
 Vue.prototype.ShowChildrenUrl = Vue.prototype.ParentUrl + "getchildren" //获取单个孩子

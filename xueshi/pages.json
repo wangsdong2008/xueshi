@@ -458,6 +458,16 @@
 				"navigationBarTitleText": "我的报名"
 			}
 		},{
+			"path": "pages/parents/site/kousuan/kousuan",
+			"style": {
+				"navigationBarTitleText": "口算练习"
+			}
+		},{
+			"path": "pages/parents/site/kousuan/kousuanresult",
+			"style": {
+				"navigationBarTitleText": "口算习题"
+			}
+		},{
 			"path": "pages/parents/site/tongji/tongji",
 			"style": {
 				"navigationBarTitleText": "统计"
