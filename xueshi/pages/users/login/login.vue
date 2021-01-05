@@ -209,14 +209,18 @@
 				        					break;
 				        				}
 				        			}
-				        			url = '../../' + url;
-				        			
-				        			uni.setStorage({
+									uni.setStorage({
 				        				key:_self.USERS_KEY,
 				        				data:d
 				        			});
+				        			url = '../../' + url;
+									uni.reLaunch({
+									    url: url  
+									}); 
 				        			
-				        			uni.showToast({
+				        			
+				        			
+				        			/* uni.showToast({
 				        				title: '登录成功!',
 				        				mask: true,
 				        				duration: 1500,
@@ -227,7 +231,7 @@
 				        				    }); 
 				        					
 				        				}  
-				        			});	
+				        			});	 */
 				        			
 				        			
 				        		}else{

@@ -8,7 +8,7 @@
 		</view>
 		
 		<view class="line"></view>
-		<view class="content">
+		<view class="content" style="width: 95%;">
 			<view>
 				<view class="register_account_input clear">
 					<view class="uni-list-cell-left fz30">数量：</view>
@@ -16,7 +16,7 @@
 						<radio-group @change="numChange">
 							<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in num_items" :key="item.value">
 							<view>
-								<radio class="radios" :value="item.value" :checked="parseInt(item.value) == num" />
+								<radio class="radios" :value="item.value.toString()" :checked="parseInt(item.value) == num" />
 							</view>
 							<view class="radio_text fz30">{{item.name}}</view>
 							</label>							
@@ -34,7 +34,7 @@
 				</view>
 				
 				<view class="register_account_input clear">
-					<view class="uni-list-cell-left fz30" id="fw1">数1：</view>
+					<view class="uni-list-cell-left fz30" id="fw1">第一个数：</view>
 					<view class="searchinput input-txt">
 						<picker @change="Rrang1PickerChange($event)" :value="rang1_index" :range="rang1_dataList">
 							<view class="uni-input fz30">{{rang1_dataList[rang1_index]}}</view>
@@ -43,7 +43,7 @@
 				</view>
 				
 				<view class="register_account_input clear">
-					<view class="uni-list-cell-left fz30" id="fw2">数2：</view>
+					<view class="uni-list-cell-left fz30" id="fw2">第二个数：</view>
 					<view class="searchinput input-txt">
 						<picker @change="Rrang2PickerChange($event)" :value="rang2_index" :range="rang2_dataList">
 							<view class="uni-input fz30">{{rang2_dataList[rang2_index]}}</view>
@@ -57,7 +57,7 @@
 						<radio-group @change="posChange">
 							<label class="uni-list-cell uni-list-cell-pd" v-for="(item2, index) in pos_items" :key="item2.value">
 							<view>
-								<radio class="radios" :value="item2.value" :checked="parseInt(item2.value) == pos" />
+								<radio class="radios" :value="item2.value.toString()" :checked="parseInt(item2.value) == pos" />
 							</view>
 							<view class="radio_text fz30">{{item2.name}}</view>
 							</label>							
@@ -101,67 +101,23 @@
 				footer: '',
 				btntxt:'打印题目',
 				num:30,
-				num_items:[
-					{
-						value: '30',
-						name: '30'
-					},
-					{
-						value: '60',
-						name: '60'
-					},
-					{
-						value: '90',
-						name: '90'
-					},
-					{
-						value: '150',
-						name: '150'
-					}
-				],
+				num_items:[],
 				pos:1,
-				pos_items:[
-					{
-						value: '0',
-						name: '任意'
-					},
-					{
-						value: '1',
-						name: '左'
-					},
-					{
-						value: '2',
-						name: '中'
-					},
-					{
-						value: '3',
-						name: '右'
-					}
-				],
+				pos_items:[],
 				course_index:0,
 				course_id:1,
-				course_dataList:[
-					'加法','减法','乘法','除法','带余数除法'
-				],				
-				course_dataIDList:[1,2,3,4,5],
+				course_dataList:[],				
+				course_dataIDList:[],
 				
 				rang1_id:10,
 				rang1_index:0,
-				rang1_dataList:[
-					'10','20','50','100','200','500'
-				],
-				rang1_dataIDList:[
-					'10','20','50','100','200','500'
-				],
+				rang1_dataList:[],
+				rang1_dataIDList:[],
 				
 				rang2_id:10,
 				rang2_index:0,
-				rang2_dataList:[
-					'10','20','50','100','200','500'
-				],
-				rang2_dataIDList:[
-					'10','20','50','100','200','500'
-				]
+				rang2_dataList:[],
+				rang2_dataIDList:[]
 			}
 		},
 		onLoad(){
@@ -172,7 +128,80 @@
 			_self.show();
 		},
 		methods:{
-			show(){				
+			show(){
+				let ret = _self.getUserInfo();
+				if(!ret){
+					return false;
+				}				
+				const data = {
+				    guid: ret.guid,
+				    token: ret.token
+				};
+				_self.getData(data);
+			},
+			getData(data){
+				_self.sendRequest({
+				    url : _self.KousuanCsUrl,
+				    method : _self.Method,
+				    data : {
+				    			"guid": data.guid,
+				    			"token":data.token,
+				    			"t":Math.random()			
+							},
+				    hideLoading : true,
+				    success:function (res) {
+				    	if(res){				    		
+				    		if(parseInt(res.status) == 3){
+								//数量
+								var data = res.numlist;								
+								let list = [];
+								for (var i = 0; i < data.length; i++) {
+									var item = data[i];
+									list.push(item);
+								}								
+								_self.num_items = list;
+								_self.num = res.initnum;
+								
+								//运算
+								data = res.operationlist;
+								list = [];
+								var idlist = [];
+								for (var i = 0; i < data.length; i++) {
+									var item = data[i];
+									list.push(item.name);
+									idlist.push(item.value);
+								}
+								_self.course_dataList = list;
+								_self.course_dataIDList = idlist;
+								
+								//范围								
+								data = res.ranglist;
+								list = [];
+								var idlist = [];
+								for (var i = 0; i < data.length; i++) {
+									var item = data[i];
+									list.push(item.name);
+									idlist.push(item.value);
+								}
+								_self.rang1_dataList = list;
+								_self.rang1_dataIDList = idlist;
+								_self.rang2_dataList = list;
+								_self.rang2_dataIDList = idlist;
+								
+								//位置
+								data = res.poslist;
+								list = [];
+								for (var i = 0; i < data.length; i++) {
+									var item = data[i];
+									list.push(item);
+								}								
+								_self.pos_items = list;
+								_self.pos = res.initpos;
+								
+				    		}
+				    	}
+				    }
+				},"1","");
 			},
 			kousuanprint:function(){
 				var n = _self.num; //数量
@@ -251,7 +280,7 @@
 	
 	.uni-list-cell-left{
 		margin-right: 40upx;
-		width:25%;
+		width:23%;
 	}
 	
 	picker view{
