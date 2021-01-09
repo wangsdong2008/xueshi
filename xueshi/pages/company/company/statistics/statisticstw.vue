@@ -321,7 +321,7 @@
 		}
 	
 	.icenter{
-		width:80%;
+		width:90%;
 		margin: 0 auto;
 		margin-top: 60upx;
 	}
@@ -329,7 +329,7 @@
 		float: left;
 		margin-bottom: 30upx;
 	}
-	.icenter .input2{
+	/* .icenter .input2{
 		width:20%;
 		line-height: 60upx;
 		height: 60upx;
@@ -346,6 +346,21 @@
 		background: url(/static/img/search.png) no-repeat 5upx 10upx;
 		-webkit-background-size: 55upx 55upx;
 		background-size: 55upx 55upx;
+	} */
+	
+	.icenter .input2{
+		width:23%;
+		line-height: 75upx;
+		height: 75upx;
+	}
+	
+	picker view{
+		border: 1px solid #ccc;
+		width:450upx;
+		text-align: center;
+		height: 75upx;
+		line-height: 75upx;
+		border-radius: 50upx;
 	}
 	
 	

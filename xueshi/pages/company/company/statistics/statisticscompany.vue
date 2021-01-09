@@ -7,21 +7,21 @@
 			</view>
 				
 				<view class="icenter bg">
-					<view class="fz30">公司：</view>
+					<view class="input2 fz30">公司：</view>
 					<view class="searchinput input-txt fz30">
 						<picker @change="pickerChange($event)" :value="index" :range="dataList">
 							<view class="uni-input">{{dataList[index]}}</view>
 						</picker>
 					</view>
 					<view class="clear"></view>
-					<view v-if="id == 1" class="fz30">课程：</view>
+					<view v-if="id == 1" class="input2 fz30">课程：</view>
 					<view class="searchinput input-txt fz30" v-if="id == 1">
 						<picker @change="pickerCourseChange($event)" :value="cindex" :range="cList">
 							<view class="uni-input">{{cList[cindex]}}</view>
 						</picker>
 					</view>
 					<view class="clear"></view>
-					<view class="fz30">月份：</view>
+					<view class="input2 fz30">月份：</view>
 					<view class="input-txt fz30">
 						<picker @change="pickerDateChange($event)" :value="dindex" :range="dateList">
 							<view class="uni-input">{{dateList[dindex]}}</view>
@@ -255,7 +255,7 @@
 	}
 	
 	.icenter{
-		width:80%;
+		width:90%;
 		margin: 0 auto;
 		margin-top: 60upx;
 	}
@@ -263,7 +263,7 @@
 		float: left;
 		margin-bottom: 30upx;
 	}
-	.icenter .input-txt{		
+	/* .icenter .input-txt{		
 		width: 65%;
 		border:1upx solid #eeeeee;
 		line-height: 55upx;
@@ -275,7 +275,21 @@
 		background: url(/static/img/search.png) no-repeat 5upx 10upx;
 		-webkit-background-size: 55upx 55upx;
 		background-size: 55upx 55upx;
+	} */
+	
+	.icenter .input2{
+		width:23%;
+		line-height: 75upx;
+		height: 75upx;
 	}
 	
+	picker view{
+		border: 1px solid #ccc;
+		width:450upx;
+		text-align: center;
+		height: 75upx;
+		line-height: 75upx;
+		border-radius: 50upx;
+	}
 	
 </style>

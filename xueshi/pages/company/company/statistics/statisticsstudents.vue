@@ -192,7 +192,7 @@
 							let list = [];
 							let idlist = [];
 							let statuslist = [];
-							list.push("==请选择所属机构==");
+							list.push("==请选择机构==");
 							idlist.push(0);
 							statuslist.push(0)
 							for (var i = 0; i < data.length; i++) {
@@ -342,7 +342,7 @@
 		}
 	
 	.icenter{
-		width:80%;
+		width:90%;
 		margin: 0 auto;
 		margin-top: 60upx;
 	}
@@ -351,11 +351,11 @@
 		margin-bottom: 30upx;
 	}
 	.icenter .input2{
-		width:20%;
-		line-height: 60upx;
-		height: 60upx;
+		width:23%;
+		line-height: 75upx;
+		height: 75upx;
 	}
-	.icenter .input-txt{		
+	/*.icenter .input-txt{		
 		width: 65%;
 		border:1upx solid #ccc;
 		line-height: 55upx;
@@ -363,11 +363,18 @@
 		padding-left: 60upx;
 		border-radius: 25upx;
 	}
-	.icenter > view.searchinput{
+	 .icenter > view.searchinput{
 		background: url(/static/img/search.png) no-repeat 5upx 10upx;
 		-webkit-background-size: 55upx 55upx;
 		background-size: 55upx 55upx;
+	} */
+	picker view{
+		border: 1px solid #ccc;
+		width:450upx;
+		text-align: center;
+		height: 75upx;
+		line-height: 75upx;
+		border-radius: 50upx;
 	}
-	
 	
 </style>

@@ -6,21 +6,21 @@
 				考勤统计
 			</view>			
 				<view class="icenter bg">
-					<view class="fz30">机构：</view>
+					<view class="input2 fz30">机构：</view>
 					<view class="input-txt">					
 						<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
 							<view class="uni-input fz30">{{cList[cindex]}}</view>
 						</picker>
 					</view>
 					<view class="clear"></view>
-					<view class="fz30">姓名：</view>				
+					<view class="input2 fz30">姓名：</view>				
 					<view class="searchinput input-txt">
 						<picker @change="pickerChange($event)" :value="index" :range="dataList">
 							<view class="uni-input fz30">{{dataList[index]}}</view>
 						</picker>
 					</view>
 					<view class="clear"></view>
-					<view class="fz30">年份：</view>
+					<view class="input2 fz30">年份：</view>
 					<view class="input-txt">
 						<picker @change="pickerDateChange($event)" :value="dindex" :range="dateList">
 							<view class="uni-input fz30">{{dateList[dindex]}}</view>
@@ -287,7 +287,7 @@
 		padding: 15upx 0upx 15upx 70upx;
 	}	
 	.icenter{
-		width:80%;
+		width:90%;
 		margin: 0 auto;
 		margin-top: 60upx;
 	}
@@ -295,7 +295,7 @@
 		float: left;
 		margin-bottom: 30upx;
 	}
-	.icenter .input-txt{		
+	/* .icenter .input-txt{		
 		width: 65%;
 		border:1upx solid #eeeeee;
 		line-height: 55upx;
@@ -305,6 +305,20 @@
 	}
 	.icenter > view.searchinput{
 		
+	} */
+	.icenter .input2{
+		width:23%;
+		line-height: 75upx;
+		height: 75upx;
+	}
+	
+	picker view{
+		border: 1px solid #ccc;
+		width:450upx;
+		text-align: center;
+		height: 75upx;
+		line-height: 75upx;
+		border-radius: 50upx;
 	}
 	.btn{
 		width: 100%;
