@@ -22,18 +22,20 @@
 					</view>			
 					
 					<view class="register_account_input form">
-						<view class="left_txt">课程性质：</view>
-						<view class="cell-right">
-							<radio-group @change="wtChange">
-								<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in wt_items" :index="index" :key="item.value">
+						<view class="left_txt">节假日：</view>
+						<view class="cell-right hp">
+							<radio-group @change="holidayChange">
+								<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in holiday_items" :index="index" :key="item.value">
 								<view>
-									<radio class="radios" :value="item.value" :checked="parseInt(item.value) == wt_status" />
+									<radio class="radios" :value="item.value" :checked="parseInt(item.value) == is_holiday" />
 								</view>
 								<view class="radio_text">{{item.name}}</view>
 								</label>
 								<view class="clear"></view>
 							</radio-group>
+							<view class="help" @tap="help(1)"></view>
 						</view>
+						<view class="clear"></view>
 					</view>
 					
 					<view class="register_account_input form">
@@ -109,15 +111,15 @@
 				cIDList:[],
 				btntxt:'',
 				footer:'',
-				wt_status:0,
-				wt_items:[
+				is_holiday:0,
+				holiday_items:[
 					{
 						value: '0',
-						name: '非托班'
+						name: '不使用'
 					},
 					{
 						value: '1',
-						name: '托班'
+						name: '使用'
 					}
 				],
 				is_show:'1',
@@ -138,9 +140,9 @@
 				var current = evt.detail.value;
 				_self.is_show = current;	
 			},
-			wtChange: function(evt) {
+			holidayChange: function(evt) {
 				var current = evt.detail.value;
-				_self.wt_status = current;	
+				_self.is_holiday = current;	
 			},
 			pickerCompanyChange:function(e){
 				//console.log('picker发送选择改变，携带值为', e.target.value+"===="+_self.cList[e.target.value] + _self.cIDList[e.target.value]);
@@ -184,7 +186,7 @@
 							"content": _self.cat_content,
 							"sorder":_self.cat_order,
 							"comid":_self.com_id,
-							"wt_status":_self.wt_status,
+							"is_holiday":_self.is_holiday,
 							"is_show":_self.is_show,
 							"t":Math.random()
 						},
@@ -293,7 +295,7 @@
 												_self.cat_content = content.replace(new RegExp("<br />","gm"),"\r\n");
 											}											
 				        					
-											_self.wt_status = data.wt_status;
+											_self.is_holiday = data.is_holiday;
 				        					_self.com_id = data.com_id;
 				        					if(_self.cIDList != undefined){
 				        						_self.cindex = _self.cIDList.findIndex(i => i == data.com_id);
@@ -310,7 +312,21 @@
 </script>
 
 <style>
-	
+	.hp{
+		position: relative;
+	}
+	.help{
+		position: absolute;
+		right: 20upx;
+		top:0upx;
+		background:url(@/static/img/help.png) 10upx 6upx no-repeat;
+		-webkit-background-size:50upx 50upx ;
+		background-size:50upx 50upx;
+		line-height: 60upx;
+		height: 60upx;
+		width:60upx;
+		/* border:1upx solid #f00; */
+	}	
 	.content .title{
 	  		background:url(@/static/img/category.png) 10upx 25upx no-repeat;
 	  		-webkit-background-size:50upx 50upx ;

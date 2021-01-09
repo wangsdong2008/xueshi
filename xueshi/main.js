@@ -928,6 +928,34 @@ Vue.prototype.ScanAudio = function(mp3_name){
 	music.play(); //执行播放
 }
 
+Vue.prototype.help = function(id){
+	var str = '';
+	id = parseInt(id);
+	switch(id){
+		case 1:{
+			str = '选择【使用】后，节假日里不上课;\n选择【不使用】，节假日里继续上课';
+			break;
+		}
+		default:{
+			str = '选择【禁用】，临时关闭此项，等待下次启用；\n如果此项永远不再使用，请直接删除';
+		}
+	}	
+	uni.showModal({
+	    title: "友情提示",
+	    content: str,
+		cancelText:'确定',
+		confirmText:'取消',
+	    success: function (res) {
+	        if (res.confirm) {
+				//console.log('用户点击确定');
+			} else if (res.cancel) {
+				//console.log('用户点击取消');
+			}
+	    }
+	});
+	return;
+}
+
 //网络请求封装
 Vue.prototype.sendRequest = function(param, backtype,backpage){
 	var backpage = '';
