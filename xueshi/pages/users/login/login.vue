@@ -72,27 +72,8 @@
 					return false;
 				}else{					
 					var identity = ret.identity;
-					var url = "";
-					switch(identity){
-						case 1:{ //家长
-							url = "/pages/parents/parents/index";
-							break;
-						}
-						case 2:{ //机构
-							url = "/pages/company/company/index/index";							
-							break;
-						}  
-						case 3:{//员工
-							url = "/pages/teacher/teacher/index/index";
-							break;
-						}						
-					}
-					
-					//跳转
-					uni.reLaunch({
-						url:url
-					})
-					
+					identity = parseInt(identity);
+					_self.loginjump(identity);
 				}
 			},
 			bindLogin() {
@@ -193,45 +174,12 @@
 										face:data.face,
 										power:data.power //权限
 				        			}
-				        			let url = '';
-				        			switch(parseInt(data.user_identity))
-				        			{
-				        				case 1:{
-				        					url = 'parents/parents/index';
-				        					break;
-				        				}
-				        				case 2:{
-				        					url = 'company/company/index/index';
-				        					break;
-				        				}
-				        				case 3:{				        					
-				        					url = "teacher/teacher/index/index";				        						
-				        					break;
-				        				}
-				        			}
 									uni.setStorage({
-				        				key:_self.USERS_KEY,
-				        				data:d
-				        			});
-				        			url = '../../' + url;
-									uni.reLaunch({
-									    url: url  
-									}); 
-				        			
-				        			
-				        			
-				        			/* uni.showToast({
-				        				title: '登录成功!',
-				        				mask: true,
-				        				duration: 1500,
-				        				success: function(){
-				        					
-				        				    uni.reLaunch({  
-				        				        url: url  
-				        				    }); 
-				        					
-				        				}  
-				        			});	 */
+										key:_self.USERS_KEY,
+										data:d
+									});
+									
+									_self.loginjump(d.identity);//跳转
 				        			
 				        			
 				        		}else{

@@ -345,6 +345,35 @@ Vue.prototype.getUserInfo = function(){
 	return ret;
 }
 
+//登录后跳转
+Vue.prototype.loginjump = function(identity){
+	if(identity == "undefined") identity = 1;
+	var user_identity = parseInt(identity);
+	var url = "";
+	switch(identity){
+		case 1:{ //家长
+			url = "/pages/parents/parents/index";
+			break;
+		}
+		case 2:{ //机构
+			url = "/pages/company/company/index/index";							
+			break;
+		}  
+		case 3:{//员工
+			url = "/pages/teacher/teacher/index/index";
+			break;
+		}
+		case 4:{//身份不存在，跳回到登录页
+			url = '/pages/users/login/login';
+			break;
+		}
+	}	
+	//跳转
+	uni.reLaunch({
+		url:url
+	})
+}
+
 //退出
 Vue.prototype.quit = function(){
 	try {
@@ -364,7 +393,10 @@ Vue.prototype.quit = function(){
 Vue.prototype.checkLogin = function(identity){
 	let that = this;
 	let ret = that.getUserInfo();
-	if(ret == undefined || ret == "" || ret.identity == undefined || ret.identity == ""){
+	//debugger;
+	//console.log(ret);
+	//if(ret == undefined || ret == "" || ret.identity == undefined || ret.identity == ""){
+	if(ret.identity == undefined){
 		uni.reLaunch({
 		    url: '/pages/users/login/login',
 		});
